@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1000px" height="500px" style="border:1px solid red;"></canvas>
+<br>
+
+</body>
+<script>
+
+    class Rectangle {
+        constructor(width, length) {
+            this.width = width;
+            this.length = length;
+        }
+
+        getWidth() {
+            return this.width;
+        }
+
+        getLength() {
+            return this.length;
+        }
+
+        getAcreage() {
+            return this.length * this.width;
+        }
+
+        getPerimeter() {
+            return 2 * (this.width + this.length);
+        }
+
+        getPainting() {
+            let canvas = document.getElementById("myCanvas");
+            let ctx = canvas.getContext("2d");
+            ctx.fillStyle = "blue";
+            ctx.fillRect(100, 100, x, y);
+
+        }
+    }
+
+    let x = parseInt(prompt('dai'));
+    let y = parseInt(prompt('rong'));
+    let Rectangle1 = new Rectangle(x, y);
+    let width1 = Rectangle1.getWidth();
+    let length1 = Rectangle1.getLength();
+    let Acreage1 = Rectangle1.getAcreage();
+    let Perimeter1 = Rectangle1.getPerimeter();
+    Rectangle1.getPainting();
+    document.write("chieu rong la: " + width1 + "<br>"
+        + "chieu dai la: " + length1 + "<br>"
+        + 'dien tich la: ' + Acreage1 + "<br>"
+        + "chu vi la: " + Perimeter1)
+
+</script>
+
+</html>

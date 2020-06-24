@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<label>good</label>
+<input type="radio" id="good" onclick="luachon('good')">
+<label>cheap</label>
+<input type="radio" id="cheap" onclick="luachon('cheap')">
+<label>fast</label>
+<input type="radio" id="fast" onclick="luachon('fast')">
+<script>
+    function luachon(khanh) {
+        let objgood = document.getElementById("good");
+        let objcheap = document.getElementById("cheap");
+        let objfast = document.getElementById("fast");
+        switch (khanh) {
+            case "good" :
+                if (objcheap.checked) {
+                    (objfast.checked = false)
+                }
+                break;
+            case "cheap" :
+                if (objfast.checked) {
+                    (objgood.checked = false)
+                }
+                break;
+            case "fast":
+                if (objgood.checked) {
+                    (objcheap.checked = false)
+                }
+                break;
+
+        }
+
+    }
+</script>
+</body>
+</html>

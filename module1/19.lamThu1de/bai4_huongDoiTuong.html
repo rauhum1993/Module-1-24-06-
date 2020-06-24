@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="classCongNhan.js"></script>
+    <style>
+        .khung {
+            border: solid;
+            border-width: 1px;
+        }
+    </style>
+</head>
+<body>
+<div class="khung" style="margin-left: 200px;width: 700px;height: 500px">
+    <h1 style="margin-left: 150px">Quản lý công nhân</h1>
+    <input type="button" style="background: lightgreen" onclick="themCongNhan()" value="Thêm Nhân Viên">
+    <p id="display"></p>
+
+
+</div>
+<script>
+    listCongNhan = [];
+    hienThi();
+
+    function hienThi() {
+        let bangDanhSach = "<table border='1'>\n" +
+            "<tr>\n" +
+            '<th>Số thứ tự</th>\n' +
+            '<th> Tên nhân Viên</th>\n' +
+            '<th> Ngày tháng năm sinh</th>\n' +
+            '<th> Địa chỉ</th>\n' +
+            '<th> Lương</th>\n' +
+            '<th> Chức vụ</th>\n' +
+            '<th style="background: yellow">Sửa</th> ' +
+            '<th style="background: red">Xóa</th> ' +
+            "</tr>";
+        for (let i=0;i<listCongNhan.length;i++){
+            bangDanhSach += ' <tr>\n' +
+                '<td>' + (i + 1) + '</td>\n' +
+                '<td>' + listCongNhan[i].getName() + '</td>\n' +
+                '<td>' + listCongNhan[i].getBirthday() + '</td>\n' +
+                '<td>' + listCongNhan[i].getAddRess() + '</td>\n' +
+                '<td>' + listCongNhan[i].getSalary() + '</td>\n' +
+                '<td>' + listCongNhan[i].getPosition() + '</td>\n' +
+                '<td> <input type="button" value="Sửa" style="background: yellow" onclick="suaThongTin(' + i + ')"></td>\n' +
+                ' <td> <input type="button" value="Xóa" style="background: crimson" onclick="xoaCongNhan(' + i + ')"></td>\n' +
+                '</tr>';
+
+        }
+        document.getElementById("display").innerHTML=bangDanhSach;
+
+
+
+    }
+
+
+    function themCongNhan() {
+        let congNhan = new CongNhan();
+        congNhan.setName(prompt("Enter name : "));
+        congNhan.setStt(prompt("Enter stt : "));
+        congNhan.setBirthday(prompt("Enter Birthday : "));
+        congNhan.setAddRess(prompt("Enter AddRess: "));
+        congNhan.setSalary(prompt("Enter Salary: "));
+        congNhan.setPosition(prompt("Enter Position: "));
+        alert("ban da nhap thong tin thanh cong");
+        listCongNhan.push(congNhan);
+        hienThi();
+
+    }
+
+
+    function suaThongTin(i) {
+        listCongNhan[i].setName(prompt("nhap lai ten"));
+        listCongNhan[i].setStt(prompt("nhap lai stt"));
+        listCongNhan[i].setBirthday(prompt("nhap lai ngay sinh"));
+        listCongNhan[i].setAddRess(prompt("nhap lai dia chi"));
+        listCongNhan[i].setSalary(prompt("nhap lai luong"));
+        listCongNhan[i].setPosition(prompt("nhap lai chuc vu"));
+        hienThi();
+
+    }
+    xoaCongNhan();
+    function xoaCongNhan(i) {
+        let xacNhanXoa = confirm("Bạn có muốn xóa sản phẩm " + listCongNhan[i].getName() + "không?")
+        if (xacNhanXoa) {
+            listCongNhan.splice(i, 1);
+
+
+        }
+        hienThi()
+    }
+</script>
+</body>
+</html>

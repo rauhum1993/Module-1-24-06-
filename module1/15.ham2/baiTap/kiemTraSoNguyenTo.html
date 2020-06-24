@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let nhapvao = parseInt(prompt('nhap vao ban oi'));
+    if (ketQua(nhapvao)) {
+        alert('ngon ')
+    } else {
+        alert('f5 nhap lai')
+    }
+
+    function ketQua(nhapVao) {
+        if (nhapVao == 0 || nhapVao == 1) {
+            return false
+        }
+        for (i = 2; i < nhapVao; i++){
+
+            if (nhapVao % i !== 0) {
+                return true
+            }
+        }
+        return false
+
+    }
+
+</script>
+</body>
+</html>

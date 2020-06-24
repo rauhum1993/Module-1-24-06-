@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+    //  let MyDate = function (day, month, year) {
+    //
+    //      this.day = day;
+    //
+    //      this.month = month;
+    //
+    //      this.year = year;
+    //
+    //      this.getDay = function () {
+    //          return this.day;
+    //      };
+    //      this.getMonth = function () {
+    //          return this.month;
+    //      };
+    //      this.getYear = function () {
+    //          return this.year;
+    //      };
+    //      this.setDay = function (day1) {
+    //          this.day = day1;
+    //      };
+    //      this.setMonth = function (month1) {
+    //          this.month = month1;
+    //      };
+    //      this.setYear = function (year1) {
+    //          this.year = year1;
+    //      };
+    //  }
+    //  let dateKhanh = new MyDate(2, 2, 2007);
+    //  let day11 = dateKhanh.getDay(); // 2
+    //
+    //  let month11 = dateKhanh.getMonth(); // 2
+    //
+    //  let year11 = dateKhanh.getYear(); // 2007
+    //  alert(day11 + "/" + month11 + "/" + year11);
+    //  dateKhanh.setDay(10);
+    //  dateKhanh.setMonth(10);
+    //  dateKhanh.setYear(2019);
+    //  let day222 = dateKhanh.getDay(); // 2
+    //
+    // let  month222 = dateKhanh.getMonth(); // 2
+    //
+    // let  year222 = dateKhanh.getYear(); // 2007
+    //
+    //  alert(day222 + "/" + month222 + "/" + year222)
+    class MyDate {
+        constructor(day, month, year) {
+            this.day = day;
+            this.year = year;
+            this.month = month;
+
+        }
+
+        getDay() {
+            return this.day;
+        };
+
+        getMonth() {
+            return this.month;
+        };
+
+        getYear() {
+            return this.year;
+        };
+
+        setDay(day1) {
+            this.day = day1;
+        };
+
+        setMonth(month1) {
+            this.month = month1;
+        };
+
+        setYear(year1) {
+            this.year = year1;
+        };
+    }
+     let dateKhanh = new MyDate(2, 2, 2007);
+     let day11 = dateKhanh.getDay(); // 2
+
+     let month11 = dateKhanh.getMonth(); // 2
+
+     let year11 = dateKhanh.getYear(); // 2007
+     alert(day11 + "/" + month11 + "/" + year11);
+     dateKhanh.setDay(10);
+     dateKhanh.setMonth(10);
+     dateKhanh.setYear(2019);
+     let day222 = dateKhanh.getDay(); // 2
+
+    let  month222 = dateKhanh.getMonth(); // 2
+
+    let  year222 = dateKhanh.getYear(); // 2007
+
+     alert(day222 + "/" + month222 + "/" + year222)
+</script>
+</body>
+</html>

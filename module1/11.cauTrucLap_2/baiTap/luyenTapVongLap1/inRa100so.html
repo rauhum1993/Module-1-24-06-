@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let i;
+    let h1 ="";
+    for (i = 1; i <= 100; i++) {
+        if (i % 15 === 0) {
+            h1 += "fizzbuzz <br>"
+        } else if (i % 3 === 0 && i % 5 !== 0) {
+            h1 += "fizz <br>"
+        } else if (i % 5 === 0 && i % 3 !== 0) {
+            h1 += "buzz <br>"
+        } else h1 += i + "<br>";
+    }
+    document.write(h1);
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let chuoi = prompt('nhap chuoi can kiem tra');
+    let mang = chuoi.split("", chuoi.length);
+    isPalindrome();
+    alert(isPalindrome());
+
+    function isPalindrome() {
+        check = false;
+        for (let i = 0, j = mang.length - 1; i < mang.length, j > i; i++, j--) {
+
+            if (mang[i] === mang[j]) {
+                check = true;
+            }
+
+        }
+        if (check) {
+            return "is  Palidrome";
+        }
+        return "is not Palidrome";
+
+
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="dongMeters" placeholder="gia tri meters">
+<input type="button" onclick="chuyenDoi()" value="doi sang meters" ><br>
+<input type="text" id="dongFeet" placeholder="gia tri feet">
+<input type="button" onclick="chuyenDoi()" value="doi sang feet">
+<script>
+function chuyenDoi() {
+    number= document.getElementById("dongMeters").value;
+    number1=document.getElementById("dongFeet").value;
+    if (number){
+        feet =0.305*number;
+    } document.getElementById("dongFeet").value=feet;
+    if (number1){
+       meters=3.279*number1;
+    }document.getElementById("dongMeters").value=meters;
+
+
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+! DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Tiêu đề </title>
+</head>
+<body>
+<h3> Thêm sản phẩm mới </h3>
+<input id="newSản phẩm" , giữ chỗ="Sản phẩm mới" type="text">
+<button onclick="add ()" style="background-color: green"> Thêm</button>
+<h4> Hiển thị tất cả Sản phẩm </h4>
+<p id="hienthi"></p>
+<script>
+    let a = ["Sony Xperia", "SamSung Galaxy", "Nokia 6", "Xiaomi Redmi Note 4", "Apple Iphone 6s", "Xiaomi Mi 5s Plus",
+        "Apple Iphone 8 Plus"];
+    hiển
+    thị(a);
+    hàm
+    add()
+    {
+        document.getEuityById("hienthi").InternalHTML = "";
+        hãy
+        để
+        temp1 = document.getEuityById("newSản phẩm").value;
+        a.push(temp1);
+        hiển
+        thị(a);
+    }
+    chức
+    năng
+    chỉnh
+    sửa(x)
+    {
+        let temp2 = prompt("Lời khuyên trong trò chơi:");
+        if ((temp2!= null
+    ) &&
+        (temp2 != ""
+    ))
+        {
+            a [x] = temp2;
+            document.getEuityById("hienthi").InternalHTML = "";
+            hiển
+            thị(a)
+        }
+    }
+    chứcnăngxoa(x)
+    {
+        for (let i = x; i < a.length - 1; i++) {
+            a [i] = a [i + 1]
+        }
+        a.length -= 1;
+        document.getEuityById("hienthi").InternalHTML = "";
+        hiển
+        thị(a);
+    }
+    hàm
+    hiển
+    thị(x)
+    {
+        let temp = "";
+        temp  = "<table style = 'width: 700px; height: 200px'> <tr> <td style = 'font-weight: bold'> Tên sản phẩm </ td>" + a.length + "Sản phẩm </ td> </ tr> ";
+        for (let i = 0; i < x.length; i++) {
+            temp += "<tr>"
+            for (let j = 0; j < 3; j++) {
+                if (j == 0) {
+                    temp += " <td> " + x [i] + " </ td> ";
+
+
+                    temp += "<td>" + "<button onclick = 'edit (" + i + ")' style = 'background-color: green; width: 80px; height: 35px'> Chỉnh sửa </ button>" + "< / td> "
+                }
+                if (j == 2) {
+                    temp += " <td> " + " <nút onclick = 'xoa (" + i + ")' style = 'background-color: green; width: 80px; height : 35px '> Xóa </ button> " + " </ td> "
+                }
+            }
+            temp += " </ tr> "
+        }
+        temp += " </ table> "
+        document.getEuityById(" hienthi ").InternalHTML += tạmthời;
+    }
+    </ script>
+    < / cơ thể>
+    < / html>

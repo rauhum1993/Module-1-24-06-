@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number1 = parseInt(prompt("nhap so nguyen thu nhat"));
+    let number2 = parseInt(prompt("nhap so nguyen thu hai"));
+    alert("nhap ban dau : "+number1 + " , " + number2);
+    daoCho();
+    alert("sau khi dao : "+number1 + " , " + number2);
+
+    function daoCho() {
+        if (number1 !== number2) {
+            let b = number1;
+            number1 = number2;
+            number2 = b;
+
+        }
+
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+        let uocSo = 0;
+        let soNhapVao = prompt("nhap 1 so nguyen duong vao: ");
+
+            for (let i = 1; i < soNhapVao; i++) {
+                if (soNhapVao % i === 0) {
+                    uocSo += i;
+                }
+            }
+            if (uocSo === soNhapVao) {
+                alert(true);
+            } else {
+                alert(false)
+            }
+
+</script>
+</body>
+</html>

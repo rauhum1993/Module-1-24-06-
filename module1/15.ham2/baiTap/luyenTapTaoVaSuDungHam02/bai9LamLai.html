@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let mang = [2, 4, 5, 7, "d","d", 8, 2, 6, 7, 8];
+    let kyTu = prompt("nhap ky tu can kiem tra");
+
+    alert(kiemTra());
+
+    function kiemTra() {
+        let b = 0;
+        for (let i = 0; i < mang.length; i++) {
+            if (kyTu == mang[i]) {
+                b++;
+            }
+
+        }
+        if (b==0){
+            return -1;
+        }
+        return b;
+
+
+    }
+
+</script>
+</body>
+</html>

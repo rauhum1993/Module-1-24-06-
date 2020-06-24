@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let b = "";
+    let trungBinh=0;
+    let mangNumber = [100, 10, 20, 30, 40, 50, 60, 70, 80, 90];
+    let max = mangNumber[0];
+    for (let i = 0; i < mangNumber.length; i++) {
+        trungBinh +=mangNumber[i]/mangNumber.length;
+        if (mangNumber[i] >= max) {
+            max = mangNumber[i];
+            b = "so lon nhat la :  " + max + '  o vi tri thu:  ' + (i + 1);
+        }
+    }
+    alert(b+ "\n"+ 'trung binh cong cua day so la:'  + trungBinh);
+
+</script>
+</body>
+</html>

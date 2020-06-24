@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let value = parseInt(prompt('nhap so vao ban oi'));
+    let x = [-3, 5, 1, 3, 2, 10];
+    let a="";
+    for (let i = 0; i < x.length; i++) {
+        if (value == x[i]) {
+           a= 'value' + x[i] + "found at" + i;
+            break;
+        } else{
+            a= 'ko co ban nhe';
+        }
+
+    }
+alert(a);
+
+</script>
+</body>
+</html>

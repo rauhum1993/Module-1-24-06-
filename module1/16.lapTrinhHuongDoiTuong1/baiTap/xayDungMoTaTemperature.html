@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Temperature {
+        constructor(doC) {
+            this.doC = doC;
+        }
+
+        getdoC() {
+            return this.doC;
+        }
+
+        getdoF() {
+            return 9 / 5 * this.doC + 32;
+        }
+
+        getdoK() {
+            return this.doC + 273.15;
+        }
+    }
+
+    while (true) {
+        let doC1 = parseFloat(prompt('nhap nhiet do C:'));
+        if (doC1 < -273) {
+            alert("nhap lai nhiet do");
+        } else {
+            let temperature = new Temperature(doC1);
+            let doC = temperature.getdoC();
+            let doF = temperature.getdoF();
+            let doK = temperature.getdoK();
+            alert("doC la: " + doC + "\n" +
+                "doF la: " + doF + "\n" +
+                "dok la: " + doK + "\n"
+            );
+            break;
+        }
+    }
+
+
+</script>
+</body>
+</html>

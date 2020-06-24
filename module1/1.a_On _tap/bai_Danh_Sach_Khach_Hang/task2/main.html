@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="Empoloyee.js"></script>
+</head>
+<body>
+<script>
+    let listEmployees = [];
+
+    function displayMainMenu() {
+        let choose = parseInt(prompt("1. Add new Employee.\n" +
+            "2. Display informatinon Employee.\n" +
+            "3. Salary of Employee\n" +
+            "4.Exit"));
+        switch (choose) {
+            case 1: {
+                addNewEmployee();
+                break
+            }
+            case 2:{
+                displayInformation();
+            }
+            case 3:{
+                displaySalary();
+            }
+            case 4:{
+                alert("mai ban nhau ban nhe");
+                displayMainMenu();
+            }
+            default:{
+                alert("falled");
+            }
+
+        }
+
+
+
+    }
+    function displaySalary() {
+        let result=[];
+        for(let i=0;i<listEmployees.length;i++){
+            result+=i+" _Name: "+listEmployees[i].getName()+"\n";
+        }
+        let chooseDisplay=parseInt(prompt(result));
+        alert("Luong cua nhan vien " + listEmployees[chooseDisplay].getName()+"la:"+
+        listEmployees[chooseDisplay].getSalary());
+        displayMainMenu();
+
+
+
+
+    }
+    function displayInformation() {
+        let result=[];
+        for(let i=0;i<listEmployees.length;i++){
+            result+=i+" _Name: "+listEmployees[i].getName()+"\n";
+        }
+        let chooseDisplay=parseInt(prompt(result));
+        alert("Ten: "+ listEmployees[chooseDisplay].getName()+"\n"
+            +"Ngay sinh: "+listEmployees[chooseDisplay].getBirthday()+"\n"
+            +"Email: "+listEmployees[chooseDisplay].getEmail()+"\n"
+            +"Chung minh nd: "+listEmployees[chooseDisplay].getId()+"\n"
+            +"So dien thoai: "+listEmployees[chooseDisplay].getPhone()+"\n"
+            +"Trinh do : "+listEmployees[chooseDisplay].getLevel()+"\n"
+            +"Vi tri : "+listEmployees[chooseDisplay].getLocation() +"\n" );
+        displayMainMenu();
+
+
+    }
+    function addNewEmployee() {
+        let employee= new Empoloyee();
+        employee.setName(prompt("Enter name:"));
+        employee.setBirthday(prompt("Enter Birthday:"));
+        employee.setEmail(prompt("Enter Email:"));
+        employee.setId(prompt("Enter Id:"));
+        employee.setLevel(prompt("Enter level:"));
+        employee.setPhone(prompt("Enter phone:"));
+        employee.setLocation(prompt("Enter Location:"));
+        listEmployees.push(employee);
+        alert("Ban da them thanh cong Empolyee");
+        displayMainMenu();
+
+
+
+    }
+    displayMainMenu();
+</script>
+</body>
+</html>

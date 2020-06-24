@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Apple {
+        constructor() {
+            this.weightApple = 10;
+        }
+
+        decreaseApple() {
+                this.weightApple --;
+
+        }
+
+        isEmptyApple() {
+            if (this.weightApple===0){
+             return true
+            } else {
+                return false;
+            }
+
+
+        }
+
+        getWeightApple() {
+            return this.weightApple;
+        }
+    }
+
+    class Human {
+        constructor(name, gender,weight) {
+            this.name = name;
+            this.gender = gender;
+            this.weight = weight;
+        }
+
+        setName(name) {
+            this.name =name;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        setWeight(weight) {
+           this.weight=weight;
+        }
+
+        getWeight() {
+            return this.weight;
+        }
+        isMale(){
+            if(this.gender==="Male"){
+                return true;
+            } else {
+                return false;
+            }
+        }
+        say(string){
+            alert(string)
+
+
+        }
+        eatApple(apple){
+            this.weight++;
+            apple.weightApple--;
+
+        }
+        checkApple(apple){
+
+            return apple.getWeightApple();
+
+        }
+    }
+    let apple= new Apple();
+    let eVar= new Human("evar","Girl","69");
+    let adam= new Human("Adam","boy","96");
+    adam.say("Khoi luong qua tao la: "+ adam.checkApple(apple));
+    eVar.say("an tao de");
+
+
+
+</script>
+</body>
+</html>

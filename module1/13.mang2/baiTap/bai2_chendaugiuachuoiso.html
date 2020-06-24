@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let daySo = [0, 2, 5, 4, 6, 8];
+
+    for (let i = 0; i < daySo.length; i++) {
+        if (daySo[i] % 2 === 0 && daySo[i + 1] % 2 === 0) {
+            daySo.push('-', daySo[i+1]);
+            break;
+
+        } else
+            daySo.push('', daySo[i]);
+        break;
+
+    }
+    alert(daySo.join(''));
+
+</script>
+</body>
+</html>

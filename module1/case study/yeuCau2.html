@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let name = "khanh";
+    let cmnd = '1975436778';
+    let birthday = "11/19/1993";
+    let email = 'maiBenNhauBanNhe@gmail.com';
+    let address = 'Đà Nẵng';
+    let typeService = "Villa";
+    let typeRoom = 'vip';
+    let typeCustomer = 'Diamond';
+    let discount = 10;
+    let quantityIncluded = 10;
+    let rendDay = 7;
+    let totalPay;
+    let choose = parseInt(prompt('1 Hiển thị thông tin khách hàng.' + '\n' +
+        '2.Chỉnh sửa thông tin khách hàng.' + '\n' +
+        '3.Hiển thị giá sau khi giảm giá.' + '\n'));
+    switch (choose) {
+        case 1 : {
+            alert(" tên khách hàng : " + name
+                + '\n  ngày sinh :' + birthday
+                + '\n  số chứng minh : ' + cmnd
+                + '\n  Email : ' + email
+                + "\n  Địa chỉ: " + address
+                + "\n  Loại dịch vụ : " + typeService
+                + "\n  level : " + typeCustomer
+                + "\n  Giảm giá : " + discount + "%"
+                + '\n  phòng bao nhiêu người :' + quantityIncluded + 'người'
+                + '\n  số ngày thuê : ' + rendDay + 'ngày'
+                + '\n  loại phòng : ' + typeRoom);
+            break;
+
+        }
+        case 2: {
+            let chooseEdit = parseInt(prompt("  1.tên khách hàng : " + name
+                + '\n  2.ngày sinh :' + birthday
+                + '\n  3.số chứng minh : ' + cmnd
+                + '\n  4.Email : ' + email
+                + "\n  5.Địa chỉ: " + address
+                + "\n  6.Loại dịch vụ: " + address
+                + "\n  7.level : " + typeCustomer
+                + "\n  8.Giảm giá : " + discount + "%"
+                + '\n  9.phòng bao nhiêu người :' + quantityIncluded + 'người'
+                + '\n  10.số ngày thuê : ' + rendDay + 'ngày'
+                + '\n  11.loại phòng : ' + typeRoom));
+
+            switch (chooseEdit) {
+                case 1: {
+                    name = prompt('Enter name :');
+                    break;
+                }
+                case 2: {
+                    birthday = prompt('Nhập lại ngày sinh:');
+                    break;
+                }
+                case 3: {
+                    cmnd = prompt('Enter cmnd :');
+                    break;
+                }
+                case 4: {
+                    email = prompt('Enter email :');
+                    break;
+                }
+                case 5: {
+                    address = prompt('Enter address :');
+                    break;
+                }
+                case 6: {
+                    typeCustomer = prompt('Enter typeCustomer :');
+                    break;
+                }
+                case 7: {
+                    typeCustomer = prompt('Enter typeCustomer :');
+                    break;
+                }
+                case 9: {
+                    discount = prompt('Enter discount :');
+                    break;
+                }
+                case 10: {
+                    rendDay = prompt('Enter rendDay:');
+                    break;
+                }
+                case 11: {
+                    typeRoom = prompt('Enter typeRoom :');
+                    break;
+                }
+                default: {
+                    alert('nhap lai so ban oi');
+                }
+            }
+
+            alert(" tên khách hàng : " + name
+                + '\n ngày sinh :' + birthday
+                + '\n số chứng minh : ' + cmnd
+                + '\n Email : ' + email
+                + "\n Địa chỉ: " + address
+                + "\n level : " + typeCustomer
+                + "\n Giảm giá : " + discount + "%"
+                + '\n phòng bao nhiêu người :' + quantityIncluded + 'người'
+                + '\n số ngày thuê : ' + rendDay + 'ngày'
+                + '\n loại phòng : ' + typeRoom);
+            break;
+        }
+        default:
+            alert(' nhap co the cung sai nhap lai di: ');
+        case 3: {
+            let giamGia = 0;
+            if (address === 'Đà Nẵng') {
+                giamGia += 20
+            } else if (address === 'Huế') {
+                giamGia += 10
+
+            } else if (address === 'Quảng Nam') {
+                giamGia += 5
+            } else ("nhap cho dung dia chi");
+
+            if (rendDay >= '7') {
+                giamGia += 30
+            } else if (rendDay > 5) {
+                giamGia += 20
+            } else if (rendDay > 2) {
+                giamGia += 10
+            } else (' nhap lai ban oi');
+
+
+            if (typeCustomer === 'Diamond') {
+                giamGia += 15
+            } else if (typeCustomer === 'Platium') {
+                giamGia += 10
+            } else if (typeCustomer === 'Gold') {
+                giamGia += 5
+            } else if (typeCustomer === 'Silver') {
+                giamGia += 2
+            } else if (typeCustomer === 'Member') {
+                giamGia = 0
+            } else (' nhap cho dung de noi hoai');
+            let money = 0;
+            if (typeService === "Villa") {
+                money = 500;
+            } else if (typeService === "house") {
+                money = 300;
+            } else if (typeService === "room") {
+                money = 100;
+            }
+            let currentYear = new Date().getFullYear();
+            alert(currentYear);
+            let birthday1 = new Date(birthday).getFullYear();
+            alert(birthday1);
+            let ageCustomer = currentYear - birthday1;
+            alert(ageCustomer);
+
+
+
+
+            alert("Tổng số tiền phải trả là: " + (rendDay * money - giamGia));
+
+
+
+        }
+
+    }
+
+</script>
+</body>
+</html>

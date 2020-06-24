@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let mang=['sh',6,2,56,'wear','haido'];
+    let kyTu=prompt('nhap ky tu de kiem tra: ');
+    kiemTra();
+    alert(kiemTra());
+    function kiemTra() {
+        for (let i = 0; i < mang.length; i++) {
+            if (mang[i] !== kyTu) {
+             return false
+
+            }
+
+        }
+        return true
+
+    }
+
+
+
+
+</script>
+</body>
+</html>

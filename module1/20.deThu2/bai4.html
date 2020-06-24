@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let n=parseInt(prompt("nhap n"));
+    let k=15;
+    let x=1;
+    function tinh() {
+        for (let i = 1; i <= n; i++) {
+            x *= i;
+            k += Math.pow(-1, i) / x;
+        }
+        return k;
+    }
+    tinh();
+    alert(k);
+</script>
+</body>
+</html>

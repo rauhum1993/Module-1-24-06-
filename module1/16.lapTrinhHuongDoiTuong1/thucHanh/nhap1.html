@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class MyHome {
+        constructor(room, kitchen, bedroom) {
+            this.room = room;
+            this.kitchen = kitchen;
+            this.bedroom = bedroom;
+        }
+
+        sreachRoom() {
+            return this.room;
+        }
+
+        sreachKitchen() {
+            return this.kitchen;
+        }
+
+        sreachBedroom() {
+            return this.bedroom;
+        }
+
+        findRoom(room1) {
+            this.room = room1;
+        }
+
+        findKitchen(kitchen1) {
+            this.kitchen = kitchen1;
+        }
+
+        findBedroom(bedroom1) {
+            this.bedroom = bedroom1;
+        }
+    }
+
+    let MyHome1 = new MyHome(1,2,3);
+    let kqroom = MyHome1.sreachRoom();
+    let kqkitchen = MyHome1.sreachKitchen();
+    let kqbedroom = MyHome1.sreachBedroom();
+    alert(kqroom + "/" + kqkitchen + "/" + kqbedroom);
+    MyHome1.findBedroom(10);
+    MyHome1.findKitchen(8);
+    MyHome1.findRoom(24);
+    let kqbedroom2= MyHome1.sreachBedroom();
+    let kqroom2=MyHome1.sreachRoom();
+    let kqkitchen2=MyHome1.sreachKitchen();
+    alert(kqroom2+"/"+kqkitchen2+"/"+kqbedroom2);
+
+
+</script>
+</body>
+</html>

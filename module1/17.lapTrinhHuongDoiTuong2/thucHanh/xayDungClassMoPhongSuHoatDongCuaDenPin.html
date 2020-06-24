@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Battery {
+        constructor(energy) {
+            this.energy = energy;
+        }
+
+        setEnergy(energy) {
+            this.energy = energy;
+        }
+        getEnergy() {
+            return this.energy;
+        }
+        decreaseEnergy() {
+            if (this.energy > 0) {
+                this.energy--;
+            }
+        }
+    }
+
+    class FlashLamp  {
+        constructor(status,battery) {
+            this.battery=battery;
+            this.status = status;
+        }
+
+
+        getStatus() {
+            return this.status;
+        }
+
+
+        getBattery() {
+            return this.battery;
+        }
+
+        getLight() {
+            if (this.getStatus()) {
+                alert("Lighting");
+            } else {
+                alert('Not Lighting');
+            }
+        }
+
+        turrOn() {
+            this.status = true;
+            this.battery.decreaseEnergy();
+        }
+
+        turrOff() {
+            this.status = false;
+        }
+    }
+    let energy1 = parseInt(prompt('nhap nang luong'));
+    let battery = new Battery(energy1);
+    battery1 = battery.getEnergy();
+    alert("pin co nang luong la: " + battery1);
+    let lamp=new FlashLamp(false,battery);
+    let energy;
+   do {
+       lamp.getLight();
+       lamp.turrOn();
+       lamp.getLight();
+       lamp.turrOff();
+       energy = lamp.getBattery().getEnergy();
+       alert(energy);
+       lamp.getLight();
+       energy = lamp.getBattery().getEnergy();
+       alert(energy);
+   } while (energy>0);
+    //     lamp.setBattery(battery.getEnergy(energy1));
+    //     alert(lamp.getBattery());
+    //     lamp.getStatus();
+    //     lamp.getTurrOn();
+    //
+    // } while (battery.energy>0);
+
+
+
+</script>
+</body>
+</html>

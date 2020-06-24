@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number1 = parseInt(prompt('nhap so nguyen thu 1:'));
+    let number2 = parseInt(prompt('nhap so nguyen thu 2:'));
+    let number3 = parseInt(prompt('nhap so nguyen thu 3:'));
+    alert(min());
+
+    function min() {
+        if (number1 < number2) {
+            if (number1 < number3) {
+                alert("so nho nhat la " + number1);
+            }
+            alert("so nho nhat la " + number3);
+        } else {
+            if (number2 < number3) {
+                alert("so nho nhat la " + number2);
+            }
+            alert("so nho nhat la " + number3);
+        }
+
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class SinhVien {
+        constructor(msSV, hoTen, ngaySinh, gioiTinh, tenLop, khoa) {
+            this.msSV = msSV;
+            this.hoTen = hoTen;
+            this.ngaySinh = ngaySinh;
+            this.gioiTinh = gioiTinh;
+            this.tenLop = tenLop;
+            this.khoa = khoa;
+        }
+
+        setMSSV(msSV) {
+            this.msSV = msSV;
+
+        }
+
+        getMSSV() {
+            return this.msSV;
+        }
+
+        setHoTen(hoTen) {
+            this.hoTen = hoTen;
+        }
+
+        getHoTen() {
+            return this.hoTen;
+        }
+
+        setNgaySinh(ngaySinh) {
+            this.ngaySinh = ngaySinh;
+        }
+
+        getNgaySinh() {
+            return this.ngaySinh;
+
+        }
+
+        setGioiTinh(gioiTinh) {
+            this.gioiTinh = gioiTinh;
+        }
+
+        getGioiTinh() {
+            return this.gioiTinh;
+
+        }
+
+        setTenLop(tenLop) {
+            this.tenLop = tenLop;
+        }
+
+        getTenLop() {
+            return this.tenLop;
+        }
+
+        setKhoa(khoa) {
+            this.khoa = khoa;
+        }
+
+        getKhoa() {
+            return this.khoa;
+        }
+
+    }
+
+    let litsSinhVien = [];
+
+    luaChon();
+
+    function xoaSinhVienTheoMsv() {
+        hienthi();
+        let maCanXoa = prompt("nhap ma sinh vien can xoa");
+        for (let i = 0; i < litsSinhVien.length; i++) {
+            if (maCanXoa === litsSinhVien[i].getMSSV()) {
+                litsSinhVien.splice(i, 1);
+                alert("da xoa thanh cong");
+                hienthi();
+                break;
+
+            } else {
+                alert("ko tim thay ma sinh vien phu hop");
+            }
+        }
+
+    }
+
+    hienthi();
+
+    function xoaSinhVienTheoIndex() {
+        hienthi();
+        let index = parseInt(prompt('nhap vi tri sv ban muon xoa'));
+        if (1 <= index && index<= (litsSinhVien.length + 1)) {
+            litsSinhVien.splice((index - 1), 1);
+            hienthi();
+        } else
+            alert("ko co vi tri sinh vien  ma ban muon xoa");
+        hienthi()
+
+
+    }
+
+    function luaChon() {
+        let luaChon1 = parseInt(prompt("1. them sinh vien" + "\n"
+            + "2.xoa sinh vien theo mssv" + "\n"
+            + "3.xoa sinh vien co vi tri bat ky" + "\n"
+            + "4.tim 1 sinh vien" + "\n"
+            + "5.in ra noi dung sinh viec" + "\n"
+            + "6.sap xep danh sach theo ma sinh vien" + "\n"
+        ));
+        switch (luaChon1) {
+            case 1:
+                themSinhVien();
+                luaChon();
+                break;
+            case 2:
+                xoaSinhVienTheoMsv();
+                luaChon();
+                break;
+            case 3:
+                xoaSinhVienTheoIndex();
+                luaChon();
+                break;
+            case 4:
+                timSinhVien();
+                luaChon();
+                break;
+            case 5:
+                hienthi();
+                luaChon();
+                break;
+            case 6:
+                sapXepDanhSachSV();
+                luaChon();
+                break;
+            case 7:
+                break;
+            default :
+                alert("falled");
+
+                luaChon();
+
+
+        }
+
+
+    }
+
+    function themSinhVien() {
+        let sinhVien = new SinhVien();
+        sinhVien.setMSSV(prompt('Enter MSSV: '));
+        sinhVien.setHoTen(prompt("Enter Ho va Ten"));
+        sinhVien.setNgaySinh(prompt("Enter ngay sinh"));
+        sinhVien.setGioiTinh(prompt("Enter gioi tinh"));
+        sinhVien.setTenLop(prompt("Enter ten lop"));
+        sinhVien.setKhoa(prompt("Enter khóa:"));
+        litsSinhVien.push(sinhVien);
+        hienthi();
+    }
+
+    function hienthi() {
+        let liststring = "";
+        for (let i = 0; i < litsSinhVien.length; i++) {
+            liststring += ("" + "ma thi sinh:  " + litsSinhVien[i].getMSSV()
+                + "\n ho ten:  " + litsSinhVien[i].getHoTen()
+                + "\n ngay sinh :  " + litsSinhVien[i].getNgaySinh()
+                + "\n Gioi tinh:  " + litsSinhVien[i].getGioiTinh()
+                + "\n ten lop:  " + litsSinhVien[i].getTenLop()
+                + "\n khoa:  " + litsSinhVien[i].getKhoa() + "\n"
+            );
+
+
+        }
+        alert(liststring);
+
+    }
+
+
+</script>
+</body>
+</html>

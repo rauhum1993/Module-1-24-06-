@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+ let loper='abcdefijghklmnrstuvwxyz';
+ let upper='ABCDEFIJGHKLMNRSTUVWXYZ';
+ let a=prompt('nhap di ');
+ let b;
+ let result=[];
+ for(let x=0;x<a.length;x++){
+     for ( let i=0;i<upper.length;i++){
+         if ( a[x]===upper[i]){
+             b=a[x].toLowerCase();
+             result.push(b);
+         } else if(a[x]===loper[i]){
+             b=a[x].toUpperCase();
+             result.push(b)
+         }
+     }
+ }
+ document.write(result.join(""));
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let check = false;
+    let guest_name = prompt('Guest_name (Tên khách hàng)');
+    do {
+        let date_of_birth = prompt('Date_of_birth (ngày tháng năm sinh): ');
+        if (date_of_birth.charAt(2) === "/" && date_of_birth.charAt(5) === "/") {
+            let day = date_of_birth.substring(0, 2);
+            let month = date_of_birth.substring(3, 5);
+            let year = date_of_birth.substring(6, 10);
+            if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+                day = Number.parseFloat(day);
+                month = Number.parseFloat(month);
+                year = Number.parseFloat(year);
+                if (Number.isInteger(day) && Number.isInteger(month) && Number.isInteger(year)) {
+                    if (day < 32 && month < 13 && year > 1950) {
+                        check = true;
+                    }
+
+                }
+
+            }
+        }
+        if (!check) {
+            alert("ngay sinh khong dung dinh dang");
+        }
+
+    } while (!check);
+
+    check = false;
+    do {
+        let id_card = prompt('Id card (số chứng minh)');
+        if (!isNaN(id_card)) {
+            id_card = Number.parseFloat(id_card);
+
+        }
+        if (!Number.isInteger(id_card)) {
+            alert("chung minh khong dung dinh dang  ");
+            continue;
+        }
+
+        if (id_card < 10000000 || id_card > 99999999) {
+            alert('chung minh khong dung dinh dang');
+            continue;
+
+        }
+        check = true;
+
+    } while (!check);
+    check = false;
+    do {
+        let demA = 0;
+        let demCham = 0;
+        let email = prompt('Email');
+        for (i = 0; i < email.length; i++) {
+            if (email.charAt(i) === "@") {
+                demA++;
+            }
+            for (j = 0; j < email.length; j++) {
+                if (email.charAt(i) === ".") {
+                    demCham++;
+                }
+            }
+        }
+        if (demA != 1 || demCham < 1) {
+            alert("nhap email khong hop le ")
+        } else check = true
+
+    } while (!check);
+    check = false;
+
+    let add_ress = prompt('Adress (Địa chỉ của bạn)');
+    let customer_type = prompt('Customer type(Level của bạn)');
+
+
+    do {
+        let discount = prompt("giam gia:");
+        if (!isNaN(discount)) {
+            discount = Number.parseFloat(discount);
+            if (Number.isInteger(discount) && discount > 0) {
+                check = true;
+            }
+        }
+        if (!check) {
+            alert("nhap ma giam gia khong dung dinh dang");
+        }
+    } while (!check);
+    check = false;
+
+
+    do {
+        let accompanying_person = prompt('How many people( bạn có mấy người đi kèm)');
+        if (!isNaN(accompanying_person)) {
+            accompanying_person = Number.parseFloat(accompanying_person);
+            if (Number.isInteger(accompanying_person)) {
+                check = true;
+            }
+        }
+        if (!check) {
+            alert("nhap so nguoi di cung khong dung dinh dang");
+        }
+
+    } while (!check);
+    check = false;
+
+    do {
+        let rentDay = prompt('In how many day ?( Bạn ở mấy ngày)');
+        if (!isNaN(rentDay)) {
+            rentDay = Number.parseFloat(rentDay);
+            if (Number.isInteger(rentDay)) {
+                check = true;
+            }
+        }
+        if (!check) {
+            alert("nhap so ngay khong dung dinh dang");
+        }
+
+    } while (!check);
+    check = false;
+
+    let type_of_service = prompt('Type of service ( Loại dịch vụ)');
+    let room_type = prompt('Room Type (Loại phòng) ');
+    let gia_phong = 0;
+    let discount1 = 1 - discount / 100;
+    if (type_of_service == 'villa') {
+        gia_phong = rentDay * 500 * discount1;
+    } else if (type_of_service == 'house') {
+        gia_phong = rentDay * 300 * discount1;
+    } else if (type_of_service == 'room') {
+        gia_phong = rentDay * 100 * discount1;
+    }
+    alert(" tên khách hàng : " + guest_name
+        + '\n ngày sinh :' + date_of_birth
+        + '\n số chứng minh : ' + id_card
+        + '\n Email : ' + email
+        + "\n Địa chỉ: " + add_ress
+        + "\n level : " + customer_type
+        + "\n Discount : " + discount
+        + '\n phòng bao nhiêu người :' + accompanying_person
+        + '\n số ngày thuê : ' + rentDay
+        + '\n loại phòng : ' + room_type
+        + '\n gia ca la : ' + gia_phong);
+</script>
+</body>
+</html>

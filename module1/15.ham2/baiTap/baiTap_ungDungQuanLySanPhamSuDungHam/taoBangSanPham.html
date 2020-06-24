@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="tenSanPham">
+<input type="button" onclick="themSanPham()" value="Thêm Sản Phẩm">
+
+<p id="soluong"></p>
+<p id="hienThi"></p>
+<script>
+    let listSanPham = ["Nokia", "SamSung", "Sony"];
+    hienThi();
+    function themSanPham() {
+        let themSanPhamMoi=document.getElementById("tenSanPham").value;
+        if(themSanPhamMoi===""){
+            alert("vui long nhap ten san pham")
+        } else {
+            listSanPham.push(themSanPhamMoi);
+            document.getElementById("tenSanPham").value="";
+        }
+        hienThi();
+
+
+
+    }
+
+    function hienThi() {
+        let tableString = "<table border=\"1\">\n" +
+            "    <tr>\n" +
+            "        <th>Số Thứ Tự</th>\n" +
+            "        <th>Tên Sản Phẩm</th>\n" +
+            "        <th>Sửa</th>\n" +
+            "        <th>Xóa</th>\n" +
+            "    </tr>";
+        for (let i = 0; i < listSanPham.length; i++) {
+            tableString += " <tr>\n" +
+                "        <td>" + (i + 1) + "</td>\n" +
+                "        <td>" + listSanPham[i] + "</td>\n" +
+                "        <td><input type=\"button\" onclick=\"sua(" + i + ")\" value=\"Sửa\"></td>\n" +
+                "        <td><input type=\"button\" onclick=\"xoa(" + i + ")\" value=\"Xóa\"></td>\n" +
+                "    </tr>";
+        }
+        tableString += '</table>';
+        document.getElementById("hienThi").innerHTML = tableString;
+        document.getElementById('soluong').innerHTML=listSanPham.length;
+
+
+    }
+
+    function sua(t) {
+        let themSanPhamMoi = prompt('nhap ten san pham moi');
+        if (themSanPhamMoi === "") {
+            alert('nhap lai ten san pham')
+        } else if (themSanPhamMoi == null) {
+            alert("ban khong muon doi ten san pham")
+        } else {
+            listSanPham[t] = themSanPhamMoi;
+        }
+
+        hienThi();
+
+    }
+    function xoa(id) {
+        let kiemTraXoa=confirm("ban co muon xoa san pham "+listSanPham[id]);
+        if (kiemTraXoa){
+            listSanPham.splice(id,1);
+        } else {
+            alert(" ban khong muon xoa san pham"+ listSanPham[id])
+        }
+        hienThi();
+
+
+    }
+
+
+</script>
+</body>
+</html>

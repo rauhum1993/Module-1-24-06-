@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Caculator</h1><br>
+<input id="maytinh" type="text" size="10"><br>
+<input type="button" onclick="tinh()" value="(" >
+<input type="button" onclick="tinh1()" value=")" >
+<input type="button" onclick="tinh2()" value="%" >
+<input type="button" onclick="khoi_dong()" value="AC" ><br>
+<input type="button" onclick="so7()" value="7" >
+<input type="button" onclick="so9()" value="8" >
+<input type="button" onclick="dau_ngoac_dong()" value="9" >
+<input type="button" onclick="dau_ngoac_dong()" value="/" ><br>
+<input type="button" onclick="dau_ngoac_dong()" value="4" >
+<input type="button" onclick="dau_ngoac_dong()" value="5" >
+<input type="button" onclick="dau_ngoac_dong()" value="6" >
+<input type="button" onclick="dau_ngoac_dong()" value="x" ><br>
+<input type="button" onclick="phep1()" value="1" >
+<input type="button" onclick="phep2()" value="2" >
+<input type="button" onclick="phep3()" value="3" >
+<input type="button" onclick="dau_ngoac_dong()" value="-" ><br>
+<input type="button" onclick="dau_ngoac_dong()" value="0" >
+<input type="button" onclick="dau_ngoac_dong()" value="." >
+<input type="button" onclick="bang()" value="=" >
+<input type="button" onclick="cong()" value="+" >
+<script>
+    function phep1() {
+        document.getElementById("maytinh").value+=1;
+
+    }
+    function phep2() {
+        document.getElementById("maytinh").value+=2;
+
+    }
+    function bang() {
+        let pt = document.getElementById("maytinh").value;
+        alert(pt)
+
+    }
+    function cong() {
+        document.getElementById("maytinh").value+="+";
+
+    }
+</script>
+</body>
+</html>

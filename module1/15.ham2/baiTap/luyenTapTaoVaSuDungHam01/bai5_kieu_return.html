@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let ngoiSao = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+    let chomSao = ["Ursa Minor", "Tarurus", "Cygnus", "Lyra", "Aquila", "Ursa", "Major", "Leo"];
+
+    let b = prompt('nhap ngoi sao can tim: ');
+    timChomSao();
+    alert(timChomSao(b));
+
+
+    function timChomSao() {
+        for (i = 0; i < ngoiSao.length; i++) {
+            if (b === ngoiSao[i]) {
+                return chomSao[i];
+            }
+        }
+        return "ko tim thay"
+    }
+</script>
+</body>
+</html>

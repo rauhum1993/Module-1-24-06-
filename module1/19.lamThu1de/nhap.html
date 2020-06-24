@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let regexngaythang = /^\d{2}[./-]\d{2}[./-]\d{4}$/;
+    let time;
+    do {
+        time = prompt("nhập thời gian");
+        if (!regexngaythang.test(time)) {
+            alert("không đúng định dạng")
+        }
+    } while (!regexngaythang.test(time));
+    let nam = new Date(time).getFullYear();
+    let thang = new Date(time).getMonth();
+    let ngay = new Date(time).getDate();
+    let mangThang = [31,29,31,30, 31, 30, 31, 31, 30, 31, 30, 31];
+    let mangThang1 = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    let soNgay = 0;
+    if (nam % 4 === 0) {
+        for (let i = 1; i <= thang; i++) {
+            soNgay += mangThang[i];
+        }
+        alert("số ngày tính từ đầu năm  " + nam + " là:  " +(soNgay + ngay))
+    } else {
+        for (let i = 1; i <=0 (thang + 1); i++) {
+            soNgay += mangThang1[i];
+        }
+        alert("số ngày tính từ đầu năm  " + nam + " là:  " + (soNgay + ngay));
+    }
+</script>
+</body>
+</html>

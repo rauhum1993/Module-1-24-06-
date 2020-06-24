@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let b = 0;
+    let c='';
+    let soNguyen = [11, 10, 5, 4, 28, 6, 8, 2, 58, 26];
+    for (let i = 0; i < soNguyen.length; i++) {
+        if (soNguyen[i] >= 10) {
+            b++;
+            c = 'so lon hon va bang 10 la so thu: ' + i + ' co gia tri la: '+'&nbsp' + soNguyen[i]+'<br>';
+            document.write(c);
+        }
+    }
+        document.write('so luong so nguyen lon hon va bang 10 la:' + b);
+</script>
+</body>
+</html>

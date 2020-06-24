@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <p> Amount <br> <input id="a" type="text"></p>
+    <p>From Currency <br>
+        <select id="d">
+            <option value="VND">VND</option>
+            <option value="USD">USD</option>
+        </select></p>
+    <p>To Currency<br>
+        <select id="c">
+            <option value="USD">USD</option>
+            <option value="VND">VND</option>
+        </select>
+    </p>
+    <input type="button" onclick="changTo()" value="Convert"/>
+</form>
+<p id="kt"></p>
+<script>
+    function changTo() {
+        let b = parseInt(document.getElementById('a').value);
+        let from = document.getElementById('d').value;
+        let to = document.getElementById('c').value;
+        let ketqua = 0;
+        if (from == "USD" && to == 'VND') {
+            ketqua = b * 23000;
+        } else if (to = "USD" && from == "VND") {
+            ketqua = b / 23000;
+        } else {
+            alert('chon lai ban oi')
+        }
+        document.getElementById("kt").innerHTML = ketqua;
+    }
+</script>
+</body>
+</html>

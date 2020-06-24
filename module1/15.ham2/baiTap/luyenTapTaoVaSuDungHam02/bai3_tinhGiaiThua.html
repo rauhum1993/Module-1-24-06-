@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let soCanTinh = parseInt(prompt('nhap vao so muon tinh giai thua'));
+    tinhGiaiThua();
+    alert("giai thua cua "+soCanTinh+" la: "+tinhGiaiThua());
+
+    function tinhGiaiThua() {
+        if (soCanTinh < 0) {
+            alert(soCanTinh + "khong hop le");
+        } else {
+            let giaiThua = 1;
+            for (i = 2; i <= soCanTinh; i++) {
+                giaiThua *= i;
+
+            }
+            return giaiThua;
+        }
+    }
+</script>
+</body>
+</html>

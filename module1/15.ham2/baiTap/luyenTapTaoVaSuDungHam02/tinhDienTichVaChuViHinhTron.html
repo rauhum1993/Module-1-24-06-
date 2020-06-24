@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let banKinh= parseFloat(prompt('nhap ban kinh(cm) hinh tron muon tinh la:'));
+    let pi=3.14;
+    tinhDienTich();
+    tinhChuVi();
+    alert("dien tich hinh tron co ban kinh la "+banKinh+'='+tinhDienTich()+'\n'+
+       " chu vi hinh trong co ban kinh la "+ banKinh+"="+tinhChuVi()
+
+    );
+    function tinhDienTich() {
+        return banKinh*2*pi;
+
+    }
+    function tinhChuVi() {
+        return banKinh*banKinh*3.14;
+
+    }
+</script>
+</body>
+</html>

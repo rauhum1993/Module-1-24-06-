@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let number=parseInt(prompt('nhap so luong so fabonacci can tim'))
+    let number1 = 0;
+    let number2 = 1;
+    let number3;
+    let kq="0,1";
+    for (let i = 0;i<number-2; i++) {
+        number3 = number1 + number2;
+        kq+= ","+  number3 ;
+        number1 = number2;
+        number2 = number3;
+
+    }
+    document.write(kq)
+</script>
+</body>
+</html>

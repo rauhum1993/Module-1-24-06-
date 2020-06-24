@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="customer.js "></script>
+
+
+</head>
+<body>
+<script>
+    let regexEmail=/^(\w{3,}@\w+\.\w+)$/;
+    let regexBirthday=/^(([0][1-9]|[1-2]\d|[3][0-1  ])\/(0[1-9]|1[0-2])\/(19\d{2}|(20[0-2]\d)))$/;
+    let listCustomer=[];
+    function displayMainMenu() {
+        let choose = parseInt(prompt(" 1.Add New Customer" +
+            "\n 2.Display Imformation Customer" +
+            "\n 3.Edit Imformation Customer" +
+            "\n 4.Delete Customer" +
+            "\n 5.Exit"));
+        switch (choose) {
+            case 1: {
+                addNewCustomer();
+                break;
+
+            }
+            case 3: {
+                displayTotalPays();
+            }
+            default:{
+                alert("falled");
+            }
+
+        }
+    }
+    function displayTotalPays() {
+        let temp = "";
+        for (let i = 0; i < listCustomer.length; i++) {
+            temp += i + "- Name: " + listCustomer[i].getName() + "\n";
+        }
+        let chooseDisplay = parseInt(prompt(temp));
+        alert("Total pays cua ban la: " + listCustomer[chooseDisplay].totolPay());
+
+
+    }
+
+    function  addNewCustomer() {
+        let checkvalue=false;
+        let cus= new Customer();
+        let name = prompt('Guest_name (Tên khách hàng)');
+        let email;
+        let date_of_birth;
+
+
+        do{
+             date_of_birth = prompt('Date_of_birth (ngày tháng năm sinh');
+            if(regexBirthday.test(date_of_birth)){
+                checkvalue=true;
+
+            }else {
+                alert("nhap ngay thang chua dung , yeu cau ban nhap lai");
+            }
+
+        } while (!checkvalue);
+
+        let id_card = prompt('Id card (số chứng minh)');
+
+
+
+        checkvalue=false;
+        do{
+            email = prompt('Email');
+            if (regexEmail.test(email)){
+                checkvalue=true;
+            } else {
+                alert("Email ban nhap ko hop le, vui long nhap lai")
+            }
+
+        }while (!checkvalue);
+        let add_ress = prompt('Adress (Địa chỉ của bạn)');
+        let customer_type = prompt('Customer type(Level của bạn)');
+        let discount = prompt('Discount (Có mã giảm giá hay không) ');
+        let accompanying_person = prompt('How many people( bạn có mấy người đi kèm)');
+        let rentDay = parseFloat(prompt('In how many day ?( Bạn ở mấy ngày)'));
+        let type_of_service = prompt('Type of service ( Loại dịch vụ)');
+        let room_type = prompt('Room Type (Loại phòng) ');
+        cus.setName(name);
+        cus.setBirth(date_of_birth);
+        cus.setId(id_card);
+        cus.setEmail(email);
+        cus.setAddRess(add_ress);
+        cus.setCustomerType(customer_type);
+        cus.setDiscout(discount);
+        cus.setAccompanyingPerson(accompanying_person);
+        cus.setRentDay(rentDay);
+        cus.setTypeOfService(type_of_service);
+        cus.setRoomType(room_type);
+        listCustomer.push(cus);
+        alert("ban da them thanh cong");
+        displayMainMenu();
+
+
+    }
+    displayMainMenu()
+</script>
+</body>
+</html>

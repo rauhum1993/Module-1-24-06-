@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 >Do you love me? </h1><br/>
+<div>
+    <input type="button" id="yeu1" value="Yes" onclick="yeu();" >
+    <input type="button" id="no1" value="No" onmouseover="no();">
+</div>
+<script>
+    function yeu() {
+        alert("<3");
+    }
+    function  int() {
+        move=document.getElementById("no1");
+        move.style.position="absolute";
+        move.style.left= "100px";
+    }
+    function no() {
+        move.style.left=parseInt(move.style.left)+ Math.random()*100 +'0px';
+    }
+    window.onload=int();
+// không cần cảm ơn nghe(tien hai
+    // )
+</script>
+</body>
+</html>

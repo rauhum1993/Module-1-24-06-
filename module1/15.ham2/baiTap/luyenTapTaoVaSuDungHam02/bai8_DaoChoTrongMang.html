@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let mang = [2, 3, 4, 5, 8, 7, 11,15];
+    daoMang();
+    alert(mang);
+
+    function daoMang() {
+        for (i = 0, j = mang.length-1; i < mang.length, j > i; i++, j--) {
+            let b = mang[i];
+            mang[i] = mang[j];
+            mang[j] = b;
+
+        }
+
+
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Caculator</h1><br>
+<input id="the1" type="text" >
+<input id="the2" type="text"><br>
+<input type="button" onclick="cong()" value="Adition(+)">
+<input type="button" onclick="tru()" value="Subtractio(-)">
+<input type="button" onclick="nhan()" value="multiplication(X)">
+<input type="button" onclick="chia()" value="Division(/)">
+<p id="finish="></p>
+<script>
+    function cong() {
+        let a = parseFloat(document.getElementById('the1').value);
+        let b = parseFloat(document.getElementById('the2').value);
+        let ketquacong;
+        ketquacong = a+b;
+        document.getElementById('finish=').innerHTML = ketquacong;
+    }
+    function tru() {
+        let a = parseFloat(document.getElementById('the1').value);
+        let b = parseFloat(document.getElementById('the2').value);
+        let ketquatru;
+        ketquatru = a-b;
+        document.getElementById('finish=').innerHTML = ketquatru;
+    }
+    function nhan() {
+        let a = parseFloat(document.getElementById('the1').value);
+        let b = parseFloat(document.getElementById('the2').value);
+        let ketquanhan;
+        ketquanhan = a*b;
+        document.getElementById('finish=').innerHTML = ketquanhan;
+    }
+    function chia() {
+        let a = parseFloat(document.getElementById('the1').value);
+        let b = parseFloat(document.getElementById('the2').value);
+        let ketquachia;
+        ketquachia = a/b;
+        document.getElementById('finish=').innerHTML = ketquachia;
+    }
+</script>
+</body>
+</html>

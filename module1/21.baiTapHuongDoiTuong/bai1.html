@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class PhanSo {
+        constructor(tuSo,mauSo) {
+            this.tuSo=tuSo;
+            this.mauSo=mauSo;
+        }
+        setTuSo(tuSo){
+            this.tuSo=tuSo;
+        }
+        getTuSo(){
+            return this.tuSo;
+        }
+        setMauSo(mauSo){
+            this.mauSo=mauSo;
+        }
+        getMauSo(){
+           return  this.mauSo;
+        }
+        getGiaTri(){
+            return this.tuSo/this.mauSo;
+        }
+        congPhanSo(sothu1){
+            return this.getGiaTri()+sothu1.getGiaTri();
+        }
+        truPhanSo(sothu1){
+            return this.getGiaTri()-sothu1.getGiaTri();
+        }
+        nhanPhanSo(sothu1){
+            return this.getGiaTri()*sothu1.getGiaTri();
+        }
+        chiaPhanSo(sothu1){
+            return this.getGiaTri()/sothu1.getGiaTri();
+        }
+
+
+    }
+    phanSo1=new PhanSo();
+    phanSo2=new PhanSo();
+    let check=false;
+   do{
+        phanSo1.setTuSo(parseInt(prompt("nhap tu so thu 1")));
+        phanSo1.setMauSo(parseInt(prompt("nhap mau so thu 1")));
+        phanSo2.setTuSo(parseInt(prompt("nhap tu so thu 2")));
+        phanSo2.setMauSo(parseInt(prompt("nhap tu so thu 2")));
+        phanSo1.getTuSo();
+        phanSo1.getMauSo();
+        phanSo2.getTuSo();
+        phanSo2.getMauSo();
+        alert(phanSo1.getGiaTri() + "\n" + phanSo2.getGiaTri());
+        let choose = parseInt(prompt("1. phep cong\n" + "2. phep tru\n" + "3. phep nhan\n" + "4. phep chia\n"));
+        switch (choose) {
+            case 1: {
+                alert(phanSo1.congPhanSo(phanSo2));
+                break;
+            }
+            case 2: {
+                alert(phanSo1.truPhanSo(phanSo2));
+                break;
+            }
+            case 3: {
+                alert(phanSo1.nhanPhanSo(phanSo2));
+                break;
+            }
+            case 4: {
+                alert(phanSo1.chiaPhanSo(phanSo2));
+                break;
+            }
+            check=true;
+
+        }
+    } while (!check);
+
+
+
+</script>
+</body>
+</html>

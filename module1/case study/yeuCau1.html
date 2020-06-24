@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let guest_name = prompt('Guest_name (Tên khách hàng)');
+    let date_of_birth = prompt('Date_of_birth (ngày tháng năm sinh');
+    let id_card = prompt('Id card (số chứng minh)');
+    let email = prompt('Email');
+    let add_ress = prompt('Adress (Địa chỉ của bạn)');
+    let customer_type = prompt('Customer type(Level của bạn)');
+    let discount = prompt('Discount (Có mã giảm giá hay không) ');
+    let accompanying_person = prompt('How many people( bạn có mấy người đi kèm)');
+    let rentDay = parseFloat(prompt('In how many day ?( Bạn ở mấy ngày)'));
+    let type_of_service = prompt('Type of service ( Loại dịch vụ)');
+    let room_type = prompt('Room Type (Loại phòng) ');
+    let gia_phong = 0;
+    let discount1= 1- discount/100;
+    if (type_of_service == 'villa') {
+        gia_phong = rentDay * 500*discount1;
+    } else if (type_of_service == 'house') {
+        gia_phong = rentDay * 300*discount1;
+    } else if (type_of_service == 'room') {
+        gia_phong = rentDay * 100*discount1;
+    }
+    alert(" tên khách hàng : " + guest_name
+        + '\n ngày sinh :' + date_of_birth
+        + '\n số chứng minh : ' + id_card
+        + '\n Email : ' + email
+        + "\n Địa chỉ: " + add_ress
+        + "\n level : " + customer_type
+        + "\n Discount : " + discount
+        + '\n phòng bao nhiêu người :' + accompanying_person
+        + '\n số ngày thuê : ' + rentDay
+        + '\n loại phòng : ' + room_type
+        + '\n gia ca la : ' + gia_phong);
+
+</script>
+</body>
+</html>

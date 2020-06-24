@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="nhapNgoiSao">
+<button onclick="timChomSao()">Chòm sao tương ứng là:</button>
+<p id="nhanChomSao1"></p>
+<script>
+    let ngoiSao = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+    let chomSao = ["Ursa Minor", "Tarurus", "Cygnus", "Lyra", "Aquila", "Ursa", "Major", "Leo"];
+
+    function timChomSao() {
+        let b = document.getElementById("nhapNgoiSao").value;
+        let a;
+        for (let i = 0; i < ngoiSao.length; i++) {
+            if (b === ngoiSao[i]) {
+                a = chomSao[i];
+            }
+        }
+        document.getElementById("nhanChomSao1").innerHTML = a;
+    }
+
+
+</script>
+</body>
+</html>
