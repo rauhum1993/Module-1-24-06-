@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let check = false;
+    let ngayNamNhuan = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    let ngayNamKoNhuan = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+
+    do {
+        let time = prompt("nhap ngay thang nam: ");
+
+        if (time.charAt(2) === "/" && time.charAt(5) === "/") {
+            let day = time.substring(0, 2);
+            let month = time.substring(3, 5);
+            let year = time.substring(6, 10);
+            if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+                day = Number.parseFloat(day);
+                month = Number.parseFloat(month);
+                year = Number.parseFloat(year);
+                if (Number.isInteger(day) && Number.isInteger(month) && Number.isInteger(year)) {
+                    if (day < 32 && month < 13) {
+                        alert("ban da nhap dung");
+                        check = true;
+                        alert(" ngay thang nam la: " + day + "/" + month + "/" + year);
+                        let soNgay = day;
+                        if (month % 4 === 0) {
+                            if (month % 100 === 0) {
+                                if (month % 400 === 0) {
+                                    alert("la nam nhuan");
+                                    for (let i = 1; i < month; i++) {
+                                        soNgay += ngayNamNhuan[i];
+
+                                    }
+
+
+                                } else {
+                                    alert("la nam ko nhuan");
+                                    for (let i = 1; i < month; i++) {
+                                        soNgay += ngayNamKoNhuan[i];
+
+                                    }
+
+
+                                }
+
+
+                            } else {
+                                alert("la nam nhuan");
+                                for (let i = 1; i < month; i++) {
+                                    soNgay += ngayNamNhuan[i];
+                                }
+                            }
+                        } else {
+                            alert("la nam ko nhuan");
+                            for (let i = 1; i < month; i++) {
+                                soNgay += ngayNamKoNhuan[i];
+
+                            }
+                        }
+                        alert("so ngay trong nam la: " + soNgay);
+
+
+                    }
+                }
+            }
+
+        }
+        if (!check) {
+            alert("nhap khong dung dinh dang ngay thang nam");
+        }
+    } while (!check);
+
+
+
+
+</script>
+</body>
+</html>

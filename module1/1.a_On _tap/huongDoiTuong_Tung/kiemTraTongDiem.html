@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let thongTinThiSinh = [];
+
+    class ThiSinh {
+        constructor(maThiSinh, ten, ngaySinh, diemToan, diemVan, diemAnh) {
+            this.maThiSinh = maThiSinh;
+            this.ten = ten;
+            this.ngaySinh = ngaySinh;
+            this.diemToan = diemToan;
+            this.diemVan = diemVan;
+            this.diemAnh = diemAnh;
+        }
+
+        setMaThiSinh(maThiSinh) {
+            this.maThiSinh = maThiSinh;
+        }
+
+        getMaThiSinh() {
+            return this.maThiSinh;
+        }
+
+        setTen(ten) {
+            this.ten = ten;
+        }
+
+        getTen() {
+            return this.ten;
+        }
+
+        setNgaySinh(ngaySinh) {
+            this.ngaySinh = ngaySinh;
+        }
+
+        getNgaySinh() {
+            return this.ngaySinh;
+        }
+
+        setDiemToan(diemToan) {
+            this.diemToan = diemToan;
+        }
+
+        getDiemToan() {
+            return this.diemToan;
+        }
+
+        setDiemVan(diemVan) {
+            this.diemVan = diemVan;
+        }
+
+        getDiemVan() {
+            return this.diemVan;
+        }
+
+        setDiemAnh(diemAnh) {
+            this.diemAnh = diemAnh;
+        }
+
+        getDiemAnh() {
+            return this.diemAnh;
+        }
+
+        getInfo() {
+            return ("ten thi sinh: " + this.getTen() +
+                "\nngay sinh: " + this.getNgaySinh() +
+                "\nma thi sinh: " + this.getMaThiSinh() +
+                "\ndiem toan: " + this.getDiemToan() +
+                "\ndiem anh: " + this.getDiemAnh() +
+                "\ndiem van " + this.getDiemVan());
+        }
+
+    }
+
+    class TestThiSinh {
+        constructor(listThiSinh) {
+            this.listThiSinh = listThiSinh;
+        }
+
+        kiemTra() {
+
+            for (let i = 0; i < this.listThiSinh.length; i++) {
+                let tongDiem = this.listThiSinh[i].getDiemToan() + this.listThiSinh[i].getDiemAnh() + this.listThiSinh[i].getDiemVan();
+                if (tongDiem > 15) {
+                    alert(this.listThiSinh[i].getInfo());
+                }
+
+            }
+
+
+        }
+
+
+    }
+
+    let thiSinh1 = new ThiSinh(1, "khanh", "12/12", 9, 8, 8);
+    let thiSinh2 = new ThiSinh(2, "khanh1", "12/12", 2, 3, 4);
+    let thiSinh3 = new ThiSinh(3, "khanh2", "12/12", 7, 7, 8);
+    let listThiSinh = [];
+    listThiSinh.push(thiSinh1);
+    listThiSinh.push(thiSinh2);
+    listThiSinh.push(thiSinh3);
+    let testThiSinh = new TestThiSinh(listThiSinh);
+    testThiSinh.kiemTra();
+
+
+    // let thiSinh = new TestThiSinh();
+    // let thiSinh1 = new ThiSinh();
+    // for (let i = 0; i < thiSinh.getSoThiSinh(); i++) {
+    //     thiSinh1.setTen(prompt("nhap ten thi sinh"));
+    //     thiSinh1.setMaThiSinh(prompt("nhap ma so thi sinh"));
+    //     thiSinh1.setNgaySinh(prompt("nhap ngay sinh cua thi sinh"));
+    //     thiSinh1.setDiemVan(parseInt(prompt("nhap diem van cua thi sinh")));
+    //     thiSinh1.setDiemAnh(parseInt(prompt("nhap diem anh cua thi sinh")));
+    //     thiSinh1.setDiemToan(parseInt(prompt("nhap diem toan thi sinh")));
+    //     thiSinh1.getTen();
+    //     thiSinh1.getMaThiSinh();
+    //     thiSinh1.getNgaySinh();
+    //     thiSinh1.getDiemVan();
+    //     thiSinh1.getDiemAnh();
+    //     thiSinh1.getDiemToan();
+    //     thiSinh.kiemTra(thiSinh1);
+    //
+    // }
+
+
+    // for (let i = 0; i < thongTinThiSinh.length; i++) {
+    //     let temp = [];
+    //     for (let j = 0; j < thongTinThiSinh.length; j++) {
+    //         temp += j + " _Name: " + thongTinThiSinh[j].getTen() + "\n"
+    //     }
+    //     let chonThiSinh = parseInt(prompt(temp));
+    //     alert(" tên this sinh : " + thongTinThiSinh[chonThiSinh].getTen()
+    //         + '\n  ngày sinh :' + thongTinThiSinh[chonThiSinh].getNgaySinh()
+    //         + '\n  ma thi sinh: ' + thongTinThiSinh[chonThiSinh].getMaThiSinh()
+    //         + '\n  diem anh : ' + thongTinThiSinh[chonThiSinh].getDiemAnh()
+    //         + "\n  diem toan: " + thongTinThiSinh[chonThiSinh].getDiemToan()
+    //         + "\n  diem van : " + thongTinThiSinh[chonThiSinh].getDiemVan());
+    // }
+</script>
+</body>
+</html>

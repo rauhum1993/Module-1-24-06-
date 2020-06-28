@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9da6c4f8-caf9-48d8-a798-c4a307916d50" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../module1/1.a_On _tap/baiMauDinhDang/mauDinhDang.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/1.a_On _tap/bai_InSao/inSao.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/1.a_On _tap/bangHuongDoiTuongNhanVien/nhap3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/1.a_On _tap/huongDoiTuong_Tung/kiemTraSinhVien.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/1.a_On _tap/huongDoiTuong_Tung/kiemTraTongDiem.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/1.a_On _tap/kiemTraNamNhuan/bai3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/1.a_On _tap/lamHinhTronVaChuNhat/lamHinhTron.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/1.a_On _tap/lamHinhTronVaChuNhat/lamLaiHuongDoiTuong.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/1.a_On _tap/lamHinhTronVaChuNhat/xayDungLopMoTaHinhChuNhat.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/1.a_On _tap/taiLieu/tl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/1.a_On _tap/theSort()/sort().html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/NhapMonLapTrinhCanBan/nhap.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/NhapMonLapTrinhCanBan/nhap1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/thiModule1/bai1/bai1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/thiModule1/bai2/bai2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/thiModule1/bai3/bai3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/thiModule1/bai4/bai4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../module1/thiModule1/bai4/classCongNhan.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../module1/15.ham2/baiTap/luyenTapTaoVaSuDungHam02/bai6_KiemTraSoNguyenDuong.html" beforeDir="false" afterPath="$PROJECT_DIR$/../module1/15.ham2/baiTap/luyenTapTaoVaSuDungHam02/bai6_KiemTraSoNguyenDuong.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../module1/21.baiTapHuongDoiTuong/bai2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../module1/21.baiTapHuongDoiTuong/bai2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../module1/21.baiTapHuongDoiTuong/bai3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../module1/21.baiTapHuongDoiTuong/bai3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../module1/NhapMonLapTrinhCanBan/vi_du.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../module1/case study/yeuCau1.html" beforeDir="false" afterPath="$PROJECT_DIR$/../module1/case study/yeuCau1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../module1/case study/yeuCau2.html" beforeDir="false" afterPath="$PROJECT_DIR$/../module1/case study/yeuCau2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../module1/case study/yeuCau3.html" beforeDir="false" afterPath="$PROJECT_DIR$/../module1/case study/yeuCau3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../module1/case study/yeuCau4.html" beforeDir="false" afterPath="$PROJECT_DIR$/../module1/case study/yeuCau4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../module1/case study/yeuCau5.html" beforeDir="false" afterPath="$PROJECT_DIR$/../module1/case study/yeuCau5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../module1/case study/yeuCau6/task1/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/../module1/case study/yeuCau6/task1/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../module1/case study/yeuCau6/task2/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/../module1/case study/yeuCau6/task2/main.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1dqmejn0W0ejly5o40UAQGhm8Ig" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9da6c4f8-caf9-48d8-a798-c4a307916d50" name="Default Changelist" comment="" />
+      <created>1593161094433</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593161094433</updated>
+      <workItem from="1593161096245" duration="1985000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="275" y="28" key="#Project_Structure" timestamp="1593163237217">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="275" y="28" key="#Project_Structure/0.0.1366.738@0.0.1366.738" timestamp="1593163237217" />
+    <state x="463" y="125" key="FileChooserDialogImpl" timestamp="1593163336392">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="463" y="125" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1593163336392" />
+    <state x="184" y="12" key="SettingsEditor" timestamp="1593162754584">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="184" y="12" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1593162754584" />
+    <state x="65" y="0" key="new project wizard" timestamp="1593163370694">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="65" y="0" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1593163370694" />
+  </component>
+</project>

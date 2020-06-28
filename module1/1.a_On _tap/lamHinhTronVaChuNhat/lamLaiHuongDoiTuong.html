@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class SinhVien {
+        constructor(msSV, hoTen, ngaySinh, gioiTinh, tenLop, khoa) {
+            this.msSV = msSV;
+            this.hoTen = hoTen;
+            this.ngaySinh = ngaySinh;
+            this.gioiTinh = gioiTinh;
+            this.tenLop = tenLop;
+            this.khoa = khoa;
+        }
+
+        setMSSV(msSV) {
+            this.msSV = msSV;
+
+        }
+
+        getMSSV() {
+            return this.msSV;
+        }
+
+        setHoTen(hoTen) {
+            this.hoTen = hoTen;
+        }
+
+        getHoTen() {
+            return this.hoTen;
+        }
+
+        setNgaySinh(ngaySinh) {
+            this.ngaySinh = ngaySinh;
+        }
+
+        getNgaySinh() {
+            return this.ngaySinh;
+
+        }
+
+        setGioiTinh(gioiTinh) {
+            this.gioiTinh = gioiTinh;
+        }
+
+        getGioiTinh() {
+            return this.gioiTinh;
+
+        }
+
+        setTenLop(tenLop) {
+            this.tenLop = tenLop;
+        }
+
+        getTenLop() {
+            return this.tenLop;
+        }
+
+        setKhoa(khoa) {
+            this.khoa = khoa;
+        }
+
+        getKhoa() {
+            return this.khoa;
+        }
+
+    }
+
+    let danhSachSinhVien = [];
+
+    luachon();
+
+    function themSinhVien1() {
+        let sinhVien = new SinhVien();
+        sinhVien.setMSSV(prompt('Enter MSSV: '));
+        sinhVien.setHoTen(prompt("Enter Ho va Ten"));
+        sinhVien.setNgaySinh(prompt("Enter ngay sinh"));
+        sinhVien.setGioiTinh(prompt("Enter gioi tinh"));
+        sinhVien.setTenLop(prompt("Enter ten lop"));
+        sinhVien.setKhoa(prompt("Enter khóa:"));
+        danhSachSinhVien.push(sinhVien)
+        hienthiSV()
+
+
+    }
+    ;
+
+    function hienthiSV() {
+        let string = "";
+        for (let i = 0; i < danhSachSinhVien.length; i++) {
+            string += (i + 1) + ". Mssv la: " + danhSachSinhVien[i].getMSSV()
+                + " - " + 'ten la : ' + danhSachSinhVien[i].getHoTen()
+                + " - " + 'ngay sinh la : ' + danhSachSinhVien[i].getGioiTinh()
+                + " - " + 'gioi tinh la : ' + danhSachSinhVien[i].getNgaySinh()
+                + " - " + 'ten lop la : ' + danhSachSinhVien[i].getGioiTinh()
+                + " - " + 'khoa la : ' + danhSachSinhVien[i].getKhoa() + "\n";
+        }
+        alert(string);
+        luachon();
+    }
+
+    function xoaSvTheoMssv() {
+        let maSvCanXoa = prompt('nhap ma sv can xoa');
+        for (let i = 0; i < danhSachSinhVien.length; i++) {
+            if (maSvCanXoa === danhSachSinhVien[i].getMSSV()) {
+                danhSachSinhVien.splice(i, 1);
+            } else alert("ko tim thay  ma sv ");
+        }
+        hienthiSV();
+        luachon();
+    }
+
+    function xoaSvTheoSoThuTu() {
+        let soThuTu = prompt("nhap so thu tu cua sinh vien can xoa");
+        for (let i = 0; i < danhSachSinhVien.length; i++) {
+            if (soThuTu >= 1 && soThuTu <= danhSachSinhVien.length ) {
+                danhSachSinhVien.splice(soThuTu - 1, 1);
+                break;
+            } else
+                alert("so thu tu chua dung voi dinh dang");
+            xoaSvTheoMssv();
+        }
+        hienthiSV();
+        luachon();
+    }
+
+    function luachon() {
+        let choose = prompt('1. them sinh vien: '
+            + "\n2. hien thi danh sach sinh vien: "
+            + "\n3. xoa 1 sinh vien voi mssv: "
+            + "\n4. xoa 1 sinh vien bat ky: "
+            + "\n5. tim sinh vien theo mssv: "
+            + "\n6. sap xep danh sach theo mssv: "
+        );
+        switch (choose) {
+            case "1":
+                themSinhVien1();
+
+                break;
+            case "2":
+                hienthiSV();
+                break;
+            case "3":
+                xoaSvTheoMssv();
+
+                break;
+            case "4":
+                xoaSvTheoSoThuTu();
+
+                break;
+            default:
+                alert("nhap lai");
+                hienthiSV;
+
+
+        }
+
+    }
+</script>
+</body>
+</html>
