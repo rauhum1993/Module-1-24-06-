@@ -19,7 +19,7 @@
                 month = Number.parseFloat(month);
                 year = Number.parseFloat(year);
                 if (Number.isInteger(day) && Number.isInteger(month) && Number.isInteger(year)) {
-                    if (day < 32 && month < 13 && year > 1950) {
+                    if (0 < day < 32 && 0 < month < 13 && year > 1950) {
                         check = true;
                     }
 
@@ -98,7 +98,7 @@
         let accompanying_person = prompt('How many people( bạn có mấy người đi kèm)');
         if (!isNaN(accompanying_person)) {
             accompanying_person = Number.parseFloat(accompanying_person);
-            if (Number.isInteger(accompanying_person)) {
+            if (Number.isInteger(accompanying_person)&&accompanying_person>=0) {
                 check = true;
             }
         }
@@ -126,7 +126,7 @@
 
     let type_of_service = prompt('Type of service ( Loại dịch vụ)');
     let room_type = prompt('Room Type (Loại phòng) ');
-    let gia_phong = 0;
+    let gia_phong ;
     let discount1 = 1 - discount / 100;
     if (type_of_service == 'villa') {
         gia_phong = rentDay * 500 * discount1;

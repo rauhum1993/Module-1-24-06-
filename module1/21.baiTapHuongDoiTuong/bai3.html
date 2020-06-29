@@ -93,7 +93,7 @@
     hienthi();
 
     function xoaSinhVienTheoIndex() {
-        hienthi();
+        hienthi(litsSinhVien);
         let index = parseInt(prompt('nhap vi tri sv ban muon xoa'));
         if (1 <= index && index<= (litsSinhVien.length + 1)) {
             litsSinhVien.splice((index - 1), 1);

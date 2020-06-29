@@ -2,9 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <script type="text/javascript" src="classCongNhan.js"></script>
+    <style>
+        table{
+            border: solid;
+            border-collapse: collapse;
+        }
+
+    </style>
 </head>
 <body>
-$END$
+
+    <h1 >Quản lý công nhân</h1>
+    <p id="display"></p>
+
+
+
+<script>
+    listCongNhan = [];
+    listCongNhan.push(congNhan1);
+    listCongNhan.push(congNhan2);
+    listCongNhan.push(congNhan3);
+
+    hienThi();
+
+    function hienThi() {
+        let bangDanhSach = "<table border='1'>\n" +
+            "<tr>\n" +
+            '<th>STT</th>\n' +
+            '<th> Họ và tên</th>\n' +
+            '<th> Ngày sinh</th>\n' +
+            '<th> Địa chỉ</th>\n' +
+            '<th> Lương</th>\n' +
+            '<th> Chức vụ</th>\n' +
+            "</tr>";
+        for (let i=0;i<listCongNhan.length;i++){
+            bangDanhSach += ' <tr>\n' +
+                '<td>' + listCongNhan[i].getStt() + '</td>\n' +
+                '<td>' + listCongNhan[i].getName() + '</td>\n' +
+                '<td>' + listCongNhan[i].getBirthday() + '</td>\n' +
+                '<td>' + listCongNhan[i].getAddRess() + '</td>\n' +
+                '<td>' + listCongNhan[i].getSalary() + '</td>\n' +
+                '<td>' + listCongNhan[i].getPosition() + '</td>\n' +
+                '</tr>';
+
+        }
+        document.getElementById("display").innerHTML=bangDanhSach;
+
+
+
+    }
+
+
+
+
+
+
+</script>
 </body>
 </html>

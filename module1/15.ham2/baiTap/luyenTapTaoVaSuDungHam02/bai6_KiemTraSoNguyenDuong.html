@@ -6,17 +6,23 @@
 </head>
 <body>
 <script>
-    let soNguyenDuong=parseInt(prompt('nhap mot so vao de kiem tra: '));
-    kiemTra();
-    alert(kiemTra());
-    function kiemTra() {
-        if (soNguyenDuong>=0){
-            return true
+    while (true) {
+        let soNguyenDuong = prompt('nhap mot so vao de kiem tra: ');
+        alert(kiemTra());
+
+        function kiemTra() {
+            if (!isNaN(soNguyenDuong)) {
+                soNguyenDuong = Number.parseFloat(soNguyenDuong);
+                alert(soNguyenDuong);
+                if (Number.isInteger(soNguyenDuong) && soNguyenDuong > 0) {
+                    alert(soNguyenDuong);
+
+                    return true;
+                }else return false;
+            } else return false;
+
         }
-        return false;
-
     }
-
 </script>
 </body>
 </html>

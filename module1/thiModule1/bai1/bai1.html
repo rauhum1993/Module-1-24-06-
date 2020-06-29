@@ -2,9 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<script>
+    let mangSoNguyen = [];
+    let soPhanTu = parseInt(prompt("Nhập số lượng số nguyên cần kiểm tra là: "));
+    let soDem=0;
+    do {
+        let nhapSoNguyen = parseInt(prompt("Nhập số nguyên cần kiểm tra là :"));
+        if (nhapSoNguyen > 0) {
+            mangSoNguyen.push(nhapSoNguyen)
+            soDem++
+        } else alert("Nhập vào không phải là số nguyên dương")
+    } while (soDem < soPhanTu);
+    alert("Mảng các số nguyên vừa nhập là: "+ mangSoNguyen);
+    let tong=0;
+    let dem=0;
+    for(let i=0;i<mangSoNguyen.length;i++){
+        if(mangSoNguyen[i]%3===0){
+            tong+=mangSoNguyen[i];
+            dem++;
+        }
+    }
+    alert("Trung bình cộng của các số chia hết cho 3 là: "+ tong/dem );
+
+</script>
 </body>
 </html>

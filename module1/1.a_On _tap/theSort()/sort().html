@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<script>
+
+    let  soLuongSo;
+    do{
+        soLuongSo=parseInt(prompt("nhập vào vố lượng số cần thêm"));
+        if(isNaN(soLuongSo)){
+            alert("không phải là số")
+        } else if(soLuongSo<6){
+            alert("phải lớn hơn 6")
+        }
+    }while (isNaN(soLuongSo) || soLuongSo<6);
+    let mang=[];
+    let phantu;
+    for (let i=0;i<soLuongSo;i++){
+        phantu=prompt("nhập số thứ "+(i+1));
+        mang.push(phantu)
+    }
+    mang.sort(function (a,b) {return a-b
+    });
+    alert(mang)
+
+</script>
 </body>
 </html>

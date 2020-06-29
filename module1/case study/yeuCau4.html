@@ -8,12 +8,15 @@
 <script>
     let arrNameCustomer = [];
     while (true) {
-        let choose = parseInt(prompt("1. Add new Customer" + "\n" + "2.Delete Customer"));
+        let choose = parseInt(prompt("1. Add new Customer" + "\n"
+            + "2.Delete Customer"
+            + "\n3.Display Customer"
+        ));
         switch (choose) {
             case 1: {
-                let number = parseInt(prompt("Enter number Customer you want add to arr: "));
+                let number = parseInt(prompt("số lượng khách hàng muốn thêm vào:  "));
                 for (let i = 0; i < number; i++) {
-                    let nameCustomer = prompt("Enter name  of Customer:");
+                    let nameCustomer = prompt("tên khách hàng:");
                     arrNameCustomer.push(nameCustomer);
                 }
                 let result = "";
@@ -28,7 +31,7 @@
 
             case 2: {
                 let check=false;
-                let nameCustomer = prompt("Enter name Customer you want to delete : ");
+                let nameCustomer = prompt("tên khách hàng muốn xóa : ");
                 for (let i = 0; i < arrNameCustomer.length; i++) {
                     if (nameCustomer===arrNameCustomer[i]){
                         arrNameCustomer.splice(i,1);
@@ -49,6 +52,10 @@
 
 
 
+
+
+            }
+            case 3:{
 
             }
 

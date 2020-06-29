@@ -17,23 +17,23 @@
     let discount = 10;
     let quantityIncluded = 10;
     let rendDay = 7;
-    let totalPay;
+
     let choose = parseInt(prompt('1 Hiển thị thông tin khách hàng.' + '\n' +
         '2.Chỉnh sửa thông tin khách hàng.' + '\n' +
         '3.Hiển thị giá sau khi giảm giá.' + '\n'));
     switch (choose) {
         case 1 : {
-            alert(" tên khách hàng : " + name
-                + '\n  ngày sinh :' + birthday
-                + '\n  số chứng minh : ' + cmnd
-                + '\n  Email : ' + email
-                + "\n  Địa chỉ: " + address
-                + "\n  Loại dịch vụ : " + typeService
-                + "\n  level : " + typeCustomer
-                + "\n  Giảm giá : " + discount + "%"
-                + '\n  phòng bao nhiêu người :' + quantityIncluded + 'người'
-                + '\n  số ngày thuê : ' + rendDay + 'ngày'
-                + '\n  loại phòng : ' + typeRoom);
+            alert(" 1. tên khách hàng : " + name
+                + '\n  2. ngày sinh :' + birthday
+                + '\n  3. số chứng minh : ' + cmnd
+                + '\n  4. Email : ' + email
+                + "\n  5. Địa chỉ: " + address
+                + "\n  6. Loại dịch vụ : " + typeService
+                + "\n  7. level : " + typeCustomer
+                + "\n  8. Giảm giá : " + discount + " %"
+                + '\n  9. phòng bao nhiêu người :' + quantityIncluded + ' người'
+                + '\n  10. số ngày thuê : ' + rendDay + ' ngày'
+                + '\n  11. loại phòng : ' + typeRoom);
             break;
 
         }
@@ -121,7 +121,7 @@
                 giamGia += 5
             } else ("nhap cho dung dia chi");
 
-            if (rendDay >= '7') {
+            if (rendDay >= 7) {
                 giamGia += 30
             } else if (rendDay > 5) {
                 giamGia += 20

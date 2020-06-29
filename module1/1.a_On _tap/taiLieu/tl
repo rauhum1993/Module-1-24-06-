@@ -1,0 +1,39 @@
+concat()->nối mảng
+push()->thêm vào cuối mảng
+join()->vd:a.join(" ")--> "1 2 3"...không có mặc định dấu ,
+reverse()đảo ngược các phần tử trong mảng
+sort() sắp xếp ...theo abc nếu tăng dần giảm dần thì : a.sort(function(a,b){ return a-b });theo thu tu tang dan b den a
+pop() xóa phần tử cuối của mảng
+shift() xóa phần tử đầu tiên của mảng
+unshift()nối p.tu vào đầu mảng
+toString() chuyển mảng qua dang chuỗi
+
+splice() thêm or xóa 1 phần tử trong mảng
+charAt() tìm kí tự
+split("",chuoi.length) cắt chuỗi qua mảng
+toUpperCase() thành in hoa
+toLowerCase() inthuong
+substring() lấy chuỗi con
+
+Định dạng email, ngày sinh, chứng minh thư.
+email(
+ let regexEmail= /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+let checkValid=false;
+ do{
+            let email = prompt("email");
+            if(regexEmail.test(email)){
+                checkValid=true;
+            }else alert("email không hợp lệ vui lòng nhập lại")
+        }while (!checkValid);
+        checkValid=false;
+)
+ngày tháng(
+let regexBirthday = /^(([0][1-9]|[1-2]\d|[3][0-1])\/(0[1-9]|1[0-2])\/(19\d{2}|(20[0-2]\d)))$/   )
+kiểm tra nhập số (
+let regexNumber= /^\d+$/ chuyển qua cmnd /^[\d]{8,8}$/ )
+kiểm tra tên (
+/^[a-z0-9_-]{3,16}$/
+)
+ kiêm tra ật khẩu (
+/^[a-z0-9_-]{6,18}$/
+)

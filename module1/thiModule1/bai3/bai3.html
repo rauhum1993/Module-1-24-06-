@@ -2,9 +2,89 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<script>
+    let ngayNamNhuan = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    let ngayNamKoNhuan = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    tinhSoNgay();
+
+    function tinhSoNgay() {
+        let time = prompt("Nhập  tháng năm cần tính vào: ");
+
+
+        if (time.charAt(2) === "/") {
+
+            let month = time.substring(0, 2);
+            let year = time.substring(3, 7);
+            if (!isNaN(month) && !isNaN(year)) {
+
+                month = Number.parseFloat(month);
+                year = Number.parseFloat(year);
+                if (Number.isInteger(month) && Number.isInteger(year)) {
+                    if (0<month < 13 && year >= 1000) {
+                        alert("Bạn đã nhập đúng");
+                        check = true;
+                        let soNgay = 0;
+                        if (month % 4 === 0) {
+                            if (month % 100 === 0) {
+                                if (month % 400 === 0) {
+                                    alert("Là năm nhuận");
+                                    for (let i = 0; i <= month; i++) {
+                                        if ((i + 1) === month) {
+                                            soNgay += ngayNamNhuan[i];
+                                        }
+
+                                    }
+
+
+                                } else {
+                                    alert("Là năm không nhuận");
+                                    for (let i = 0; i <= month; i++) {
+                                        if ((i + 1) === month) {
+                                            soNgay += ngayNamKoNhuan[i];
+                                        }
+
+                                    }
+
+
+                                }
+
+
+                            } else {
+                                alert("Là năm nhuận");
+                                for (let i = 0; i <= month; i++) {
+                                    if ((i + 1) === month) {
+                                        soNgay += ngayNamNhuan[i];
+                                    }
+                                }
+                            }
+                        } else {
+                            alert("Là năm không nhuận");
+                            for (let i = 0; i <= month; i++) {
+                                if ((i + 1) === month) {
+                                    soNgay += ngayNamKoNhuan[i];
+                                }
+
+                            }
+                        }
+                        alert("Số ngày trong tháng là : " + soNgay);
+
+
+                    }
+
+                }
+
+            }
+
+
+        } else alert("Nhập chưa đúng");
+        tinhSoNgay();
+
+    }
+
+</script>
 </body>
 </html>

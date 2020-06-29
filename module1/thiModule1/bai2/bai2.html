@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html
+        <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<script>
+    let soNhapVao = parseInt(prompt("Nhập vào số nguyên dương cần kiểm tra"));
+    let tongUocSo = 0;
+    kiemTra(soNhapVao);
+
+    function kiemTra(soNhapVao) {
+
+        if (soNhapVao > 0) {
+
+            for (let i = 0; i <soNhapVao; i++) {
+                if (soNhapVao % i === 0) {
+                    tongUocSo += i;
+                }
+            }
+            if (tongUocSo === soNhapVao) {
+                alert(true);
+            } else {
+                alert(false);
+            }
+        } else
+            alert(false);
+
+
+
+    }
+
+</script>
 </body>
 </html>

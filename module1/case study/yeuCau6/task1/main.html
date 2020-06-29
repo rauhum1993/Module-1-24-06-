@@ -9,9 +9,10 @@
 </head>
 <body>
 <script>
-    let regexEmail=/^(\w{3,}@\w+\.\w+)$/;
-    let regexBirthday=/^(([0][1-9]|[1-2]\d|[3][0-1  ])\/(0[1-9]|1[0-2])\/(19\d{2}|(20[0-2]\d)))$/;
-    let listCustomer=[];
+    let regexEmail = /^(\w{3,}@\w+\.\w+)$/;
+    let regexBirthday = /^(([0][1-9]|[1-2]\d|[3][0-1  ])\/(0[1-9]|1[0-2])\/(19\d{2}|(20[0-2]\d)))$/;
+    let listCustomer = [];
+
     function displayMainMenu() {
         let choose = parseInt(prompt(" 1.Add New Customer" +
             "\n 2.Display Imformation Customer" +
@@ -23,16 +24,23 @@
                 addNewCustomer();
                 break;
 
+
             }
+            case 2: {
+
+                break;
+            }
+
             case 3: {
                 displayTotalPays();
             }
-            default:{
+            default: {
                 alert("falled");
             }
 
         }
     }
+
     function displayTotalPays() {
         let temp = "";
         for (let i = 0; i < listCustomer.length; i++) {
@@ -44,20 +52,20 @@
 
     }
 
-    function  addNewCustomer() {
-        let checkvalue=false;
-        let cus= new Customer();
+    function addNewCustomer() {
+        let checkvalue = false;
+        let cus = new Customer();
         let name = prompt('Guest_name (Tên khách hàng)');
         let email;
         let date_of_birth;
 
 
-        do{
-             date_of_birth = prompt('Date_of_birth (ngày tháng năm sinh');
-            if(regexBirthday.test(date_of_birth)){
-                checkvalue=true;
+        do {
+            date_of_birth = prompt('Date_of_birth (ngày tháng năm sinh');
+            if (regexBirthday.test(date_of_birth)) {
+                checkvalue = true;
 
-            }else {
+            } else {
                 alert("nhap ngay thang chua dung , yeu cau ban nhap lai");
             }
 
@@ -66,17 +74,16 @@
         let id_card = prompt('Id card (số chứng minh)');
 
 
-
-        checkvalue=false;
-        do{
+        checkvalue = false;
+        do {
             email = prompt('Email');
-            if (regexEmail.test(email)){
-                checkvalue=true;
+            if (regexEmail.test(email)) {
+                checkvalue = true;
             } else {
                 alert("Email ban nhap ko hop le, vui long nhap lai")
             }
 
-        }while (!checkvalue);
+        } while (!checkvalue);
         let add_ress = prompt('Adress (Địa chỉ của bạn)');
         let customer_type = prompt('Customer type(Level của bạn)');
         let discount = prompt('Discount (Có mã giảm giá hay không) ');
@@ -101,6 +108,7 @@
 
 
     }
+
     displayMainMenu()
 </script>
 </body>

@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
 </head>
 <body>
-$END$
+<script>
+    let number;
+    let regexNumber = /^[\d]{4}$/;//thay 4 bang so de bai can tim//
+    let check = false;
+    do {
+        number = prompt("nhập");
+        check = regexNumber.test(number);
+        if (!check) {
+            alert("nhập số có bốn chữ số")
+        }
+    } while (!check);
+    if (kiemTra(number)) {
+        alert("đúng")
+    } else {
+        alert("sai");
+    }
+</script>
 </body>
 </html>
