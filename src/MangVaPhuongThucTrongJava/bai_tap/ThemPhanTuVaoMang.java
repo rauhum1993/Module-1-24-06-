@@ -4,10 +4,13 @@ import java.util.Scanner;
 
 public class ThemPhanTuVaoMang {
     public static void main(String[] args) {
+
         int size;
         int[] array;
 
+
         Scanner scanner = new Scanner(System.in);
+
 
         do {
             System.out.println("Enter a size: ");
@@ -33,13 +36,13 @@ public class ThemPhanTuVaoMang {
         System.out.println("Nhap so can them: ");
         int input_name = scanner.nextInt();
         System.out.println("nhap vi tri can chen " + input_name + " vao trong mang");
-        int index_del = scanner.nextInt();
+        int index = scanner.nextInt();
 
-        for (i =array.length-1; i > index_del-1; i--) {
+        for (i = array.length - 1; i > index - 1; i--) {
 
-            array[i ] = array[i-1];
+            array[i] = array[i - 1];
         }
-        array[index_del-1]=input_name;
+        array[index - 1] = input_name;
 
 
         for (int j = 0; j < array.length; j++) {
