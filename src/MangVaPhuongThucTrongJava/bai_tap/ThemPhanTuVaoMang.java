@@ -35,9 +35,9 @@ public class ThemPhanTuVaoMang {
         System.out.println("nhap vi tri can chen " + input_name + " vao trong mang");
         int index_del = scanner.nextInt();
 
-        for (i = index_del - 1; i < array.length-1; i++) {
+        for (i =array.length-1; i > index_del-1; i--) {
 
-            array[i] = array[i+1];
+            array[i ] = array[i-1];
         }
         array[index_del-1]=input_name;
 
