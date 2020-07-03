@@ -91,7 +91,7 @@ public class XayDungLopFan {
         Scanner scanner = new Scanner(System.in);
         XayDungLopFan fan1 = new XayDungLopFan(3,true,10,"yellow");
         XayDungLopFan fan2 = new XayDungLopFan(2,false,5,"blue");
-        int choice = -1;
+        int choice ;
 
 
             System.out.println("Menu");

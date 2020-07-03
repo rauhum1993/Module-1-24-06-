@@ -2,7 +2,7 @@ package mang_va_phuong_thuc_trong_java.bai_tap;
 
 import java.util.Scanner;
 
-public class TInhTongSoOMotCotXacDinh {
+public class TinhTongCacSoODuongCheoCuaMaTranVuong {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input row: ");
@@ -21,19 +21,19 @@ public class TInhTongSoOMotCotXacDinh {
 
         }
         System.out.println("Array : ");
-        for (int row = 0; row < matrix.length; row++) {
-            for (int column = 0; column < matrix[row].length; column++) {
-                System.out.print(matrix[row][column] + " ");
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
             }
             System.out.println();
         }
-        System.out.println("Enter the column you want to sum: ");
-        int isColumn = scanner.nextInt();
-        int sum=0 ;
+
+        int sum = 0;
         for (int i = 0; i < matrix.length; i++) {
 
-                sum += matrix[i][isColumn-1];
+                sum+=matrix[i][i];
+
         }
-        System.out.println("Sum is Column "+isColumn+" = "+sum);
+        System.out.println("Sum = "+sum);
     }
 }
