@@ -3,7 +3,7 @@ package lop_va_doi_tuong_java.bai_tap;
 import java.util.Date;
 import java.util.Scanner;
 
-public class StopWatch {
+class StopWatch {
     private Date startTime;
     private Date endTime;
 
@@ -42,6 +42,7 @@ public class StopWatch {
     public static void main(String[] args) {
         Scanner scanner =new Scanner(System.in);
         StopWatch date=new StopWatch();
+        int khanh=scanner.nextInt();
         date.start();
         System.out.println(date.getStartTime());
         System.out.println();

@@ -2,7 +2,7 @@ package lop_va_doi_tuong_java.bai_tap;
 
 import java.util.Scanner;
 
-public class XayDungLopFan {
+class Fan {
     final int slow = 1;
     final int medium = 2;
     int fast = 3;
@@ -11,11 +11,8 @@ public class XayDungLopFan {
     double radius = 5;
     String color = "blue";
 
-    public XayDungLopFan( int speed, boolean on, double radius, String color) {
-        this.speed = speed;
-        this.on = on;
-        this.radius = radius;
-        this.color = color;
+    public Fan() {
+
 
     }
 
@@ -35,9 +32,6 @@ public class XayDungLopFan {
         return speed;
     }
 
-    public boolean isOn() {
-        return on;
-    }
 
     public double getRadius() {
         return radius;
@@ -55,9 +49,6 @@ public class XayDungLopFan {
         this.speed = speed;
     }
 
-    public void setOn(boolean on) {
-        this.on = false;
-    }
 
     public void setRadius(double radius) {
         this.radius = radius;
@@ -67,19 +58,24 @@ public class XayDungLopFan {
         this.color = color;
     }
 
-    public XayDungLopFan() {
-
+    public void setOn(boolean on) {
+        this.on = on;
     }
 
+    public boolean isOn() {
+        return on;
+    }
+
+
     public String toString() {
-        if (this.on) {
-            return ("fan is on" + "\n"
+        if (isOn()) {
+            return ("fan is on " + "\n"
                     + "speed= " + getSpeed() + "\n"
                     + "color= " + getColor() + "\n"
                     + "radius= " + getRadius());
 
         } else
-            return ("fan is off" + "\n"
+            return ("fan is off " + "\n"
                     + "speed= " + getSpeed() + "\n"
                     + "color= " + getColor() + "\n"
                     + "radius= " + getRadius());
@@ -89,34 +85,40 @@ public class XayDungLopFan {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        XayDungLopFan fan1 = new XayDungLopFan(3,true,10,"yellow");
-        XayDungLopFan fan2 = new XayDungLopFan(2,false,5,"blue");
-        int choice ;
+        Fan fan1 = new Fan();
+        Fan fan2 = new Fan();
+        int choice;
+        fan1.setSpeed(fan1.fast);
+        fan1.setColor("yello");
+        fan1.setRadius(10);
+        fan1.setOn(true);
 
 
-            System.out.println("Menu");
-            System.out.println("1. On ");
-            System.out.println("2. Off");
-            System.out.println("0. Exit");
-            System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
-            switch (choice) {
-                case 1: {
-                    System.out.println(fan1.toString());
-                    break;
-                }
-                case 2: {
-                    System.out.println(fan2.toString());
-
-                    break;
-
-                }
-                case 0:
-                    System.exit(0);
-                default:
-                    System.out.println("No choice!");
+        fan2.setSpeed(fan2.slow);
+        fan2.isOn();
 
 
+        System.out.println("Menu");
+        System.out.println("1. fan1 ");
+        System.out.println("2. fan2");
+        System.out.println("0. Exit");
+        System.out.print("Enter your choice: ");
+        choice = scanner.nextInt();
+        switch (choice) {
+            case 1: {
+                System.out.println(fan1.toString());
+                break;
+            }
+            case 2: {
+                System.out.println(fan2.toString());
+
+                break;
+
+            }
+            case 0:
+                System.exit(0);
+            default:
+                System.out.println("No choice!");
 
 
         }

@@ -2,7 +2,7 @@ package lop_va_doi_tuong_java.bai_tap;
 
 import java.util.Scanner;
 
-public class QuadraticEquation {
+class QuadraticEquationtTest {
     public static void main(String[] args) {
         Scanner scanner= new Scanner(System.in);
         System.out.print("Enter a:");
@@ -11,7 +11,7 @@ public class QuadraticEquation {
         double b=scanner.nextDouble();
         System.out.print("Enter c:");
         double c=scanner.nextDouble();
-        QuadraticEquation1 input= new QuadraticEquation1(a,b,c);
+        QuadraticEquation input= new QuadraticEquation(a,b,c);
         System.out.print("a= "+"\t"+input.getA()+"\t");
         System.out.print("b= "+"\t"+input.getB()+"\t");
         System.out.print("c= "+"\t"+input.getC()+"\t");
@@ -27,9 +27,9 @@ public class QuadraticEquation {
 
     }
 }
- class QuadraticEquation1{
+ class QuadraticEquation{
    private double a,b,c;
-    public QuadraticEquation1(double a,double b,double c){
+    public QuadraticEquation(double a,double b,double c){
         this.a=a;
         this.b=b;
         this.c=c;
