@@ -33,4 +33,8 @@ public class Square extends Shape {
     public void resize(double percent) {
         this.side += (percent / 100);
     }
+    public void setColor(String color){
+        super.setColor(color);
+    }
 }
+

@@ -11,6 +11,7 @@ public class ResizeableTest {
         shapes[0] = new Circle(1, "yellow", false);
         shapes[1] = new Rectangle(2, 3, "red", true);
         shapes[2] = new Square(4, "blue", true);
+        shapes[2].setColor("red");
         for (Shape a : shapes){
             System.out.println(a);
         }

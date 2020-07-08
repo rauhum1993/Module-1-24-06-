@@ -1,10 +1,8 @@
-package abstract_class_and_interface.bai_tap.interface_resizeble;
+package abstract_class_and_interface.bai_tap.interface_colorable;
 
 public class Rectangle extends Shape {
     private double width = 1.0;
     private double length = 1.0;
-    private String color ="greed";
-    private boolean filled= false;
 
     public Rectangle() {
     }
@@ -15,8 +13,7 @@ public class Rectangle extends Shape {
     }
 
     public Rectangle(double width, double length, String color, boolean filled) {
-        this.color=color;
-        this.filled= filled;
+        super(color, filled);
         this.width = width;
         this.length = length;
     }
@@ -53,10 +50,5 @@ public class Rectangle extends Shape {
                 + getLength()
                 + ", which is a subclass of "
                 + super.toString();
-    }
-    @Override
-    public void resize(double percent) {
-        this.length += (percent / 100);
-        this.width += (percent / 100);
     }
 }

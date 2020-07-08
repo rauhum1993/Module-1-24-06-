@@ -1,9 +1,7 @@
-package abstract_class_and_interface.bai_tap.interface_resizeble;
+package abstract_class_and_interface.bai_tap.interface_colorable;
 
 public class Circle extends Shape {
     private double radius = 1.0;
-    private String color ="greed";
-    private boolean filled= false;
 
     public Circle() {
     }
@@ -13,8 +11,7 @@ public class Circle extends Shape {
     }
 
     public Circle(double radius, String color, boolean filled) {
-        this.color=color;
-        this.filled= filled;
+        super(color, filled);
         this.radius = radius;
     }
 
@@ -40,10 +37,6 @@ public class Circle extends Shape {
                 + getRadius()
                 + ", which is a subclass of "
                 + super.toString();
-    }
-    @Override
-    public void resize(double percent) {
-        this.radius += (percent / 100);
     }
 
 }

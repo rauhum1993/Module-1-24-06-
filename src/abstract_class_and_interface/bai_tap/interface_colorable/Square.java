@@ -1,6 +1,6 @@
 package abstract_class_and_interface.bai_tap.interface_colorable;
 
-public class Square extends Shape {
+public class Square extends Shape implements Colorable{
     private double side;
     public Square() {
     }
@@ -32,7 +32,7 @@ public class Square extends Shape {
 
     @Override
     public void howToColor() {
-        super.howToColor();
+        System.out.println("Color all four sides");
     }
 }
 
