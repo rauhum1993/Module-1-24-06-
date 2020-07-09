@@ -16,7 +16,15 @@ public class ResizeableTest {
             System.out.println(a);
         }
         for (Shape a : shapes) {
-            a.resize(20);
+            if(a instanceof Circle){
+                ((Circle) a).resize(30);
+            }
+            if (a instanceof Rectangle){
+                ((Rectangle) a).resize(30);
+            }
+            if (a instanceof Square){
+                ((Square) a).resize(30);
+            }
         }
         for (Shape a : shapes){
             System.out.println(a);

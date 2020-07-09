@@ -1,6 +1,6 @@
 package abstract_class_and_interface.bai_tap.interface_resizeble;
 
-public class Rectangle extends Shape {
+public class Rectangle extends Shape implements Resizeable{
     private double width = 1.0;
     private double length = 1.0;
     private String color ="greed";
@@ -52,6 +52,8 @@ public class Rectangle extends Shape {
                 + " and length="
                 + getLength()
                 + ", which is a subclass of "
+                +", the Area=" + getArea()
+                +", the Perimeter=" + getPerimeter()
                 + super.toString();
     }
     @Override

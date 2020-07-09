@@ -1,6 +1,6 @@
 package abstract_class_and_interface.bai_tap.interface_resizeble;
 
-public class Circle extends Shape {
+public class Circle extends Shape implements Resizeable {
     private double radius = 1.0;
     private String color ="greed";
     private boolean filled= false;
@@ -39,6 +39,8 @@ public class Circle extends Shape {
         return "A Circle with radius="
                 + getRadius()
                 + ", which is a subclass of "
+                +", the Area=" + getArea()
+                +", the Perimeter=" + getPerimeter()
                 + super.toString();
     }
     @Override
