@@ -51,9 +51,10 @@ public class Rectangle extends Shape implements Resizeable{
                 + getWidth()
                 + " and length="
                 + getLength()
-                + ", which is a subclass of "
                 +", the Area=" + getArea()
                 +", the Perimeter=" + getPerimeter()
+                + ", which is a subclass of "
+
                 + super.toString();
     }
     @Override
