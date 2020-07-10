@@ -8,6 +8,7 @@ public class MyList<E> {
     private Object elements[];
 
     public MyList() {
+
         elements = new Object[DEFAULT_CAPACITY];
     }
     private void ensureCapa() {
