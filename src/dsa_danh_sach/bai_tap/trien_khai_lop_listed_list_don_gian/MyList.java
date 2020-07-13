@@ -8,6 +8,7 @@ public class MyList<E> {
     public Object elements[];
 
     public MyList() {
+
         elements = new Object[default_capacity];
     }
 
