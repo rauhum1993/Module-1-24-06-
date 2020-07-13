@@ -14,10 +14,11 @@ public class DemSoLan {
 
             TreeMap<Character, Integer> treeMap = new TreeMap<>();
             for (int i = 0; i < chuoiKyTu.length(); i++) {
+                int index = 1;
 
                 if (treeMap.get(chuoiKyTu.charAt(i)) == null) {
-                    int index = 0;
-                    index++;
+
+
                     treeMap.put(chuoiKyTu.charAt(i), index);
                 } else {
 

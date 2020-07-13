@@ -3,7 +3,7 @@ package dsa_stack_queue.bai_tap.dem_so_lan_xuat_hien_moi_tu_trong_mot_chuoi;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Dao_nguoc_phan_tu_trong_mang_so_nguyen {
+public class DaoNguocPhanTuTrongMangSoNguyen {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Stack<Integer> stack = new Stack<Integer>();
@@ -20,13 +20,14 @@ public class Dao_nguoc_phan_tu_trong_mang_so_nguyen {
 
         Stack<Integer> newstack= new Stack<>();
 
-        for(int j=stack.size()-1; j>=0;j--){
-            newstack.push(stack.pop());
-
-        }
-//        for(int j=0;j<stack.size();j++){
+//        for(int j=stack.size()-1; j>=0;j--){
 //            newstack.push(stack.pop());
+//
 //        }
+        int size= stack.size();
+        for(int j=0;j<size;j++){
+            newstack.push(stack.pop());
+        }
         System.out.println(newstack);
 
 
