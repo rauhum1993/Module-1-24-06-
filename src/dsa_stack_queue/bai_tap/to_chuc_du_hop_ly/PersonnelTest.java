@@ -1,7 +1,9 @@
 package dsa_stack_queue.bai_tap.to_chuc_du_hop_ly;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class PersonnelTest {
     public static void main(String[] args) {
@@ -26,5 +28,30 @@ public class PersonnelTest {
         for(int i=0;i<personnel_Manage.size();i++){
             System.out.println(personnel_Manage.get(i)+"\t");
         }
+
+        Queue<Personnel> female = new LinkedList<>();
+        Queue<Personnel> male = new LinkedList<>();
+
+        for (int i=0;i<personnel_Manage.size();i++){
+            if(female.equals(personnel_Manage.get(i).getSex())){
+                female.add(personnel_Manage.get(i));
+            } else {
+                male.add(personnel_Manage.get(i));
+            }
+        }
+        int count = 0;
+        while (!female.isEmpty()) {
+            personnel_Manage.set(count, female.poll());
+            count++;
+        }
+        while ((!male.isEmpty())) {
+            personnel_Manage.set(count, male.poll());
+            count++;
+        }
+        System.out.println("Sort by sex -----------------------------------------------");
+        for (int i = 0; i < personnel_Manage.size(); i++) {
+            System.out.println(personnel_Manage.get(i));
+        }
+
     }
 }
