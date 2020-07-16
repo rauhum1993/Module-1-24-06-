@@ -86,7 +86,9 @@ public class PhanBietHashMapvsHashSet {
 
         @Override
         public String toString() {
-            return " Student name = " + name + ", age = " + age + " , address =" + address+"\n";
+            return " Student name = " + name + "," +
+                    " age = " + age + " , " +
+                    "address =" + address+"\n";
         }
     }
 }
