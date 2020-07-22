@@ -22,13 +22,15 @@ public class ReaderFileCSV {
             FileReader fileReader=new FileReader(file);
             BufferedReader br=new BufferedReader(fileReader);
             String line = "";
-            String cvsSplitBy = ",";
+
             int i = 0;
             while ((line=br.readLine())!=null){
-                String[] country=line.split(cvsSplitBy);
+                String[] country=line.split(",");
                 System.out.println("Country "+(i+1)+" is: \t"+country[5]);
                 i++;
             }
+            fileReader.close();
+            br.close();
 
         } catch (Exception e){
             System.out.println("Error");

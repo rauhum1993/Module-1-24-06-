@@ -4,17 +4,16 @@ import java.io.*;
 
 public class Test {
         public static void main(String[] args){
-//           File fileWriter =new File("src/input_output_text_file/bai_tap/ahuhu.txt");
-//            fileWriter.createNewFile();
+
 try{
-    File file= new File("src/input_output_text_file/bai_tap/test.txt");
-    File file1= new File("src/input_output_text_file/bai_tap/copy_test.txt");
-    file1.createNewFile();
+    File file= new File("src/lesson16_input_output_text_file/bai_tap/text.txt");
+    File file1= new File("src/lesson16_input_output_text_file/bai_tap/copy_text.txt");
     file.createNewFile();
+    file1.createNewFile();
     PrintWriter writer= new PrintWriter(file);
-    writer.println("aaa");
-    writer.println("bbb");
-    writer.println("ccc");
+    writer.println("a1a");
+    writer.println("b3b");
+    writer.println("c3c");
     writer.close();
 
 }catch (Exception e){

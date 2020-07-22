@@ -1,6 +1,8 @@
 package java_collection_famework.bai_tap.luyen_tap_su_dung_array_list_linked_list;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product  {
    private String nameProduct;
    private int id;
    private double price;

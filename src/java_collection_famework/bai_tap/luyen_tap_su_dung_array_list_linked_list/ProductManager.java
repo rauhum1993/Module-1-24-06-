@@ -145,9 +145,7 @@ public class ProductManager {
         for (int i = 0; i < products.size(); i++) {
             if (editId == products.get(i).getId()) {
                 System.out.println("Nhập thông tin sản phẩm cần sửa: ");
-
                 String newNameProduct = scanner.nextLine();
-
                 products.get(i).setNameProduct(newNameProduct);
 
                 System.out.println("Nhập ID  cần sửa");
