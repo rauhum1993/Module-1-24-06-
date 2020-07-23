@@ -8,7 +8,7 @@ public class CopyFileBinary {
         Scanner scanner= new Scanner(System.in);
         System.out.println("Enter the path of the copy file ");
         String sourceFile=scanner.nextLine();
-        System.out.println("Enter the path of the file to receive a copy");
+        System.out.println("Enter the path and name the file to be copied");
         String targetFile=scanner.nextLine();
         CopyFileBinary Object1=new CopyFileBinary();
         Object1.copyFileBinary(sourceFile,targetFile);
@@ -55,6 +55,7 @@ public class CopyFileBinary {
             fileTarget.close();
             oIPSTarget.close();
             oOPSoure.close();
+            oOPsTarget.close();
 
         }
 

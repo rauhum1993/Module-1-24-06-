@@ -18,12 +18,12 @@ public class ProductManage {
 
         do {
             System.out.println("-------------Menu------------" + "\n" +
-                    "1. Thêm sản phẩm." + "\n" +
-                    "2. Hiển thị danh sách sản phẩm." + "\n" +
-                    "3. Tìm kiếm sản phẩm theo tên." + "\n");
+                    "1. Add Products." + "\n" +
+                    "2. Menu Products." + "\n" +
+                    "3. Sreach Product by : " + "\n");
 //
             System.out.println("");
-            System.out.print("Bạn hãy chọn một mục: ");
+            System.out.print("Please select an item : ");
             choose = Integer.parseInt(scanner.nextLine());
             switch (choose) {
                 case 1:
