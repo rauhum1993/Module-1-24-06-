@@ -1,11 +1,10 @@
 package lesson17_binary_file_anh_serialization.bai_tap.product_manage;
 
-import java.awt.*;
 import java.io.Serializable;
 
 public class Product implements Serializable {
     private String productName;
-    private int iD;
+    private int id;
     private int price;
     private String manufacturer;
     private String otherDescription;
@@ -18,12 +17,12 @@ public class Product implements Serializable {
         this.productName = productName;
     }
 
-    public int getiD() {
-        return iD;
+    public int getId() {
+        return id;
     }
 
-    public void setiD(int iD) {
-        this.iD = iD;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPrice() {
@@ -50,9 +49,9 @@ public class Product implements Serializable {
         this.otherDescription = otherDescription;
     }
 
-    public Product( int iD, String productName, int price, String manufacturer, String otherDescription) {
+    public Product(int id, String productName, int price, String manufacturer, String otherDescription) {
         this.productName = productName;
-        this.iD = iD;
+        this.id = id;
         this.price = price;
         this.manufacturer = manufacturer;
         this.otherDescription = otherDescription;
@@ -60,7 +59,7 @@ public class Product implements Serializable {
     @Override
     public String toString() {
         return " nameProduct= " + productName +
-                "  id= " + iD +
+                "  id= " + id +
                 "  price= " + price+
                 " manufacturer "+ manufacturer +
                 " Other Description " + otherDescription +"\n";

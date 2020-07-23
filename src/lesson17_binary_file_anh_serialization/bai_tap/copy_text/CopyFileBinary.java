@@ -5,42 +5,47 @@ import java.util.Scanner;
 
 public class CopyFileBinary {
     public static void main(String[] args) throws IOException {
-        Scanner scanner= new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the path of the copy file ");
-        String sourceFile=scanner.nextLine();
+        String sourceFile = scanner.nextLine();
         System.out.println("Enter the path and name the file to be copied");
-        String targetFile=scanner.nextLine();
-        CopyFileBinary Object1=new CopyFileBinary();
-        Object1.copyFileBinary(sourceFile,targetFile);
+        String targetFile = scanner.nextLine();
+        CopyFileBinary Object1 = new CopyFileBinary();
+        Object1.copyFileBinary(sourceFile, targetFile);
     }
 
 
     public void copyFileBinary(String sourceFile, String targetFile) throws IOException {
 
+        File file = new File(sourceFile);
         FileInputStream fileSource = null;
-        FileInputStream fileTarget1 = null;
-        ObjectInputStream oOPSoure = null;
-        ObjectInputStream oOPsTarget = null;
+        ObjectInputStream objectInputStreamSource = null;
 
-
-        FileOutputStream fileTarget= null;
-        ObjectOutputStream oIPSTarget=null;
+        FileInputStream fileInputTarget = null;
+        FileOutputStream fileOutputTarget = null;
+        ObjectOutputStream objectOutputStreamTarget = null;
+        ObjectInputStream objectInputStreamTarget = null;
 
         try {
-           fileSource =new FileInputStream(sourceFile);
+            fileSource = new FileInputStream(sourceFile);
+            objectInputStreamSource = new ObjectInputStream(fileSource);
 
-           oOPSoure = new ObjectInputStream(fileSource);
+            fileOutputTarget = new FileOutputStream(targetFile);
+            objectOutputStreamTarget = new ObjectOutputStream(fileOutputTarget);
 
-           fileTarget=new FileOutputStream(targetFile);
-           oIPSTarget=new ObjectOutputStream(fileTarget);
-//            System.out.println("Data of file source is: ");
-//            System.out.println(oOPSoure.readObject());
+            System.out.println("Data of file source is: ");
 
-              oIPSTarget.writeObject(oOPSoure.readObject());
-              fileTarget1 =new FileInputStream(targetFile);
-              oOPsTarget=new ObjectInputStream(fileTarget1);
+            Object objectReadSoure = objectInputStreamSource.readObject();
+            System.out.println(objectReadSoure);
+//copy file
+            objectOutputStreamTarget.writeObject(objectReadSoure);
+            fileInputTarget = new FileInputStream(targetFile);
+            objectInputStreamTarget = new ObjectInputStream(fileInputTarget);
+
+            // Notice has successfully copied
             System.out.println("Successful copying, data copied is:  ");
-            System.out.println(oOPsTarget.readObject());
+            System.out.println(objectInputStreamTarget.readObject());
+            System.out.println("Number of bytes in file is: " + file.length());
 
 
 
@@ -50,12 +55,13 @@ public class CopyFileBinary {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             fileSource.close();
-            fileTarget.close();
-            oIPSTarget.close();
-            oOPSoure.close();
-            oOPsTarget.close();
+            fileOutputTarget.close();
+            objectOutputStreamTarget.flush();
+            objectOutputStreamTarget.close();
+            objectInputStreamSource.close();
+            objectInputStreamTarget.close();
 
         }
 

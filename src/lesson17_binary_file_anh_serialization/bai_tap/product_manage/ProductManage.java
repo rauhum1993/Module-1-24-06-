@@ -72,7 +72,7 @@ public class ProductManage {
         int idSearch = Integer.parseInt(scanner.nextLine());
         int i = 0;
         for (i = 0; i < productList.size(); i++)
-            if (idSearch == productList.get(i).getiD()) {
+            if (idSearch == productList.get(i).getId()) {
                 System.out.println(productList.get(i));
             }
     }
@@ -85,7 +85,7 @@ public class ProductManage {
             oIPS = new ObjectInputStream(fileInputStream);
             List<Product> productList1 = (List<Product>) oIPS.readObject();
             for (Product product1 : productList) {
-                System.out.println("ID: \t" + product1.getiD() + ".\t Name Product:\t " + product1.getProductName()
+                System.out.println("ID: \t" + product1.getId() + ".\t Name Product:\t " + product1.getProductName()
                         + ".\t Price : \t " + product1.getPrice() + ".\t ManuFacturer: \t" + product1.getManufacturer()
                         + ".\t Other Description : \t" + product1.getOtherDescription() + ".\n");
             }
@@ -122,6 +122,7 @@ public class ProductManage {
             fileOutputStream = new FileOutputStream(filePath);
             oOPS = new ObjectOutputStream(fileOutputStream);
             oOPS.writeObject(productList);
+
 
         }
         catch (FileNotFoundException e) {
