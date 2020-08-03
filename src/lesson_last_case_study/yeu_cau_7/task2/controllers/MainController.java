@@ -6,6 +6,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainController {
     private static final String COMMA_DELIMITER = ",";
@@ -19,7 +21,7 @@ public class MainController {
 
     }
 
-    private static void displayMainMenu(Scanner scanner) {
+     static void displayMainMenu(Scanner scanner) {
         System.out.println("--------------MENU---------------" + "\n" +
                 "1. Add New Services " + "\n" +
                 "2.	Show Services" + "\n" +
@@ -371,8 +373,19 @@ public class MainController {
         int maximumPeople = Integer.parseInt(scanner.nextLine());
         System.out.println("5. Enter Type Of Rent (Enter the word):");
         String typeOfRent = scanner.nextLine();
+
+
         System.out.println("6. Enter Id (Enter the word):");
         String id = scanner.nextLine();
+        final String NAME_ID= "SVVL(-)[0-9]{4}";
+        Pattern p = Pattern.compile("SVVL(-)[0-9]{4}");
+        Matcher m = p.matcher(id);
+        if (m.find()==false){
+            System.out.println(" Enter the wrong format ");
+        }
+
+
+
         System.out.println("7. Enter Room StanDard (Enter the word):");
         String roomStanDard = scanner.nextLine();
         System.out.println("8. Enter Comfort Description (Enter the word):");
