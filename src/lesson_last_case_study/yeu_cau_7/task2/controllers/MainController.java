@@ -21,7 +21,7 @@ public class MainController {
 
     }
 
-     static void displayMainMenu(Scanner scanner) {
+    static void displayMainMenu(Scanner scanner) {
         System.out.println("--------------MENU---------------" + "\n" +
                 "1. Add New Services " + "\n" +
                 "2.	Show Services" + "\n" +
@@ -141,19 +141,122 @@ public class MainController {
     }
 
     private static void addAndWriterFileRoom(Scanner scanner) {
+
+        boolean check = false;
         System.out.println("---Enter Properties Room ---");
-        System.out.println("1. Enter name room (Enter the word): ");
-        String nameRoom = scanner.nextLine();
-        System.out.println("2. Enter area Use (Enter number): ");
-        double areaUseRoom = Double.parseDouble(scanner.nextLine());
-        System.out.println("3. Enter rental Cost (Enter number):");
-        double rentalCostRoom = Double.parseDouble(scanner.nextLine());
-        System.out.println("4. Enter Maximum People (Enter number):");
-        int maximumPeopleRoom = Integer.parseInt(scanner.nextLine());
-        System.out.println("5. Enter Type Of Rent (Enter the word):");
-        String typeOfRentRoom = scanner.nextLine();
-        System.out.println("6. Enter Id (Enter the word):");
-        String idRoom = scanner.nextLine();
+        String nameRoom;
+        do {
+            System.out.println("1. Enter Name Room (Enter the word ):");
+            nameRoom = scanner.nextLine();
+            Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
+            Matcher m = p.matcher(nameRoom);
+            if (!m.matches()) {
+                System.out.println("Enter the wrong name room format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful name room");
+                check = true;
+            }
+        } while (!check);
+
+
+        double areaUseRoom = 0;
+        check = false;
+        do {
+            try {
+                System.out.println("2. Enter area Use (Enter number bigger than 30 square meters): ");
+                areaUseRoom = Double.parseDouble(scanner.nextLine());
+                if (areaUseRoom >= 30) {
+
+                    System.out.println("Enter successful the area use");
+                    check = true;
+                } else {
+                    System.out.println("Enter the wrong the area use format");
+                    check = false;
+                }
+            } catch (Exception e) {
+                System.out.println("Enter is not a number ");
+                check = false;
+            }
+        } while (!check);
+
+
+        double rentalCostRoom = 0;
+        check = false;
+        do {
+            try {
+                System.out.println("3. Enter Rental Cost (Enter number is greater than 0):");
+                rentalCostRoom = Double.parseDouble(scanner.nextLine());
+                if (rentalCostRoom > 0) {
+                    System.out.println("Enter successful the rental costs    ");
+                    check = true;
+                } else {
+                    System.out.println("Enter the wrong the rental costs format");
+                    check = false;
+                }
+            } catch (Exception e) {
+                System.out.println("Enter is not a number ");
+                check = false;
+            }
+        } while (!check);
+
+
+        int maximumPeopleRoom = 0;
+        check = false;
+        do {
+            try {
+                System.out.println("4. Enter Maximum People (Enter numbers greater than 0 and less than 20):");
+                maximumPeopleRoom = Integer.parseInt(scanner.nextLine());
+                if (maximumPeopleRoom <= 0 || maximumPeopleRoom > 20) {
+                    System.out.println("Enter the wrong the maximum people format");
+                    check = false;
+                } else {
+                    System.out.println("Enter successful the maximum people");
+                    check = true;
+                }
+            } catch (Exception e) {
+                System.out.println("Enter is not a number ");
+                check = false;
+            }
+        } while (!check);
+
+
+
+        String typeOfRentRoom ;
+
+        check = false;
+        do {
+            System.out.println("6. Enter Type Of Rent (Enter the word ):");
+            typeOfRentRoom = scanner.nextLine();
+            Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
+            Matcher m = p.matcher(typeOfRentRoom);
+            if (!m.matches()) {
+                System.out.println("Enter the wrong type of rent format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful type of rent");
+                check = true;
+            }
+        } while (!check);
+
+
+        check = false;
+        String idRoom;
+        do {
+            System.out.println("6. Enter Id (Enter the word):");
+            idRoom = scanner.nextLine();
+            Pattern p = Pattern.compile("SVRO(-)[0-9]{4}");
+            Matcher m = p.matcher(idRoom);
+            if (m.find() == false) {
+                System.out.println("Enter the wrong ID format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful ID");
+                check = true;
+            }
+        } while (!check);
+
+
         System.out.println("7. Enter free Service Included (Enter the word): ");
         String freeServiceIncluded = scanner.nextLine();
 
@@ -233,25 +336,160 @@ public class MainController {
     }
 
     private static void addAndWriterFileHouse(Scanner scanner) {
+        boolean check = false;
         System.out.println("---Enter Properties House ---");
-        System.out.println("1. Enter name house (Enter the word): ");
-        String nameHouse = scanner.nextLine();
-        System.out.println("2. Enter area Use (Enter number): ");
-        double areaUseHouse = Double.parseDouble(scanner.nextLine());
-        System.out.println("3. Enter rental Cost (Enter number):");
-        double rentalCostHoue = Double.parseDouble(scanner.nextLine());
-        System.out.println("4. Enter Maximum People (Enter number):");
-        int maximumPeopleHouse = Integer.parseInt(scanner.nextLine());
-        System.out.println("5. Enter Type Of Rent (Enter the word):");
-        String typeOfRentHouse = scanner.nextLine();
-        System.out.println("6. Enter Id (Enter the word):");
-        String idHouse = scanner.nextLine();
-        System.out.println("7. Enter Room StanDard (Enter the word):");
-        String roomStanDardHouse = scanner.nextLine();
+
+        String nameHouse;
+        do {
+            System.out.println("1. Enter Name House (Enter the word ):");
+            nameHouse = scanner.nextLine();
+            Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
+            Matcher m = p.matcher(nameHouse);
+            if (!m.matches()) {
+                System.out.println("Enter the wrong name house format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful name house");
+                check = true;
+            }
+        } while (!check);
+
+
+        double areaUseHouse = 0;
+        check = false;
+        do {
+            try {
+                System.out.println("2. Enter area Use (Enter number bigger than 30 square meters): ");
+                areaUseHouse = Double.parseDouble(scanner.nextLine());
+                if (areaUseHouse >= 30) {
+
+                    System.out.println("Enter successful the area use");
+                    check = true;
+                } else {
+                    System.out.println("Enter the wrong the area use format");
+                    check = false;
+                }
+            } catch (Exception e) {
+                System.out.println("Enter is not a number ");
+                check = false;
+            }
+        } while (!check);
+
+
+        double rentalCostHoue = 0;
+        check = false;
+        do {
+            try {
+                System.out.println("3. Enter Rental Cost (Enter number is greater than 0):");
+                rentalCostHoue = Double.parseDouble(scanner.nextLine());
+                if (rentalCostHoue > 0) {
+                    System.out.println("Enter successful the rental costs    ");
+                    check = true;
+                } else {
+                    System.out.println("Enter the wrong the rental costs format");
+                    check = false;
+                }
+            } catch (Exception e) {
+                System.out.println("Enter is not a number ");
+                check = false;
+            }
+        } while (!check);
+
+
+        int maximumPeopleHouse = 0;
+        check = false;
+        do {
+            try {
+                System.out.println("4. Enter Maximum People (Enter numbers greater than 0 and less than 20):");
+                maximumPeopleHouse = Integer.parseInt(scanner.nextLine());
+                if (maximumPeopleHouse <= 0 || maximumPeopleHouse > 20) {
+                    System.out.println("Enter the wrong the maximum people format");
+                    check = false;
+                } else {
+                    System.out.println("Enter successful the maximum people");
+                    check = true;
+                }
+            } catch (Exception e) {
+                System.out.println("Enter is not a number ");
+                check = false;
+            }
+        } while (!check);
+
+
+        String typeOfRentHouse;
+        check = false;
+        do {
+            System.out.println("5. Enter Type Of Rent (Enter the word ):");
+            typeOfRentHouse = scanner.nextLine();
+            Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
+            Matcher m = p.matcher(typeOfRentHouse);
+            if (!m.matches()) {
+                System.out.println("Enter the wrong type of rent format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful type of rent");
+                check = true;
+            }
+        } while (!check);
+
+
+        String idHouse;
+        do {
+            System.out.println("6. Enter Id (Enter the word):");
+            idHouse = scanner.nextLine();
+            Pattern p = Pattern.compile("SVHO(-)[0-9]{4}");
+            Matcher m = p.matcher(idHouse);
+            if (m.find() == false) {
+                System.out.println("Enter the wrong ID format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful ID");
+                check = true;
+            }
+        } while (!check);
+
+
+        String roomStanDardHouse;
+
+        check = false;
+        do {
+            System.out.println("7. Enter Room StanDard (Enter the word ):");
+            roomStanDardHouse = scanner.nextLine();
+            Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
+            Matcher m = p.matcher(roomStanDardHouse);
+            if (!m.matches()) {
+                System.out.println("Enter the wrong room standard format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful room standaed ");
+                check = true;
+            }
+        } while (!check);
+
+
         System.out.println("8. Enter Comfort Description (Enter the word):");
         String comfortDescriptionHouse = scanner.nextLine();
-        System.out.println("9. Enter Number Of Floors (Enter number):");
-        int numberOfFloorsHouse = Integer.parseInt(scanner.nextLine());
+
+
+        int numberOfFloorsHouse = 0;
+        check = false;
+        do {
+            try {
+                System.out.println("9. Enter Number Of Floors (Enter numbers greater than 0 ):");
+                numberOfFloorsHouse = Integer.parseInt(scanner.nextLine());
+                if (numberOfFloorsHouse < 0) {
+                    System.out.println("Enter the wrong the maximum people format");
+                    check = false;
+                } else {
+                    System.out.println("Enter successful the maximum people");
+                    check = true;
+
+                }
+            } catch (Exception e) {
+                System.out.println("Enter is not a number ");
+                check = false;
+            }
+        } while (!check);
 
         House house = new House(nameHouse, areaUseHouse, rentalCostHoue, maximumPeopleHouse, typeOfRentHouse, idHouse,
                 roomStanDardHouse, comfortDescriptionHouse, numberOfFloorsHouse);
@@ -363,39 +601,181 @@ public class MainController {
 
     private static void addAndWriterFileVilla(Scanner scanner) {
         System.out.println("---Enter Properties Villa ---");
-        System.out.println("1. Enter name villa (Enter the word): ");
-        String nameVilla = scanner.nextLine();
-        System.out.println("2. Enter area Use (Enter number): ");
-        double areaUse = Double.parseDouble(scanner.nextLine());
-        System.out.println("3. Enter rental Cost (Enter number):");
-        double rentalCost = Double.parseDouble(scanner.nextLine());
-        System.out.println("4. Enter Maximum People (Enter number):");
-        int maximumPeople = Integer.parseInt(scanner.nextLine());
-        System.out.println("5. Enter Type Of Rent (Enter the word):");
-        String typeOfRent = scanner.nextLine();
+        boolean check = false;
+        String nameVilla;
+        do {
+            System.out.println("1. Enter Name Villa (Enter the word ):");
+            nameVilla = scanner.nextLine();
+            Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
+            Matcher m = p.matcher(nameVilla);
+            if (!m.matches()) {
+                System.out.println("Enter the wrong name villa format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful name villa");
+                check = true;
+            }
+        } while (!check);
+
+        check = false;
+        double areaUse = 0;
+        do {
+            try {
+                System.out.println("2. Enter area Use (Enter number bigger than 30 square meters): ");
+                areaUse = Double.parseDouble(scanner.nextLine());
+                if (areaUse >= 30) {
+
+                    System.out.println("Enter successful the area use");
+                    check = true;
+                } else {
+                    System.out.println("Enter the wrong the area use format");
+                    check = false;
+                }
+            } catch (Exception e) {
+                System.out.println("Enter is not a number ");
+                check = false;
+            }
+        } while (!check);
 
 
-        System.out.println("6. Enter Id (Enter the word):");
-        String id = scanner.nextLine();
-        final String NAME_ID= "SVVL(-)[0-9]{4}";
-        Pattern p = Pattern.compile("SVVL(-)[0-9]{4}");
-        Matcher m = p.matcher(id);
-        if (m.find()==false){
-            System.out.println(" Enter the wrong format ");
-        }
+        check = false;
+        double rentalCost = 0;
+        do {
+            try {
+                System.out.println("3. Enter Rental Cost (Enter number is greater than 0):");
+                rentalCost = Double.parseDouble(scanner.nextLine());
+                if (rentalCost > 0) {
+                    System.out.println("Enter successful the rental costs    ");
+                    check = true;
+                } else {
+                    System.out.println("Enter the wrong the rental costs format");
+                    check = false;
+                }
+            } catch (Exception e) {
+                System.out.println("Enter is not a number ");
+                check = false;
+            }
+        } while (!check);
 
 
+        check = false;
+        int maximumPeople = 0;
+        do {
+            try {
+                System.out.println("4. Enter Maximum People (Enter numbers greater than 0 and less than 20):");
+                maximumPeople = Integer.parseInt(scanner.nextLine());
+                if (maximumPeople <= 0 || maximumPeople > 20) {
+                    System.out.println("Enter the wrong the maximum people format");
+                    check = false;
+                } else {
+                    System.out.println("Enter successful the maximum people");
+                    check = true;
 
-        System.out.println("7. Enter Room StanDard (Enter the word):");
-        String roomStanDard = scanner.nextLine();
+                }
+            } catch (Exception e) {
+                System.out.println("Enter is not a number ");
+                check = false;
+            }
+        } while (!check);
+
+
+        String typeOfRent;
+        check = false;
+        do {
+            System.out.println("5. Enter Type Of Rent (Enter the word ):");
+            typeOfRent = scanner.nextLine();
+            Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
+            Matcher m = p.matcher(typeOfRent);
+            if (!m.matches()) {
+                System.out.println("Enter the wrong type of rent format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful type of rent");
+                check = true;
+            }
+        } while (!check);
+
+
+        check = false;
+        String idVilla;
+        do {
+            System.out.println("6. Enter Id (Enter the word of the form:  SVXX-YYYY):");
+            idVilla = scanner.nextLine();
+            Pattern p = Pattern.compile("SVVL(-)[0-9]{4}");
+            Matcher m = p.matcher(idVilla);
+            if (m.find() == false) {
+                System.out.println("Enter the wrong ID format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful ID");
+                check = true;
+            }
+        } while (!check);
+
+
+        String roomStanDard;
+        check = false;
+        do {
+            System.out.println("7. Enter Room StanDard (Enter the word ):");
+            roomStanDard = scanner.nextLine();
+            Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
+            Matcher m = p.matcher(roomStanDard);
+            if (!m.matches()) {
+                System.out.println("Enter the wrong room standard format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful room standaed ");
+                check = true;
+            }
+        } while (!check);
+
+
         System.out.println("8. Enter Comfort Description (Enter the word):");
         String comfortDescription = scanner.nextLine();
-        System.out.println("9. Enter Pool Area (Enter number):");
-        double poolArea = Double.parseDouble(scanner.nextLine());
-        System.out.println("10. Enter Number Of Floors (Enter number):");
-        int numberOfFloors = Integer.parseInt(scanner.nextLine());
 
-        Villa villa = new Villa(nameVilla, areaUse, rentalCost, maximumPeople, typeOfRent, id,
+
+//        Enter the pool Area
+        check = false;
+        double poolArea = 0;
+        do {
+            try {
+                System.out.println("9. Enter Pool Area (Enter number bigger than 30 square meters):");
+                poolArea = Double.parseDouble(scanner.nextLine());
+                if (poolArea < 30) {
+                    System.out.println("Enter the wrong the pool area  format");
+                    check = false;
+                } else {
+                    System.out.println("Enter successful the pool area ");
+                    check = true;
+                }
+            } catch (Exception e) {
+                System.out.println("Enter is not a number");
+                check = false;
+            }
+        } while (!check);
+
+
+        int numberOfFloors = 0;
+        do {
+            try {
+                System.out.println("10. Enter Number Of Floors (Enter numbers greater than 0 ):");
+                numberOfFloors = Integer.parseInt(scanner.nextLine());
+                if (numberOfFloors < 0) {
+                    System.out.println("Enter the wrong the maximum people format");
+                    check = false;
+                } else {
+                    System.out.println("Enter successful the maximum people");
+                    check = true;
+
+                }
+            } catch (Exception e) {
+                System.out.println("Enter is not a number ");
+                check = false;
+            }
+        } while (!check);
+
+
+        Villa villa = new Villa(nameVilla, areaUse, rentalCost, maximumPeople, typeOfRent, idVilla,
                 roomStanDard, comfortDescription, poolArea, numberOfFloors);
         List<Villa> villas = new ArrayList<>();
         final String FILE_VILLA = "Name Villa,Area Use ,RentalCost, Maximum People, Type Of Rent, ID, " +
@@ -407,7 +787,7 @@ public class MainController {
 
     }
 
-    private static void writerFilevilla(Villa villa, List<Villa> villas, String FILE_VILLA) {
+    public static void writerFilevilla(Villa villa, List<Villa> villas, String FILE_VILLA) {
         String fileName = "src/lesson_last_case_study/yeu_cau_7/data/Villa.csv";
         FileWriter fileWriterVilla = null;
 
