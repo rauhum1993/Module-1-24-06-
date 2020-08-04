@@ -1,4 +1,4 @@
-package lesson_last_case_study.yeu_cau_7.task1.models;
+package lesson_last_case_study.yeu_cau_7.models;
 
 public abstract class Services {
     private String nameServices;
@@ -11,7 +11,7 @@ public abstract class Services {
     public Services() {
     }
 
-    public Services(String nameServices, double areaUse, double rentalCost, int maximumPeople, String typeOfRent, String id) {
+    public Services(String id,String nameServices, double areaUse, double rentalCost, int maximumPeople, String typeOfRent ) {
         this.nameServices = nameServices;
         this.areaUse = areaUse;
         this.rentalCost = rentalCost;

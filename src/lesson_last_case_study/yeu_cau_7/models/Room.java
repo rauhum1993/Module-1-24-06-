@@ -1,4 +1,4 @@
-package lesson_last_case_study.yeu_cau_7.task1.models;
+package lesson_last_case_study.yeu_cau_7.models;
 
 public class Room extends Services {
     private String freeServiceIncluded;
@@ -11,8 +11,13 @@ public class Room extends Services {
         this.freeServiceIncluded = freeServiceIncluded;
     }
 
-    public Room(String nameServices, double areaUse, double rentalCost, int maximumPeople, String typeOfRent,String id,  String freeServiceIncluded) {
-        super(nameServices, areaUse, rentalCost, maximumPeople, typeOfRent, id);
+
+    public Room(String freeServiceIncluded) {
+        this.freeServiceIncluded = freeServiceIncluded;
+    }
+
+    public Room(String id, String nameServices, double areaUse, double rentalCost, int maximumPeople, String typeOfRent, String freeServiceIncluded) {
+        super(id, nameServices, areaUse, rentalCost, maximumPeople, typeOfRent);
         this.freeServiceIncluded = freeServiceIncluded;
     }
 

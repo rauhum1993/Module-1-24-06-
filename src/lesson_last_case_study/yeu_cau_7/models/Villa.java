@@ -1,4 +1,4 @@
-package lesson_last_case_study.yeu_cau_7.task1.models;
+package lesson_last_case_study.yeu_cau_7.models;
 
 public class Villa extends Services {
     private String roomStanDard;
@@ -38,16 +38,13 @@ public class Villa extends Services {
         this.numberOfFloors = numberOfFloors;
     }
 
-    public Villa(String nameServices, double areaUse, double rentalCost,
-                 int maximumPeople, String typeOfRent, String id,
-                 String roomStanDard, String comfortDescription,
-                 double poolArea, int numberOfFloors) {
-        super(nameServices, areaUse, rentalCost, maximumPeople, typeOfRent, id);
+    public Villa(String id, String nameServices, double areaUse, double rentalCost, int maximumPeople, String typeOfRent, String roomStanDard,
+                 String comfortDescription, double poolArea, int numberOfFloors) {
+        super(id, nameServices, areaUse, rentalCost, maximumPeople, typeOfRent);
         this.roomStanDard = roomStanDard;
         this.comfortDescription = comfortDescription;
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
-
     }
 
     @Override

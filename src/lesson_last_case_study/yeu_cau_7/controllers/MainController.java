@@ -1,19 +1,34 @@
-package lesson_last_case_study.yeu_cau_7.task2.controllers;
+package lesson_last_case_study.yeu_cau_7.controllers;
 
-import lesson_last_case_study.yeu_cau_7.task1.models.*;
+import lesson_last_case_study.yeu_cau_7.commos.ReadWriteFile;
+import lesson_last_case_study.yeu_cau_7.models.Customer;
+import lesson_last_case_study.yeu_cau_7.models.House;
+import lesson_last_case_study.yeu_cau_7.models.Room;
+import lesson_last_case_study.yeu_cau_7.models.Villa;
 
-import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainController {
-    private static final String COMMA_DELIMITER = ",";
-    private static final String NEW_LINE_SEPARATOR = "\n";
+
+    public static final String FILE_VILLA = "src/lesson_last_case_study/yeu_cau_7/data/Villa.csv";
+    public static final String FILE_ROOM = "src/lesson_last_case_study/yeu_cau_7/data/Room.csv";
+    public static final String FILE_HOUSE = "src/lesson_last_case_study/yeu_cau_7/data/House.csv";
+    public static final String FILE_CUSTOMER = "src/lesson_last_case_study/yeu_cau_7/data/Customer.csv";
+
+//    ----------------------------------------------------------------------------------------------------------
 
 
+    public static List<Room> rooms = new ArrayList<>();
+    public static List<Villa> villas = new ArrayList<>();
+    public static List<House> houses = new ArrayList<>();
+    public static List<Customer> customers = new ArrayList<>();
+
+    //------------------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         displayMainMenu(scanner);
@@ -41,8 +56,12 @@ public class MainController {
                     showServices(scanner);
                     break;
                 case 3:
+                    addNewCustomer();
+                    displayMainMenu(scanner);
                     break;
                 case 4:
+                    showInformCustomer();
+                    displayMainMenu(scanner);
                     break;
                 case 5:
                     break;
@@ -59,6 +78,19 @@ public class MainController {
         }
     }
 
+    private static void showInformCustomer() {
+        ReadWriteFile.readerFile(FILE_CUSTOMER);
+        Customer customer = null;
+        Collections.sort(customers);
+        for (int i = 0; i < customers.size(); i++) {
+            customer = customers.get(i);
+            System.out.print((i + 1) + ". ");
+            System.out.print(customer.showInformationCustomers());
+            System.out.println("\n");;
+        }
+    }
+
+
     private static void showServices(Scanner scanner) {
         System.out.println("---SHOW SERVICES----" + "\n" +
                 "1.\tShow all Villa\n" +
@@ -74,27 +106,37 @@ public class MainController {
         while (chooseShowServices != 0) {
             switch (chooseShowServices) {
                 case 1:
-                    readFileVilla();
+                    ReadWriteFile.readerFile(FILE_VILLA);
+                    for (Villa villa : villas) {
+                        System.out.println(villa.showInfor());
+                    }
                     showServices(scanner);
                     break;
                 case 2:
-                    readFileHouse();
+                    ReadWriteFile.readerFile(FILE_HOUSE);
+                    for (House house : houses) {
+                        System.out.println(house.showInfor());
+                    }
                     showServices(scanner);
                     break;
                 case 3:
-                    readFileRoom();
+                    ReadWriteFile.readerFile(FILE_ROOM);
+                    for (Room room : rooms) {
+                        System.out.println(room.showInfor());
+                    }
+
                     showServices(scanner);
                     break;
                 case 4:
-                    displayName("src/lesson_last_case_study/yeu_cau_7/data/Villa.csv");
+
                     showServices(scanner);
                     break;
                 case 5:
-                    displayName("src/lesson_last_case_study/yeu_cau_7/data/House.csv");
+
                     showServices(scanner);
                     break;
                 case 6:
-                    displayName("src/lesson_last_case_study/yeu_cau_7/data/Room.csv");
+
                     showServices(scanner);
                     break;
                 case 7:
@@ -119,15 +161,19 @@ public class MainController {
         while (chooseAdd != 0) {
             switch (chooseAdd) {
                 case 1:
-                    addAndWriterFileVilla(scanner);
+                    addFileVilla(scanner);
+
+
+
+
                     addNewServie(scanner);
                     break;
                 case 2:
-                    addAndWriterFileHouse(scanner);
+                    addFileHouse(scanner);
                     addNewServie(scanner);
                     break;
                 case 3:
-                    addAndWriterFileRoom(scanner);
+                    addFileRoom(scanner);
                     addNewServie(scanner);
                     break;
                 case 4:
@@ -140,13 +186,29 @@ public class MainController {
         }
     }
 
-    private static void addAndWriterFileRoom(Scanner scanner) {
+    private static void addFileRoom(Scanner scanner) {
 
         boolean check = false;
         System.out.println("---Enter Properties Room ---");
+
+
+        String idRoom;
+        do {
+            System.out.println("1. Enter Id (Enter the word):");
+            idRoom = scanner.nextLine();
+            Pattern p = Pattern.compile("SVRO(-)[0-9]{4}");
+            Matcher m = p.matcher(idRoom);
+            if (m.find() == false) {
+                System.out.println("Enter the wrong ID format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful ID");
+                check = true;
+            }
+        } while (!check);
         String nameRoom;
         do {
-            System.out.println("1. Enter Name Room (Enter the word ):");
+            System.out.println("2. Enter Name Room (Enter the word ):");
             nameRoom = scanner.nextLine();
             Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
             Matcher m = p.matcher(nameRoom);
@@ -164,7 +226,7 @@ public class MainController {
         check = false;
         do {
             try {
-                System.out.println("2. Enter area Use (Enter number bigger than 30 square meters): ");
+                System.out.println("3. Enter area Use (Enter number bigger than 30 square meters): ");
                 areaUseRoom = Double.parseDouble(scanner.nextLine());
                 if (areaUseRoom >= 30) {
 
@@ -185,7 +247,7 @@ public class MainController {
         check = false;
         do {
             try {
-                System.out.println("3. Enter Rental Cost (Enter number is greater than 0):");
+                System.out.println("4. Enter Rental Cost (Enter number is greater than 0):");
                 rentalCostRoom = Double.parseDouble(scanner.nextLine());
                 if (rentalCostRoom > 0) {
                     System.out.println("Enter successful the rental costs    ");
@@ -205,7 +267,7 @@ public class MainController {
         check = false;
         do {
             try {
-                System.out.println("4. Enter Maximum People (Enter numbers greater than 0 and less than 20):");
+                System.out.println("5. Enter Maximum People (Enter numbers greater than 0 and less than 20):");
                 maximumPeopleRoom = Integer.parseInt(scanner.nextLine());
                 if (maximumPeopleRoom <= 0 || maximumPeopleRoom > 20) {
                     System.out.println("Enter the wrong the maximum people format");
@@ -221,8 +283,7 @@ public class MainController {
         } while (!check);
 
 
-
-        String typeOfRentRoom ;
+        String typeOfRentRoom;
 
         check = false;
         do {
@@ -240,13 +301,25 @@ public class MainController {
         } while (!check);
 
 
-        check = false;
-        String idRoom;
+        System.out.println("7. Enter free Service Included (Enter the word): ");
+        String freeServiceIncluded = scanner.nextLine();
+
+
+        rooms.add(new Room(idRoom, nameRoom, areaUseRoom, rentalCostRoom, maximumPeopleRoom, typeOfRentRoom, freeServiceIncluded));
+
+    }
+
+
+    private static void addFileHouse(Scanner scanner) {
+        boolean check = false;
+        System.out.println("---Enter Properties House ---");
+
+        String idHouse;
         do {
-            System.out.println("6. Enter Id (Enter the word):");
-            idRoom = scanner.nextLine();
-            Pattern p = Pattern.compile("SVRO(-)[0-9]{4}");
-            Matcher m = p.matcher(idRoom);
+            System.out.println("1. Enter Id (Enter the word):");
+            idHouse = scanner.nextLine();
+            Pattern p = Pattern.compile("SVHO(-)[0-9]{4}");
+            Matcher m = p.matcher(idHouse);
             if (m.find() == false) {
                 System.out.println("Enter the wrong ID format ");
                 check = false;
@@ -256,92 +329,9 @@ public class MainController {
             }
         } while (!check);
 
-
-        System.out.println("7. Enter free Service Included (Enter the word): ");
-        String freeServiceIncluded = scanner.nextLine();
-
-        Room room = new Room(nameRoom, areaUseRoom, rentalCostRoom, maximumPeopleRoom, typeOfRentRoom, idRoom, freeServiceIncluded);
-        final String FILE_ROOM = "Name Room,Area Use ,RentalCost, Maximum People, Type Of Rent, ID, " +
-                "FreeService Included";
-        List<Room> rooms = new ArrayList<>();
-        rooms.add(room);
-        String fileNameRoom = "src/lesson_last_case_study/yeu_cau_7/data/Room.csv";
-        FileWriter fileWriterRoom = null;
-
-        try {
-            fileWriterRoom = new FileWriter(fileNameRoom);
-
-            // Write the CSV file header
-            fileWriterRoom.append(FILE_ROOM);
-
-            // Add a new line separator after the header
-            fileWriterRoom.append(NEW_LINE_SEPARATOR);
-
-            // Write a new Room object list to the CSV file
-            for (Room room1 : rooms) {
-                fileWriterRoom.append(String.valueOf(room.getNameServices()));
-                fileWriterRoom.append(COMMA_DELIMITER);
-                fileWriterRoom.append(String.valueOf(room.getAreaUse()));
-                fileWriterRoom.append(COMMA_DELIMITER);
-                fileWriterRoom.append(String.valueOf(room.getRentalCost()));
-                fileWriterRoom.append(COMMA_DELIMITER);
-                fileWriterRoom.append(String.valueOf(room.getMaximumPeople()));
-                fileWriterRoom.append(COMMA_DELIMITER);
-                fileWriterRoom.append(room.getTypeOfRent());
-                fileWriterRoom.append(COMMA_DELIMITER);
-                fileWriterRoom.append(String.valueOf(room.getId()));
-                fileWriterRoom.append(COMMA_DELIMITER);
-                fileWriterRoom.append(String.valueOf(room.getFreeServiceIncluded()));
-                fileWriterRoom.append(NEW_LINE_SEPARATOR);
-
-            }
-
-            System.out.println("CSV file was created successfully !!!");
-
-        } catch (Exception e) {
-            System.out.println("Error in CsvFileWriter !!!");
-            e.printStackTrace();
-        } finally {
-            try {
-                fileWriterRoom.flush();
-                fileWriterRoom.close();
-            } catch (IOException e) {
-                System.out.println("Error while flushing/closing fileWriterVilla !!!");
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private static void readFileRoom() {
-        BufferedReader br = null;
-        try {
-            String line;
-            br = new BufferedReader(new FileReader("src/lesson_last_case_study/yeu_cau_7/data/Room.csv"));
-
-            // How to read file in java line by line?
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null)
-                    br.close();
-            } catch (IOException crunchifyException) {
-                crunchifyException.printStackTrace();
-            }
-        }
-    }
-
-    private static void addAndWriterFileHouse(Scanner scanner) {
-        boolean check = false;
-        System.out.println("---Enter Properties House ---");
-
         String nameHouse;
         do {
-            System.out.println("1. Enter Name House (Enter the word ):");
+            System.out.println("2. Enter Name House (Enter the word ):");
             nameHouse = scanner.nextLine();
             Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
             Matcher m = p.matcher(nameHouse);
@@ -359,7 +349,7 @@ public class MainController {
         check = false;
         do {
             try {
-                System.out.println("2. Enter area Use (Enter number bigger than 30 square meters): ");
+                System.out.println("3. Enter area Use (Enter number bigger than 30 square meters): ");
                 areaUseHouse = Double.parseDouble(scanner.nextLine());
                 if (areaUseHouse >= 30) {
 
@@ -380,7 +370,7 @@ public class MainController {
         check = false;
         do {
             try {
-                System.out.println("3. Enter Rental Cost (Enter number is greater than 0):");
+                System.out.println("4. Enter Rental Cost (Enter number is greater than 0):");
                 rentalCostHoue = Double.parseDouble(scanner.nextLine());
                 if (rentalCostHoue > 0) {
                     System.out.println("Enter successful the rental costs    ");
@@ -400,7 +390,7 @@ public class MainController {
         check = false;
         do {
             try {
-                System.out.println("4. Enter Maximum People (Enter numbers greater than 0 and less than 20):");
+                System.out.println("5. Enter Maximum People (Enter numbers greater than 0 and less than 20):");
                 maximumPeopleHouse = Integer.parseInt(scanner.nextLine());
                 if (maximumPeopleHouse <= 0 || maximumPeopleHouse > 20) {
                     System.out.println("Enter the wrong the maximum people format");
@@ -419,7 +409,7 @@ public class MainController {
         String typeOfRentHouse;
         check = false;
         do {
-            System.out.println("5. Enter Type Of Rent (Enter the word ):");
+            System.out.println("6. Enter Type Of Rent (Enter the word ):");
             typeOfRentHouse = scanner.nextLine();
             Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
             Matcher m = p.matcher(typeOfRentHouse);
@@ -428,22 +418,6 @@ public class MainController {
                 check = false;
             } else {
                 System.out.println(" Enter successful type of rent");
-                check = true;
-            }
-        } while (!check);
-
-
-        String idHouse;
-        do {
-            System.out.println("6. Enter Id (Enter the word):");
-            idHouse = scanner.nextLine();
-            Pattern p = Pattern.compile("SVHO(-)[0-9]{4}");
-            Matcher m = p.matcher(idHouse);
-            if (m.find() == false) {
-                System.out.println("Enter the wrong ID format ");
-                check = false;
-            } else {
-                System.out.println(" Enter successful ID");
                 check = true;
             }
         } while (!check);
@@ -491,120 +465,36 @@ public class MainController {
             }
         } while (!check);
 
-        House house = new House(nameHouse, areaUseHouse, rentalCostHoue, maximumPeopleHouse, typeOfRentHouse, idHouse,
-                roomStanDardHouse, comfortDescriptionHouse, numberOfFloorsHouse);
 
-        final String FILE_HOUSE = "Name House,Area Use ,RentalCost, Maximum People, Type Of Rent, ID, " +
-                "Room StanDard, Comfort Descriptiom, Number OF Floors";
-
-        List<House> houses = new ArrayList<>();
-        houses.add(house);
-        String fileNameHouse = "src/lesson_last_case_study/yeu_cau_7/data/House.csv";
-        FileWriter fileWriterHouse = null;
-
-        try {
-            fileWriterHouse = new FileWriter(fileNameHouse);
-
-            // Write the CSV file header
-            fileWriterHouse.append(FILE_HOUSE);
-
-            // Add a new line separator after the header
-            fileWriterHouse.append(NEW_LINE_SEPARATOR);
-
-            // Write a new House object list to the CSV file
-            for (House house1 : houses) {
-                fileWriterHouse.append(String.valueOf(house.getNameServices()));
-                fileWriterHouse.append(COMMA_DELIMITER);
-                fileWriterHouse.append(String.valueOf(house.getAreaUse()));
-                fileWriterHouse.append(COMMA_DELIMITER);
-                fileWriterHouse.append(String.valueOf(house.getRentalCost()));
-                fileWriterHouse.append(COMMA_DELIMITER);
-                fileWriterHouse.append(String.valueOf(house.getMaximumPeople()));
-                fileWriterHouse.append(COMMA_DELIMITER);
-                fileWriterHouse.append(house.getTypeOfRent());
-                fileWriterHouse.append(COMMA_DELIMITER);
-                fileWriterHouse.append(String.valueOf(house.getId()));
-                fileWriterHouse.append(COMMA_DELIMITER);
-                fileWriterHouse.append(String.valueOf(house.getRoomStanDard()));
-                fileWriterHouse.append(COMMA_DELIMITER);
-                fileWriterHouse.append(String.valueOf(house.getComfortDescription()));
-                fileWriterHouse.append(COMMA_DELIMITER);
-                fileWriterHouse.append(String.valueOf(house.getNumberOfFloors()));
-                fileWriterHouse.append(NEW_LINE_SEPARATOR);
-
-
-            }
-
-            System.out.println("CSV file was created successfully !!!");
-
-        } catch (Exception e) {
-            System.out.println("Error in CsvFileWriter !!!");
-            e.printStackTrace();
-        } finally {
-            try {
-                fileWriterHouse.flush();
-                fileWriterHouse.close();
-            } catch (IOException e) {
-                System.out.println("Error while flushing/closing fileWriterVilla !!!");
-                e.printStackTrace();
-            }
-        }
-
+        houses.add(new House(idHouse, nameHouse, areaUseHouse, rentalCostHoue, maximumPeopleHouse, typeOfRentHouse,
+                roomStanDardHouse, comfortDescriptionHouse, numberOfFloorsHouse));
 
     }
 
-    private static void displayName(String fileCsv) {
-        try {
-            File file;
-            file = new File(fileCsv);
-            FileReader fileReader = new FileReader(file);
-            BufferedReader br = new BufferedReader(fileReader);
-            String line = "";
 
-            int i = 0;
-            while ((line = br.readLine()) != null) {
-                String[] name = line.split(",");
-                System.out.println("name " + (i + 1) + " is: \t" + name[0]);
-                i++;
-            }
-            fileReader.close();
-            br.close();
-
-        } catch (Exception e) {
-            System.out.println("Error");
-        }
-
-    }
-
-    private static void readFileHouse() {
-        BufferedReader br = null;
-        try {
-            String line;
-            br = new BufferedReader(new FileReader("src/lesson_last_case_study/yeu_cau_7/data/House.csv"));
-
-            // How to read file in java line by line?
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null)
-                    br.close();
-            } catch (IOException crunchifyException) {
-                crunchifyException.printStackTrace();
-            }
-        }
-    }
-
-    private static void addAndWriterFileVilla(Scanner scanner) {
+    private static void addFileVilla(Scanner scanner) {
         System.out.println("---Enter Properties Villa ---");
         boolean check = false;
+        String idVilla;
+        do {
+            System.out.println("1. Enter Id (Enter the word of the form:  SVXX-YYYY):");
+            idVilla = scanner.nextLine();
+            Pattern p = Pattern.compile("SVVL(-)[0-9]{4}");
+            Matcher m = p.matcher(idVilla);
+            if (m.find() == false) {
+                System.out.println("Enter the wrong ID format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful ID");
+                check = true;
+            }
+        } while (!check);
+
+
+        check = false;
         String nameVilla;
         do {
-            System.out.println("1. Enter Name Villa (Enter the word ):");
+            System.out.println("2. Enter Name Villa (Enter the word ):");
             nameVilla = scanner.nextLine();
             Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
             Matcher m = p.matcher(nameVilla);
@@ -621,7 +511,7 @@ public class MainController {
         double areaUse = 0;
         do {
             try {
-                System.out.println("2. Enter area Use (Enter number bigger than 30 square meters): ");
+                System.out.println("3. Enter area Use (Enter number bigger than 30 square meters): ");
                 areaUse = Double.parseDouble(scanner.nextLine());
                 if (areaUse >= 30) {
 
@@ -642,7 +532,7 @@ public class MainController {
         double rentalCost = 0;
         do {
             try {
-                System.out.println("3. Enter Rental Cost (Enter number is greater than 0):");
+                System.out.println("4. Enter Rental Cost (Enter number is greater than 0):");
                 rentalCost = Double.parseDouble(scanner.nextLine());
                 if (rentalCost > 0) {
                     System.out.println("Enter successful the rental costs    ");
@@ -662,7 +552,7 @@ public class MainController {
         int maximumPeople = 0;
         do {
             try {
-                System.out.println("4. Enter Maximum People (Enter numbers greater than 0 and less than 20):");
+                System.out.println("5. Enter Maximum People (Enter numbers greater than 0 and less than 20):");
                 maximumPeople = Integer.parseInt(scanner.nextLine());
                 if (maximumPeople <= 0 || maximumPeople > 20) {
                     System.out.println("Enter the wrong the maximum people format");
@@ -682,7 +572,7 @@ public class MainController {
         String typeOfRent;
         check = false;
         do {
-            System.out.println("5. Enter Type Of Rent (Enter the word ):");
+            System.out.println("6. Enter Type Of Rent (Enter the word ):");
             typeOfRent = scanner.nextLine();
             Pattern p = Pattern.compile("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$");
             Matcher m = p.matcher(typeOfRent);
@@ -695,24 +585,7 @@ public class MainController {
             }
         } while (!check);
 
-
-        check = false;
-        String idVilla;
-        do {
-            System.out.println("6. Enter Id (Enter the word of the form:  SVXX-YYYY):");
-            idVilla = scanner.nextLine();
-            Pattern p = Pattern.compile("SVVL(-)[0-9]{4}");
-            Matcher m = p.matcher(idVilla);
-            if (m.find() == false) {
-                System.out.println("Enter the wrong ID format ");
-                check = false;
-            } else {
-                System.out.println(" Enter successful ID");
-                check = true;
-            }
-        } while (!check);
-
-
+//---------------------------------------------------------------------------------------------------------
         String roomStanDard;
         check = false;
         do {
@@ -729,12 +602,12 @@ public class MainController {
             }
         } while (!check);
 
-
+//----------------------------------------------------------------------------------------------------
         System.out.println("8. Enter Comfort Description (Enter the word):");
         String comfortDescription = scanner.nextLine();
 
 
-//        Enter the pool Area
+//        Enter the pool Area-------------------------------------------------
         check = false;
         double poolArea = 0;
         do {
@@ -754,7 +627,7 @@ public class MainController {
             }
         } while (!check);
 
-
+//-------------------------------------------------------------------------------------------------------
         int numberOfFloors = 0;
         do {
             try {
@@ -774,95 +647,153 @@ public class MainController {
             }
         } while (!check);
 
+        villas.add(new Villa(idVilla, nameVilla, areaUse, rentalCost, maximumPeople, typeOfRent,
+                roomStanDard, comfortDescription, poolArea, numberOfFloors));
 
-        Villa villa = new Villa(nameVilla, areaUse, rentalCost, maximumPeople, typeOfRent, idVilla,
-                roomStanDard, comfortDescription, poolArea, numberOfFloors);
-        List<Villa> villas = new ArrayList<>();
-        final String FILE_VILLA = "Name Villa,Area Use ,RentalCost, Maximum People, Type Of Rent, ID, " +
-                "Room StanDard, Comfort Descriptiom, Pool Area, Number OF Floors";
+        ReadWriteFile.writerFile(villas.get(0).getId() + ",", FILE_VILLA);
+        ReadWriteFile.writerFile(villas.get(0).getNameServices() + ",", FILE_VILLA);
+        ReadWriteFile.writerFile(villas.get(0).getAreaUse() + ",", FILE_VILLA);
+        ReadWriteFile.writerFile(villas.get(0).getRentalCost() + ",", FILE_VILLA);
+        ReadWriteFile.writerFile(villas.get(0).getMaximumPeople() + ",", FILE_VILLA);
+        ReadWriteFile.writerFile(villas.get(0).getTypeOfRent() + ",", FILE_VILLA);
+        ReadWriteFile.writerFile(villas.get(0).getRoomStanDard() + ",", FILE_VILLA);
+        ReadWriteFile.writerFile(villas.get(0).getComfortDescription() + ",", FILE_VILLA);
+        ReadWriteFile.writerFile(villas.get(0).getPoolArea() + ",", FILE_VILLA);
+        ReadWriteFile.writerFile(villas.get(0).getNumberOfFloors() + "", FILE_VILLA);
+        ReadWriteFile.writerFile("\n", FILE_VILLA);
+        villas.clear();
 
-
-        villas.add(villa);
-        writerFilevilla(villa, villas, FILE_VILLA);
 
     }
 
-    public static void writerFilevilla(Villa villa, List<Villa> villas, String FILE_VILLA) {
-        String fileName = "src/lesson_last_case_study/yeu_cau_7/data/Villa.csv";
-        FileWriter fileWriterVilla = null;
 
-        try {
-            fileWriterVilla = new FileWriter(fileName);
+    public static void addNewCustomer() {
+        Scanner scanner = new Scanner(System.in);
+        boolean check;
+        String nameCustomer;
+        do {
+            System.out.print("Name Customer: ");
+            nameCustomer = scanner.nextLine();
+            if (nameCustomer == null || !nameCustomer.matches("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$")) {
+                check = false;
+                System.err.println("Invalid name!");
+            } else {
+                check = true;
+            }
+        } while (!check);
 
-            // Write the CSV file header
-            fileWriterVilla.append(FILE_VILLA);
+//-----------------------------------------------------------------------------------------------------------
+        String birthdayCustomer;
+        do {
+            System.out.print("Input birthday customer: ");
+            birthdayCustomer = scanner.nextLine();
+            if (birthdayCustomer == null || !birthdayCustomer.matches(
+                    "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.]((19\\d{2})|(200[12]))$")) {
+                check = false;
+                System.err.println("Invalid birthday!");
+            } else {
+                check = true;
+            }
+        } while (!check);
 
-            // Add a new line separator after the header
-            fileWriterVilla.append(NEW_LINE_SEPARATOR);
+//  ---------------------------------------------------------- --------------------------------------------------
+        String sexCustomer;
+        String str;
+        String str1;
+        do {
+            System.out.print("Input gender customer: ");
+            sexCustomer = scanner.nextLine();
+            if (sexCustomer == null) {
+                check = false;
+                System.err.println("Null");
+            } else {
+                str1 = sexCustomer.trim();
+                str = str1.toLowerCase();
+                sexCustomer = (String.valueOf(str.charAt(0)).toUpperCase() + str.substring(1));
+                if (!sexCustomer.matches("^((Fem|M)ale)|(Unknow)$")) {
+                    check = false;
+                    System.err.println("Invalid gender!");
+                } else {
+                    check = true;
+                }
+            }
+        } while (!check);
 
-            // Write a new Villa object list to the CSV file
-            for (Villa villa1 : villas) {
-                fileWriterVilla.append(String.valueOf(villa1.getNameServices()));
-                fileWriterVilla.append(COMMA_DELIMITER);
-                fileWriterVilla.append(String.valueOf(villa.getAreaUse()));
-                fileWriterVilla.append(COMMA_DELIMITER);
-                fileWriterVilla.append(String.valueOf(villa.getRentalCost()));
-                fileWriterVilla.append(COMMA_DELIMITER);
-                fileWriterVilla.append(String.valueOf(villa.getMaximumPeople()));
-                fileWriterVilla.append(COMMA_DELIMITER);
-                fileWriterVilla.append(villa.getTypeOfRent());
-                fileWriterVilla.append(COMMA_DELIMITER);
-                fileWriterVilla.append(String.valueOf(villa.getId()));
-                fileWriterVilla.append(COMMA_DELIMITER);
-                fileWriterVilla.append(String.valueOf(villa.getRoomStanDard()));
-                fileWriterVilla.append(COMMA_DELIMITER);
-                fileWriterVilla.append(String.valueOf(villa.getComfortDescription()));
-                fileWriterVilla.append(COMMA_DELIMITER);
-                fileWriterVilla.append(String.valueOf(villa.getPoolArea()));
-                fileWriterVilla.append(COMMA_DELIMITER);
-                fileWriterVilla.append(String.valueOf(villa.getNumberOfFloors()));
-                fileWriterVilla.append(NEW_LINE_SEPARATOR);
+//---------------------------------------------------------------------------------------------------------------------
+        String idCard;
+        check = false;
 
+        do {
+            System.out.print("Input id customer: ");
+            idCard = scanner.nextLine();
+            if (idCard.matches("\\d{9}")) {
+                check = true;
+                for (int i = 0; i < customers.size(); i++) {
+                    if (idCard.equals(customers.get(i).getIdCard())) {
+                        check=false;
+                        System.out.println("Retype: ");
+
+                    } else {
+                        check =true;
+                    }
+                }
+            } else {
+                check = false;
+                System.err.println("Invalid id!");
             }
 
-            System.out.println("CSV file was created successfully !!!");
 
-        } catch (Exception e) {
-            System.out.println("Error in CsvFileWriter !!!");
-            e.printStackTrace();
-        } finally {
-            try {
-                fileWriterVilla.flush();
-                fileWriterVilla.close();
-            } catch (IOException e) {
-                System.out.println("Error while flushing/closing fileWriterVilla !!!");
-                e.printStackTrace();
+        } while (!check);
+
+
+//  ---------------------------------------------------------------------------------------------------------------
+
+
+        String phoneNumber;
+        check = false;
+        do {
+            System.out.print("Input Phone number customer: ");
+            phoneNumber = scanner.nextLine();
+            if (phoneNumber.matches("0\\d{8,10}")) {
+                check = true;
+
+            } else {
+                check = false;
+                System.err.println("Invalid Phone number!");
             }
-        }
-    }
-
-    private static void readFileVilla() {
-        BufferedReader br = null;
-        try {
-            String line;
-            br = new BufferedReader(new FileReader("src/lesson_last_case_study/yeu_cau_7/data/Villa.csv"));
-
-            // How to read file in java line by line?
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
+        } while (!check);
+//        ------------------------------------------------------------------------------------------------------------
+        String email;
+        do {
+            System.out.print("Input email customer: ");
+            email = scanner.nextLine();
+            if (email == null || !email.matches("^([\\w-\\.]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$")) {
+                check = false;
+                System.err.println("Invalid email!");
+            } else {
+                check = true;
             }
+        } while (!check);
+//        -------------------------------------------------------------------------------------------------------------
+        System.out.print("Input Kind Of Guests customer: ");
+        String guestType = scanner.nextLine();
+        System.out.print("Input address customer: ");
+        String address = scanner.nextLine();
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null)
-                    br.close();
-            } catch (IOException crunchifyException) {
-                crunchifyException.printStackTrace();
-            }
-        }
+        customers.add(new Customer(nameCustomer, birthdayCustomer, sexCustomer, idCard,
+                phoneNumber, email, guestType, address));
+        ReadWriteFile.writerFile(customers.get(0).getName() + ",", FILE_CUSTOMER);
+        ReadWriteFile.writerFile(customers.get(0).getBirthday() + ",", FILE_CUSTOMER);
+        ReadWriteFile.writerFile(customers.get(0).getSex() + ",", FILE_CUSTOMER);
+        ReadWriteFile.writerFile(customers.get(0).getIdCard() + ",", FILE_CUSTOMER);
+        ReadWriteFile.writerFile(customers.get(0).getPhoneNumber() + ",", FILE_CUSTOMER);
+        ReadWriteFile.writerFile(customers.get(0).getEmail() + ",", FILE_CUSTOMER);
+        ReadWriteFile.writerFile(customers.get(0).getGuestType() + ",", FILE_CUSTOMER);
+        ReadWriteFile.writerFile(customers.get(0).getAddRess() + ",", FILE_CUSTOMER);
+//        ReadWriteFile.writerFile(customers.get(0).getServices() + ",", FILE_CUSTOMER);
+
+
     }
 
 
