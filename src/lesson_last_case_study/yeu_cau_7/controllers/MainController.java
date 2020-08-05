@@ -1,34 +1,45 @@
 package lesson_last_case_study.yeu_cau_7.controllers;
 
-import lesson_last_case_study.yeu_cau_7.commos.ReadWriteFile;
+import lesson_last_case_study.yeu_cau_7.commoms.ReadWriteFile;
 import lesson_last_case_study.yeu_cau_7.exception.*;
-import lesson_last_case_study.yeu_cau_7.models.Customer;
-import lesson_last_case_study.yeu_cau_7.models.House;
-import lesson_last_case_study.yeu_cau_7.models.Room;
-import lesson_last_case_study.yeu_cau_7.models.Villa;
+import lesson_last_case_study.yeu_cau_7.models.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainController {
+    static Scanner scanner = new Scanner(System.in);
 
 
     public static final String FILE_VILLA = "src/lesson_last_case_study/yeu_cau_7/data/Villa.csv";
     public static final String FILE_ROOM = "src/lesson_last_case_study/yeu_cau_7/data/Room.csv";
     public static final String FILE_HOUSE = "src/lesson_last_case_study/yeu_cau_7/data/House.csv";
     public static final String FILE_CUSTOMER = "src/lesson_last_case_study/yeu_cau_7/data/Customer.csv";
+    public static final String FILE_BOOKING = "src/lesson_last_case_study/yeu_cau_7/data/Booking.csv";
+    public static final String FILE_EMPLOYEE = "src/lesson_last_case_study/yeu_cau_7/data/Employee.csv";
 
-//    ----------------------------------------------------------------------------------------------------------
+    //    ----------------------------------------------------------------------------------------------------------
+//    public static final String REGEX_ID = "SV(VL|HO|RO)-\\d{4}";
+//    public static final String REGEX_NAME_SERVICE = "[A-Z][a-z]*";
+//    public static final String REGEX_ARENA = "[3-9]\\d(.{0,1})\\d{0,9}|\\d{3,9}(.{0,1})\\d{0,9}";
+//    public static final String REGEX_PRICE = "[1-9](.{0,1})\\d|[1-9]\\d(.{0,1})\\d{0,9}|[1-9]\\d{1,9}(.{0,1})\\d{0,9}";
+//    public static final String REGEX_MAX_PEOPLE = "[1-9]|[1]\\d|20";
+//    public static final String REGEX_SERVICE_EXTRA = "(massage|karaoke|food|drink|car)";
+//    public static final String REGEX_NUMBER_FLOORS = "\\d|[1-9]\\d";
+//    public static final String REGEX_STANDARD = "SV(SUP|SUT|STD|DLX)";
+//    public static final String REGEX_BIRTHDAY = "(([0][1-9]|[1-2]\\d|[3][0-1])/(0[1-9]|1[0-2])/(19[2-9]\\d|(20[0-2]\\d)))";
+//    public static final String REGEX_NAME_CUSTOMER = "[A-Z][a-z]* ([A-Z][a-z]* )*[A-Z][a-z]*";
+//    public static final String REGEX_EMAIL = "([a-zA-Z0-9_.\\-])+@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+";
+//    public static final String REGEX_GENDER = "(Male|Female|Unknow)";
+//    public static final String REGEX_ID_CUSTOMER = "\\d{9}";
+//-----------------------------------------------------------------------------------------------------------------------------
 
-
-    public static List<Room> rooms = new ArrayList<>();
-    public static List<Villa> villas = new ArrayList<>();
-    public static List<House> houses = new ArrayList<>();
-    public static List<Customer> customers = new ArrayList<>();
+    public static List<Room> roomList = new ArrayList<>();
+    public static List<Villa> villaList = new ArrayList<>();
+    public static List<House> houseList = new ArrayList<>();
+    public static List<Customer> customerList = new ArrayList<>();
+    public static Map<String, Employee> employeeMap = new HashMap<>();
 
     //------------------------------------------------------------------------------------------------------------------
     public static void main(String[] args) {
@@ -70,6 +81,7 @@ public class MainController {
                     addNewBooking();
                     break;
                 case 6:
+                    showInformEmployee();
                     break;
                 case 7:
                     System.exit(0);
@@ -81,8 +93,18 @@ public class MainController {
 
         }
     }
+
+    private static void showInformEmployee() {
+        ReadWriteFile.readerFile(FILE_EMPLOYEE);
+
+        for (String key : employeeMap.keySet()) {
+            System.out.println("ID: " + key + " Name: " + employeeMap.get(key).getNameEmployee());
+        }
+
+    }
+
     private static void addNewBooking() {
-        Scanner scanner=new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         ReadWriteFile.readerFile(FILE_CUSTOMER);
         System.out.print("1.\tBooking Villa\n" +
                 "2.\tBooking House\n" +
@@ -103,55 +125,141 @@ public class MainController {
                 System.err.println("The selection is not in the selection list");
         }
     }
-    private static void bookingRoom() {
-       ReadWriteFile.readerFile(FILE_ROOM);
-        for (Room room : rooms) {
-            System.out.println(room.toString());
-        }
 
+    private static void bookingRoom() {
+        Scanner scanner = new Scanner(System.in);
+        showInformCustomer();
+        System.out.print("Enter choose customer to booking: ");
+        int iCustomer = scanner.nextInt();
+        showAllRoom();
+        System.out.print("Enter Choose House to booking: ");
+        int iRoom = scanner.nextInt();
+        Customer customer = customerList.get(iCustomer - 1);
+        customer.setUserService(roomList.get(iRoom - 1));
+        ReadWriteFile.writerFile(customer.toString(), FILE_BOOKING);
+        System.out.println("Booking successful");
     }
 
     private static void bookingHouse() {
-        ReadWriteFile.readerFile(FILE_HOUSE);
-        for (House house : houses) {
-            System.out.println(house.toString());
-        }
+        Scanner scanner = new Scanner(System.in);
+        showInformCustomer();
+        System.out.print("Enter choose customer to booking: ");
+        int iCustomer = scanner.nextInt();
+        showAllHouse();
+        System.out.print("Enter Choose House to booking: ");
+        int iHouse = scanner.nextInt();
+        Customer customer = customerList.get(iCustomer - 1);
+        customer.setUserService(houseList.get(iHouse - 1));
+        ReadWriteFile.writerFile(customer.toString(), FILE_BOOKING);
+        System.out.println("Booking successful");
     }
 
     private static void bookingVilla() {
-        Scanner scanner=new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         showInformCustomer();
         System.out.print("Enter choose customer to booking: ");
         int iCustomer = scanner.nextInt();
         showAllVilla();
         System.out.print("Enter Choose Villa to booking: ");
-        int iVilla=scanner.nextInt();
-        Customer customer = customers.get(iCustomer-1);
-//        customer.setUserService(villas.get(iVilla-1));
-//        writerFile(customer.toString(),FILE_BOOKING);
+        int iVilla = scanner.nextInt();
+        Customer customer = customerList.get(iCustomer - 1);
+        customer.setUserService(villaList.get(iVilla - 1));
+        ReadWriteFile.writerFile(customer.toString(), FILE_BOOKING);
+        System.out.println("Booking successful");
     }
+
     private static void showAllVilla() {
-       ReadWriteFile.readerFile(FILE_VILLA);
+
+        villaList.clear();
+        ReadWriteFile.readerFile(FILE_VILLA);
         Villa villa = null;
-        for (int i = 0; i < villas.size(); i++) {
-            villa = villas.get(i);
+        for (int i = 0; i < villaList.size(); i++) {
+            villa = villaList.get(i);
             System.out.print((i + 1) + ". ");
-            villa.showInfor();
+            System.out.println(villa.showInfor());
         }
 
     }
 
+    private static void showAllHouse() {
+        houseList.clear();
+        ReadWriteFile.readerFile(FILE_HOUSE);
+        House house = null;
+        for (int i = 0; i < houseList.size(); i++) {
+            house = houseList.get(i);
+            System.out.print((i + 1) + ". ");
+            System.out.println(house.showInfor());
+        }
+    }
+
+    private static void showAllRoom() {
+        roomList.clear();
+        ReadWriteFile.readerFile(FILE_ROOM);
+        Room room = null;
+        for (int i = 0; i < roomList.size(); i++) {
+            room = roomList.get(i);
+            System.out.print((i + 1) + ". ");
+            System.out.println(room.showInfor());
+        }
+    }
+
+    private static void showAllNameVillaNotDuplicate() {
+        villaList.clear();
+        ReadWriteFile.readerFile(FILE_VILLA);
+        Set<String> listVillaSet = new TreeSet<>();
+        for (Villa villa : villaList) {
+            listVillaSet.add(villa.getNameServices());
+        }
+        int number = 0;
+        System.out.println("-----Villa name list-----");
+        for (String name : listVillaSet) {
+            System.out.println(number + 1 + ". " + name);
+            number++;
+        }
+        System.out.println("-----------------------------");
+    }
+
+    private static void showAllNameHouseNotDuplicate() {
+        ReadWriteFile.readerFile(FILE_HOUSE);
+        Set<String> listHouseSet = new TreeSet<>();
+        for (House house : houseList) {
+            listHouseSet.add(house.getNameServices());
+        }
+        int number = 0;
+        System.out.println("-----House name list-----");
+        for (String name : listHouseSet) {
+            System.out.println(number + 1 + ". " + name);
+            number++;
+        }
+        System.out.println("-----------------------------");
+    }
+
+    private static void showAllNameRoomNotDuplicate() {
+        ReadWriteFile.readerFile(FILE_ROOM);
+        Set<String> listRoomSet = new TreeSet<>();
+        for (Room room : roomList) {
+            listRoomSet.add(room.getNameServices());
+        }
+        int number = 0;
+        System.out.println("-----Room name list-----");
+        for (String name : listRoomSet) {
+            System.out.println(number + 1 + ". " + name);
+        }
+        System.out.println("-----------------------------");
+    }
+
     private static void showInformCustomer() {
+        customerList.clear();
         ReadWriteFile.readerFile(FILE_CUSTOMER);
         Customer customer = null;
-        Collections.sort(customers);
-        for (int i = 0; i < customers.size(); i++) {
-            customer = customers.get(i);
+        Collections.sort(customerList);
+        for (int i = 0; i < customerList.size(); i++) {
+            customer = customerList.get(i);
             System.out.print((i + 1) + ". ");
-            System.out.print(customer.showInformationCustomers());
+            customer.showInfor();
             System.out.println("\n");
-            ;
+
         }
     }
 
@@ -171,46 +279,27 @@ public class MainController {
         while (chooseShowServices != 0) {
             switch (chooseShowServices) {
                 case 1:
-                    ReadWriteFile.readerFile(FILE_VILLA);
-                    for (Villa villa : villas) {
-                        System.out.println(villa.showInfor());
-                    }
-//                    ReadWriteFile.readerFile(FILE_VILLA);
-//                    Villa villa = null;
-//                    for (int i = 0; i < villas.size(); i++) {
-//                        villa = villas.get(i);
-//                        System.out.print((i + 1) + ". ");
-//                        System.out.print(villa.showInfor());
-//                        System.out.println("\n");
-//                        ;
-//                    }
+                    showAllVilla();
                     showServices(scanner);
                     break;
                 case 2:
-                    ReadWriteFile.readerFile(FILE_HOUSE);
-                    for (House house : houses) {
-                        System.out.println(house.showInfor());
-                    }
+                    showAllHouse();
                     showServices(scanner);
                     break;
                 case 3:
-                    ReadWriteFile.readerFile(FILE_ROOM);
-                    for (Room room : rooms) {
-                        System.out.println(room.showInfor());
-                    }
-
+                    showAllRoom();
                     showServices(scanner);
                     break;
                 case 4:
-
+                    showAllNameVillaNotDuplicate();
                     showServices(scanner);
                     break;
                 case 5:
-
+                    showAllNameHouseNotDuplicate();
                     showServices(scanner);
                     break;
                 case 6:
-
+                    showAllNameRoomNotDuplicate();
                     showServices(scanner);
                     break;
                 case 7:
@@ -236,8 +325,6 @@ public class MainController {
             switch (chooseAdd) {
                 case 1:
                     addFileVilla(scanner);
-
-
                     addNewServie(scanner);
                     break;
                 case 2:
@@ -377,18 +464,19 @@ public class MainController {
         String freeServiceIncluded = scanner.nextLine();
 
 
-        rooms.add(new Room(idRoom, nameRoom, areaUseRoom, rentalCostRoom,
+        roomList.add(new Room(idRoom, nameRoom, areaUseRoom, rentalCostRoom,
                 maximumPeopleRoom, typeOfRentRoom, freeServiceIncluded));
+        for (int i = roomList.size() - 1; i < roomList.size(); i++) {
+            ReadWriteFile.writerFile(roomList.get(i).getId() + ",", FILE_ROOM);
+            ReadWriteFile.writerFile(roomList.get(i).getNameServices() + ",", FILE_ROOM);
+            ReadWriteFile.writerFile(roomList.get(i).getAreaUse() + ",", FILE_ROOM);
+            ReadWriteFile.writerFile(roomList.get(i).getRentalCost() + ",", FILE_ROOM);
+            ReadWriteFile.writerFile(roomList.get(i).getMaximumPeople() + ",", FILE_ROOM);
+            ReadWriteFile.writerFile(roomList.get(i).getTypeOfRent() + ",", FILE_ROOM);
+            ReadWriteFile.writerFile(roomList.get(i).getFreeServiceIncluded() + "\n", FILE_ROOM);
 
-        ReadWriteFile.writerFile(rooms.get(0).getId() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(rooms.get(0).getNameServices() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(rooms.get(0).getAreaUse() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(rooms.get(0).getRentalCost() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(rooms.get(0).getMaximumPeople() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(rooms.get(0).getTypeOfRent() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(rooms.get(0).getFreeServiceIncluded(), FILE_ROOM);
-        ReadWriteFile.writerFile("\n", FILE_ROOM);
-        rooms.clear();
+            roomList.clear();
+        }
     }
 
 
@@ -548,22 +636,21 @@ public class MainController {
         } while (!check);
 
 
-        houses.add(new House(idHouse, nameHouse, areaUseHouse, rentalCostHoue, maximumPeopleHouse, typeOfRentHouse,
+        houseList.add(new House(idHouse, nameHouse, areaUseHouse, rentalCostHoue, maximumPeopleHouse, typeOfRentHouse,
                 roomStanDardHouse, comfortDescriptionHouse, numberOfFloorsHouse));
+        for (int i = houseList.size() - 1; i < houseList.size(); i++) {
+            ReadWriteFile.writerFile(houseList.get(i).getId() + ",", FILE_HOUSE);
+            ReadWriteFile.writerFile(houseList.get(i).getNameServices() + ",", FILE_HOUSE);
+            ReadWriteFile.writerFile(houseList.get(i).getAreaUse() + ",", FILE_HOUSE);
+            ReadWriteFile.writerFile(houseList.get(i).getRentalCost() + ",", FILE_HOUSE);
+            ReadWriteFile.writerFile(houseList.get(i).getMaximumPeople() + ",", FILE_HOUSE);
+            ReadWriteFile.writerFile(houseList.get(i).getTypeOfRent() + ",", FILE_HOUSE);
+            ReadWriteFile.writerFile(houseList.get(i).getRoomStanDard() + ",", FILE_HOUSE);
+            ReadWriteFile.writerFile(houseList.get(i).getComfortDescription() + ",", FILE_HOUSE);
+            ReadWriteFile.writerFile(houseList.get(i).getNumberOfFloors() + "\n", FILE_HOUSE);
+            houseList.clear();
 
-        ReadWriteFile.writerFile(houses.get(0).getId() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(houses.get(0).getNameServices() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(houses.get(0).getAreaUse() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(houses.get(0).getRentalCost() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(houses.get(0).getMaximumPeople() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(houses.get(0).getTypeOfRent() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(houses.get(0).getRoomStanDard() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(houses.get(0).getComfortDescription() + ",", FILE_ROOM);
-        ReadWriteFile.writerFile(houses.get(0).getNumberOfFloors() + "", FILE_ROOM);
-        ReadWriteFile.writerFile("\n", FILE_ROOM);
-        houses.clear();
-
-
+        }
     }
 
 
@@ -742,22 +829,21 @@ public class MainController {
             }
         } while (!check);
 
-        villas.add(new Villa(idVilla, nameVilla, areaUse, rentalCost, maximumPeople, typeOfRent,
+        villaList.add(new Villa(idVilla, nameVilla, areaUse, rentalCost, maximumPeople, typeOfRent,
                 roomStanDard, comfortDescription, poolArea, numberOfFloors));
-
-        ReadWriteFile.writerFile(villas.get(0).getId() + ",", FILE_VILLA);
-        ReadWriteFile.writerFile(villas.get(0).getNameServices() + ",", FILE_VILLA);
-        ReadWriteFile.writerFile(villas.get(0).getAreaUse() + ",", FILE_VILLA);
-        ReadWriteFile.writerFile(villas.get(0).getRentalCost() + ",", FILE_VILLA);
-        ReadWriteFile.writerFile(villas.get(0).getMaximumPeople() + ",", FILE_VILLA);
-        ReadWriteFile.writerFile(villas.get(0).getTypeOfRent() + ",", FILE_VILLA);
-        ReadWriteFile.writerFile(villas.get(0).getRoomStanDard() + ",", FILE_VILLA);
-        ReadWriteFile.writerFile(villas.get(0).getComfortDescription() + ",", FILE_VILLA);
-        ReadWriteFile.writerFile(villas.get(0).getPoolArea() + ",", FILE_VILLA);
-        ReadWriteFile.writerFile(villas.get(0).getNumberOfFloors() + "", FILE_VILLA);
-        ReadWriteFile.writerFile("\n", FILE_VILLA);
-        villas.clear();
-
+        for (int i = villaList.size() - 1; i < villaList.size(); i++) {
+            ReadWriteFile.writerFile(villaList.get(i).getId() + ",", FILE_VILLA);
+            ReadWriteFile.writerFile(villaList.get(i).getNameServices() + ",", FILE_VILLA);
+            ReadWriteFile.writerFile(villaList.get(i).getAreaUse() + ",", FILE_VILLA);
+            ReadWriteFile.writerFile(villaList.get(i).getRentalCost() + ",", FILE_VILLA);
+            ReadWriteFile.writerFile(villaList.get(i).getMaximumPeople() + ",", FILE_VILLA);
+            ReadWriteFile.writerFile(villaList.get(i).getTypeOfRent() + ",", FILE_VILLA);
+            ReadWriteFile.writerFile(villaList.get(i).getRoomStanDard() + ",", FILE_VILLA);
+            ReadWriteFile.writerFile(villaList.get(i).getComfortDescription() + ",", FILE_VILLA);
+            ReadWriteFile.writerFile(villaList.get(i).getPoolArea() + ",", FILE_VILLA);
+            ReadWriteFile.writerFile(villaList.get(i).getNumberOfFloors() + "\n", FILE_VILLA);
+            villaList.clear();
+        }
 
     }
 
@@ -773,7 +859,7 @@ public class MainController {
             nameCustomer = scanner.nextLine();
             if (nameCustomer == null || !nameCustomer.matches("^(([A-Z][a-z]*((\\s)))+[A-Z][a-z]*)|([A-Z]([a-z]*))$")) {
                 try {
-                    throw new NameException();
+                    throw new NameException("Enter wrong name customer . Retype: ");
                 } catch (NameException e) {
                     System.out.println("Enter wrong name customer . Retype: ");
                     check = false;
@@ -792,9 +878,9 @@ public class MainController {
             System.out.print("Input birthday customer: ");
             birthdayCustomer = scanner.nextLine();
             if (birthdayCustomer == null || !birthdayCustomer.matches(
-                    "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.]((19\\d{2})|(200[12]))$")) {
+                    "(([0][1-9]|[1-2]\\d|[3][0-1])/(0[1-9]|1[0-2])/(19[2-9]\\d|(20[0-2]\\d)))")) {
                 try {
-                    throw new BirthdayException();
+                    throw new BirthdayException("Enter wrong birthday customer. Eptype: ");
                 } catch (BirthdayException e) {
                     System.out.println("Enter wrong birthday customer. Eptype: ");
                     check = false;
@@ -806,7 +892,7 @@ public class MainController {
         } while (!check);
 
 //  ---------------------------------------------------------- --------------------------------------------------
-        String sexCustomer=null;
+        String sexCustomer = null;
         String str;
         String str1;
         do {
@@ -814,20 +900,20 @@ public class MainController {
                 System.out.print("Input gender customer: ");
                 sexCustomer = scanner.nextLine();
                 if (sexCustomer == null) {
-                    throw new GenderException();
+                    throw new GenderException("Enter wrong Gender customer . Eptype: ");
                 } else {
                     str1 = sexCustomer.trim();
                     str = str1.toLowerCase();
                     sexCustomer = (String.valueOf(str.charAt(0)).toUpperCase() + str.substring(1));
                     if (!sexCustomer.matches("^((Fem|M)ale)|(Unknow)$")) {
-                      throw  new GenderException();
+                        throw new GenderException("Enter wrong Gender customer . Eptype: ");
                     } else {
                         check = true;
                     }
                 }
-            }catch (GenderException e){
+            } catch (GenderException e) {
                 System.out.println("Enter wrong Gender customer . Eptype: ");
-                check=false;
+                check = false;
             }
         } while (!check);
 
@@ -842,17 +928,17 @@ public class MainController {
                 idCard = scanner.nextLine();
                 if (idCard.matches("\\d{9}")) {
                     check = true;
-                    for (int i = 0; i < customers.size(); i++) {
-                        if (idCard.equals(customers.get(i).getIdCard())) {
-                            throw new IdCardException();
+                    for (int i = 0; i < customerList.size(); i++) {
+                        if (idCard.equals(customerList.get(i).getIdCard())) {
+                            throw new IdCardException("Enter wrong ID customer.");
                         } else {
                             check = true;
                         }
                     }
                 } else {
-                    throw new IdCardException();
+                    throw new IdCardException("Enter wrong ID customer.");
                 }
-            }catch (IdCardException e){
+            } catch (IdCardException e) {
                 System.out.println("Enter wrong ID customer.");
                 check = false;
             }
@@ -878,19 +964,19 @@ public class MainController {
             }
         } while (!check);
 //        ------------------------------------------------------------------------------------------------------------
-        String email=null;
+        String email = null;
         do {
             try {
                 System.out.print("Input email customer: ");
                 email = scanner.nextLine();
                 if (email == null || !email.matches("^([\\w-\\.]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$")) {
-                  throw new EmailException();
+                    throw new EmailException("Enter wrong Email . Entype: ");
                 } else {
                     check = true;
                 }
-            } catch (EmailException e){
+            } catch (EmailException e) {
                 System.out.println("Enter wrong Email . Entype: ");
-                check=false;
+                check = false;
             }
         } while (!check);
 //        -------------------------------------------------------------------------------------------------------------
@@ -900,18 +986,19 @@ public class MainController {
         String address = scanner.nextLine();
 
 
-        customers.add(new Customer(nameCustomer, birthdayCustomer, sexCustomer, idCard,
+        customerList.add(new Customer(nameCustomer, birthdayCustomer, sexCustomer, idCard,
                 phoneNumber, email, guestType, address));
-        ReadWriteFile.writerFile(customers.get(0).getName() + ",", FILE_CUSTOMER);
-        ReadWriteFile.writerFile(customers.get(0).getBirthday() + ",", FILE_CUSTOMER);
-        ReadWriteFile.writerFile(customers.get(0).getSex() + ",", FILE_CUSTOMER);
-        ReadWriteFile.writerFile(customers.get(0).getIdCard() + ",", FILE_CUSTOMER);
-        ReadWriteFile.writerFile(customers.get(0).getPhoneNumber() + ",", FILE_CUSTOMER);
-        ReadWriteFile.writerFile(customers.get(0).getEmail() + ",", FILE_CUSTOMER);
-        ReadWriteFile.writerFile(customers.get(0).getGuestType() + ",", FILE_CUSTOMER);
-        ReadWriteFile.writerFile(customers.get(0).getAddRess() + "", FILE_CUSTOMER);
-        ReadWriteFile.writerFile("\n", FILE_CUSTOMER);
-//        ReadWriteFile.writerFile(customers.get(0).getServices() + ",", FILE_CUSTOMER);
+
+        for (int i = customerList.size() - 1; i < customerList.size(); i++) {
+            ReadWriteFile.writerFile(customerList.get(i).getName() + ",", FILE_CUSTOMER);
+            ReadWriteFile.writerFile(customerList.get(i).getBirthday() + ",", FILE_CUSTOMER);
+            ReadWriteFile.writerFile(customerList.get(i).getSex() + ",", FILE_CUSTOMER);
+            ReadWriteFile.writerFile(customerList.get(i).getIdCard() + ",", FILE_CUSTOMER);
+            ReadWriteFile.writerFile(customerList.get(i).getPhoneNumber() + ",", FILE_CUSTOMER);
+            ReadWriteFile.writerFile(customerList.get(i).getEmail() + ",", FILE_CUSTOMER);
+            ReadWriteFile.writerFile(customerList.get(i).getGuestType() + ",", FILE_CUSTOMER);
+            ReadWriteFile.writerFile(customerList.get(i).getAddRess() + "\n", FILE_CUSTOMER);
+        }
 
 
     }

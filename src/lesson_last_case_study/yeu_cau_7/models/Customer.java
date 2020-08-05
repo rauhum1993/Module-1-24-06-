@@ -9,7 +9,15 @@ public class Customer implements Comparable<Customer> {
     private String email;
     private String guestType;
     private String address;
-    private Services services;
+    private Services userService;
+
+    public Services getUserService() {
+        return userService;
+    }
+
+    public void setUserService(Services userService) {
+        this.userService = userService;
+    }
 
 
     public Customer(String name, String birthday, String sex, String idCard, String phoneNumber, String email, String guestType, String address) {
@@ -21,7 +29,7 @@ public class Customer implements Comparable<Customer> {
         this.email = email;
         this.guestType = guestType;
         this.address = address;
-//        this.services = services;
+
     }
 
     public String getAddress() {
@@ -31,14 +39,6 @@ public class Customer implements Comparable<Customer> {
     public void setAddress(String address) {
         this.address = address;
     }
-
-//    public Services getServices() {
-//        return services;
-//    }
-//
-//    public void setServices(Services services) {
-//        this.services = services;
-//    }
 
     public String getName() {
         return name;
@@ -104,18 +104,32 @@ public class Customer implements Comparable<Customer> {
         this.address = address;
     }
 
-
-    public String showInformationCustomers() {
+    @Override
+    public String toString() {
         return "Customer{" +
                 "name='" + name + '\'' +
                 ", birthday='" + birthday + '\'' +
-                ", sex='" + sex + '\'' +
-                ", idCard='" + idCard + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                ", gender='" + sex + '\'' +
+                ", id='" + idCard + '\'' +
+                ", numberPhone='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", guestType='" + guestType + '\'' +
+                ", typeCustomer='" + guestType + '\'' +
                 ", address='" + address + '\'' +
+                ", userService=" + userService +
                 '}';
+    }
+
+    public void showInfor() {
+        System.out.println("Customer{" +
+                "name='" + name + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", gender='" + sex + '\'' +
+                ", id='" + idCard + '\'' +
+                ", numberPhone='" +  phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", typeCustomer='" + guestType + '\'' +
+                ", address='" + address + '\'' +
+                '}');
     }
 
 

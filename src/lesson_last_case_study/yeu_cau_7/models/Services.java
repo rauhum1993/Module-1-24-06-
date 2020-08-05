@@ -8,6 +8,8 @@ public abstract class Services {
     private String typeOfRent;
     private String id;
 
+
+
     public Services() {
     }
 

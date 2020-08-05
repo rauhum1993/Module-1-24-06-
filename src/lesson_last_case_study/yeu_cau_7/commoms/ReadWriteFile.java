@@ -1,11 +1,8 @@
-package lesson_last_case_study.yeu_cau_7.commos;
+package lesson_last_case_study.yeu_cau_7.commoms;
 
 
-import lesson_last_case_study.yeu_cau_7.models.Customer;
+import lesson_last_case_study.yeu_cau_7.models.*;
 import lesson_last_case_study.yeu_cau_7.controllers.MainController;
-import lesson_last_case_study.yeu_cau_7.models.House;
-import lesson_last_case_study.yeu_cau_7.models.Room;
-import lesson_last_case_study.yeu_cau_7.models.Villa;
 
 import java.io.*;
 import java.util.List;
@@ -35,7 +32,7 @@ public class ReadWriteFile {
                     String description = ReadWriteFile.arrayTemp[7];
                     String arenaPool = ReadWriteFile.arrayTemp[8];
                     String numberFloors = ReadWriteFile.arrayTemp[9];
-                    MainController.villas.add(new Villa(id, name, Double.parseDouble(userArena),
+                    MainController.villaList.add(new Villa(id, name, Double.parseDouble(userArena),
                             Double.parseDouble(rentalCost)
                             , Integer.parseInt(maxPeople), rentType, roomStandard,
                             description, Double.parseDouble(arenaPool),
@@ -50,7 +47,7 @@ public class ReadWriteFile {
                     String roomStandard = ReadWriteFile.arrayTemp[6];
                     String description = ReadWriteFile.arrayTemp[7];
                     int numberFloors = Integer.parseInt(ReadWriteFile.arrayTemp[8]);
-                    MainController.houses.add(new House(id, name, userArena, price, maxPeople,
+                    MainController.houseList.add(new House(id, name, userArena, price, maxPeople,
                             rentType, roomStandard, description, numberFloors));
                 } else if (filePath.equals(MainController.FILE_ROOM)) {
                     String id = ReadWriteFile.arrayTemp[0];
@@ -60,7 +57,7 @@ public class ReadWriteFile {
                     int maxPeople = Integer.parseInt(ReadWriteFile.arrayTemp[4]);
                     String rentType = ReadWriteFile.arrayTemp[5];
                     String freeService = ReadWriteFile.arrayTemp[6];
-                    MainController.rooms.add(new Room(id, name, userArena, price,
+                    MainController.roomList.add(new Room(id, name, userArena, price,
                             maxPeople, rentType, freeService));
                 } else if (filePath.equals(MainController.FILE_CUSTOMER)) {
                     String name = ReadWriteFile.arrayTemp[0];
@@ -71,14 +68,14 @@ public class ReadWriteFile {
                     String email = ReadWriteFile.arrayTemp[5];
                     String typeCustomer = ReadWriteFile.arrayTemp[6];
                     String address = ReadWriteFile.arrayTemp[7];
-                    MainController.customers.add(new Customer(name, birthday, sex,
-                            id, numberPhone, email, typeCustomer, address));
-//                } else if (filePath.equals(MainController.FILE_EMPLOYEE)) {
-//                    String id = ReadWriteFile.arrayTemp[0];
-//                    String name = ReadWriteFile.arrayTemp[1];
-//                    String age = ReadWriteFile.arrayTemp[2];
-//                    String address = ReadWriteFile.arrayTemp[3];
-//                    MainController.employeeMap.put(id, new Employee(id, name, age, address));
+                    MainController.customerList.add(new Customer(name, birthday, id,
+                            sex, numberPhone, email, typeCustomer, address));
+                } else if (filePath.equals(MainController.FILE_EMPLOYEE)) {
+                    String id =ReadWriteFile.arrayTemp[0];
+                    String name = ReadWriteFile.arrayTemp[1];
+                    int age =Integer.parseInt(ReadWriteFile.arrayTemp[2]) ;
+                    String address = ReadWriteFile.arrayTemp[3];
+                    MainController.employeeMap.put(id, new Employee( name, age, address));
                 }
             }
             bufferedReader.close();
