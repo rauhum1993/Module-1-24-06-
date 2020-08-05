@@ -50,7 +50,7 @@ public class MainController {
     }
 
     static void displayMainMenu(Scanner scanner) {
-
+        while (true) {
         System.out.println("--------------MENU---------------" + "\n" +
                 "1. Add New Services " + "\n" +
                 "2.	Show Services" + "\n" +
@@ -61,7 +61,7 @@ public class MainController {
                 "7. Exit");
         System.out.println("Please select an item: ");
         int choose = Integer.parseInt(scanner.nextLine());
-        while (choose != 0) {
+
             switch (choose) {
                 case 1:
                     addNewServie(scanner);
@@ -86,6 +86,8 @@ public class MainController {
                 case 7:
                     System.exit(0);
                     break;
+                default:
+                    System.out.println("Enter wrong. Entype: ");
 
 
             }
@@ -96,7 +98,6 @@ public class MainController {
 
     private static void showInformEmployee() {
         ReadWriteFile.readerFile(FILE_EMPLOYEE);
-
         for (String key : employeeMap.keySet()) {
             System.out.println("ID: " + key + " Name: " + employeeMap.get(key).getNameEmployee());
         }
