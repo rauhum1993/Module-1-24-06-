@@ -2,6 +2,7 @@ package lesson_last_case_study.yeu_cau_7.controllers;
 
 import lesson_last_case_study.yeu_cau_7.commoms.ReadWriteFile;
 import lesson_last_case_study.yeu_cau_7.exception.*;
+import lesson_last_case_study.yeu_cau_7.libs.FilingCabinets;
 import lesson_last_case_study.yeu_cau_7.models.*;
 
 import java.util.*;
@@ -51,16 +52,18 @@ public class MainController {
 
     static void displayMainMenu(Scanner scanner) {
         while (true) {
-        System.out.println("--------------MENU---------------" + "\n" +
-                "1. Add New Services " + "\n" +
-                "2.	Show Services" + "\n" +
-                "3.	Add New Customer" + "\n" +
-                "4.	Show Information of Customer" + "\n" +
-                "5.	Add New Booking" + "\n" +
-                "6.	Show Information of Employee" + "\n" +
-                "7. Exit");
-        System.out.println("Please select an item: ");
-        int choose = Integer.parseInt(scanner.nextLine());
+            System.out.println("--------------MENU---------------" + "\n" +
+                    "1. Add New Services " + "\n" +
+                    "2.	Show Services" + "\n" +
+                    "3.	Add New Customer" + "\n" +
+                    "4.	Show Information of Customer" + "\n" +
+                    "5.	Add New Booking" + "\n" +
+                    "6.	Show Information of Employee" + "\n" +
+                    "7.	Display the list of customers buying tickets " + "\n" +
+                    "8.	Find Employee Records. " + "\n" +
+                    "9. Exit");
+            System.out.println("Please select an item: ");
+            int choose = Integer.parseInt(scanner.nextLine());
 
             switch (choose) {
                 case 1:
@@ -84,6 +87,12 @@ public class MainController {
                     showInformEmployee();
                     break;
                 case 7:
+                    cinemaTickets();
+                    break;
+                case 8:
+                    FilingCabinets.findEmployeeRecords();
+                    break;
+                case 9:
                     System.exit(0);
                     break;
                 default:
@@ -93,6 +102,22 @@ public class MainController {
             }
 
 
+        }
+    }
+
+    private static void cinemaTickets() {
+        Queue<Customer> customerQueue = new LinkedList<>();
+        showInformCustomer();
+        System.out.println("----------------------------------------------------------------------------------------");
+        System.out.println("List of customers watching 4D movies");
+        customerQueue.add(customerList.get(3));
+        customerQueue.add(customerList.get(1));
+
+
+        Customer customer = null;
+        while (!customerQueue.isEmpty()) {
+            customer = customerQueue.poll();
+            customer.showInfor();
         }
     }
 
