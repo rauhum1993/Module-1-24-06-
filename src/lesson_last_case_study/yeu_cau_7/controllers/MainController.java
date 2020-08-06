@@ -839,7 +839,7 @@ public class MainController {
             ReadWriteFile.writerFile(villaList.get(i).getRentalCost() + ",", FILE_VILLA);
             ReadWriteFile.writerFile(villaList.get(i).getMaximumPeople() + ",", FILE_VILLA);
             ReadWriteFile.writerFile(villaList.get(i).getTypeOfRent() + ",", FILE_VILLA);
-            ReadWriteFile.writerFile(villaList.get(i).getRoomStanDard() + ",", FILE_VILLA);
+            ReadWriteFile.writerFile(villaList.get(i).getRoomStandard() + ",", FILE_VILLA);
             ReadWriteFile.writerFile(villaList.get(i).getComfortDescription() + ",", FILE_VILLA);
             ReadWriteFile.writerFile(villaList.get(i).getPoolArea() + ",", FILE_VILLA);
             ReadWriteFile.writerFile(villaList.get(i).getNumberOfFloors() + "\n", FILE_VILLA);

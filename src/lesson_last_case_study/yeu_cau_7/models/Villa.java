@@ -1,17 +1,17 @@
 package lesson_last_case_study.yeu_cau_7.models;
 
 public class Villa extends Services {
-    private String roomStanDard;
+    private String roomStandard;
     private String comfortDescription;
     private double poolArea;
     private int numberOfFloors;
 
-    public String getRoomStanDard() {
-        return roomStanDard;
+    public String getRoomStandard() {
+        return roomStandard;
     }
 
-    public void setRoomStanDard(String roomStanDard) {
-        this.roomStanDard = roomStanDard;
+    public void setRoomStandard(String roomStandard) {
+        this.roomStandard = roomStandard;
     }
 
     public String getComfortDescription() {
@@ -41,7 +41,7 @@ public class Villa extends Services {
     public Villa(String id, String nameServices, double areaUse, double rentalCost, int maximumPeople, String typeOfRent, String roomStanDard,
                  String comfortDescription, double poolArea, int numberOfFloors) {
         super(id, nameServices, areaUse, rentalCost, maximumPeople, typeOfRent);
-        this.roomStanDard = roomStanDard;
+        this.roomStandard = roomStanDard;
         this.comfortDescription = comfortDescription;
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
@@ -50,7 +50,7 @@ public class Villa extends Services {
     @Override
     public String showInfor() {
         return super.showInfor()+"\t"+
-                "room StanDard is" + getRoomStanDard()+"\t"+
+                "room StanDard is" + getRoomStandard()+"\t"+
                 "comfort Description is: " + getComfortDescription()+"\t"+
                 "pool Area: "+ getPoolArea()+"\t"+
                 "number Of Floors is: "+ getNumberOfFloors()+"\t";
