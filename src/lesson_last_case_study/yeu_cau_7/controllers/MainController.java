@@ -1024,6 +1024,7 @@ public class MainController {
             ReadWriteFile.writerFile(customerList.get(i).getEmail() + ",", FILE_CUSTOMER);
             ReadWriteFile.writerFile(customerList.get(i).getGuestType() + ",", FILE_CUSTOMER);
             ReadWriteFile.writerFile(customerList.get(i).getAddRess() + "\n", FILE_CUSTOMER);
+            customerList.clear();
         }
 
 
