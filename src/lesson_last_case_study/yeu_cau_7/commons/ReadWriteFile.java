@@ -1,4 +1,4 @@
-package lesson_last_case_study.yeu_cau_7.commoms;
+package lesson_last_case_study.yeu_cau_7.commons;
 
 
 import lesson_last_case_study.yeu_cau_7.models.*;

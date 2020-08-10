@@ -1,6 +1,6 @@
 package lesson_last_case_study.yeu_cau_7.controllers;
 
-import lesson_last_case_study.yeu_cau_7.commoms.ReadWriteFile;
+import lesson_last_case_study.yeu_cau_7.commons.ReadWriteFile;
 import lesson_last_case_study.yeu_cau_7.exception.*;
 import lesson_last_case_study.yeu_cau_7.libs.FilingCabinets;
 import lesson_last_case_study.yeu_cau_7.models.*;
@@ -162,7 +162,7 @@ public class MainController {
         int iRoom = scanner.nextInt();
         Customer customer = customerList.get(iCustomer - 1);
         customer.setUserService(roomList.get(iRoom - 1));
-        ReadWriteFile.writerFile(customer.toString(), FILE_BOOKING);
+        ReadWriteFile.writerFile(customer.toString()+"\n", FILE_BOOKING);
         System.out.println("Booking successful");
     }
 
@@ -176,7 +176,7 @@ public class MainController {
         int iHouse = scanner.nextInt();
         Customer customer = customerList.get(iCustomer - 1);
         customer.setUserService(houseList.get(iHouse - 1));
-        ReadWriteFile.writerFile(customer.toString(), FILE_BOOKING);
+        ReadWriteFile.writerFile(customer.toString()+"\n", FILE_BOOKING);
         System.out.println("Booking successful");
     }
 
@@ -191,7 +191,7 @@ public class MainController {
         int iVilla = scanner.nextInt();
         Customer customer = customerList.get(iCustomer - 1);
         customer.setUserService(villaList.get(iVilla - 1));
-        ReadWriteFile.writerFile(customer.toString(), FILE_BOOKING);
+        ReadWriteFile.writerFile(customer.toString()+"\n", FILE_BOOKING);
         System.out.println("Booking successful");
     }
 
@@ -484,11 +484,21 @@ public class MainController {
                 check = true;
             }
         } while (!check);
-
-
-        System.out.println("7. Enter free Service Included (Enter the word): ");
-        String freeServiceIncluded = scanner.nextLine();
-
+        check = false;
+        String freeServiceIncluded = null;
+        do {
+            System.out.println("7. Enter free Service Included (Enter the word): ");
+            freeServiceIncluded = scanner.nextLine();
+            Pattern p = Pattern.compile("^(massage|karaoke|food|drink|car)$");
+            Matcher m = p.matcher(freeServiceIncluded);
+            if (!m.matches()) {
+                System.out.println("Enter the wrong free seervice included format ");
+                check = false;
+            } else {
+                System.out.println(" Enter successful free seervice included");
+                check = true;
+            }
+        } while (!check);
 
         roomList.add(new Room(idRoom, nameRoom, areaUseRoom, rentalCostRoom,
                 maximumPeopleRoom, typeOfRentRoom, freeServiceIncluded));
