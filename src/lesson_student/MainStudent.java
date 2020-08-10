@@ -57,6 +57,31 @@ public class MainStudent {
     }
 
     private static void deleteInfo() {
+        Scanner scanner= new Scanner(System.in);
+
+        stundentList.clear();
+        ReadWriteFileStudent.readerFile(FILE_STUDENT);
+        Stundent student = null;
+        boolean check;
+        System.out.println("Enter the student ID you want to delete: ");
+        int id= Integer.parseInt(scanner.nextLine());
+        for (int i=0;i<stundentList.size();i++){
+            if(id==stundentList.get(i).getId()){
+                stundentList.remove(stundentList.get(i));
+                check=true;
+                break;
+            } else check=false;
+            if (check=false){
+                System.out.println("Enter wrong: ");
+            }
+        }
+        ReadWriteFileStudent.saveFile("",FILE_STUDENT);
+        for(int i=0;i<stundentList.size();i++){
+            ReadWriteFileStudent.writerFile(stundentList.get(i).getId()+",",FILE_STUDENT);
+            ReadWriteFileStudent.writerFile(stundentList.get(i).getName()+",",FILE_STUDENT);
+            ReadWriteFileStudent.writerFile(stundentList.get(i).getAge()+",",FILE_STUDENT);
+            ReadWriteFileStudent.writerFile(stundentList.get(i).getNameClass()+"\n",FILE_STUDENT);
+        }
 
     }
 
