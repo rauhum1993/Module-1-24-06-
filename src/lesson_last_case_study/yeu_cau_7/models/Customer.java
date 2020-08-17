@@ -115,7 +115,7 @@ public class Customer implements Comparable<Customer> {
                 ", email='" + email + '\'' +
                 ", typeCustomer='" + guestType + '\'' +
                 ", address='" + address + '\'' +
-                ", userService=" + userService +
+                ", userService=" + userService.showInfor() +
                 '}';
     }
 

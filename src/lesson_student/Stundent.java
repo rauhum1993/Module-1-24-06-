@@ -58,6 +58,11 @@ public class Stundent implements Comparable<Stundent> {
     @Override
     public int compareTo(Stundent s1) {
         int value = name.compareTo(s1.name);
-        return value;
+        if(value==0){
+            return age-s1.age;
+        }else{
+            return value;
+        }
+
     }
 }

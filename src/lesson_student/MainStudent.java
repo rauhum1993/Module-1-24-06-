@@ -44,6 +44,7 @@ public class MainStudent {
                     editInfo();
                     break;
                 case 4:
+                    showInFoStudent();
                     deleteInfo();
                     break;
                 case 5:
@@ -89,7 +90,7 @@ public class MainStudent {
         stundentList.clear();
         ReadWriteFileStudent.readerFile(FILE_STUDENT);
         Stundent student = null;
-        Collections.sort(stundentList);
+        stundentList.sort(new Sort());
         for (int i = 0; i < stundentList.size(); i++) {
             student = stundentList.get(i);
             System.out.println(student.toString());

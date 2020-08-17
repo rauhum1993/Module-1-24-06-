@@ -914,11 +914,11 @@ public class MainController {
             System.out.print("Input birthday customer: ");
             birthdayCustomer = scanner.nextLine();
             if (birthdayCustomer == null || !birthdayCustomer.matches(
-                    "(([0][1-9]|[1-2]\\d|[3][0-1])/(0[1-9]|1[0-2])/(19[2-9]\\d|(20[0-2]\\d)))")) {
+                    "^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((190[1-9])|19[1-9]\\d)|(200[12]))$")) {
                 try {
                     throw new BirthdayException("Enter wrong birthday customer. Eptype: ");
                 } catch (BirthdayException e) {
-                    System.out.println("Enter wrong birthday customer. Eptype: ");
+                    System.out.println("Enter wrong ");
                     check = false;
                 }
             } else {
