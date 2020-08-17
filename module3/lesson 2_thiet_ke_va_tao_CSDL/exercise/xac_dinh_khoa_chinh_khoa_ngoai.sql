@@ -1,4 +1,4 @@
-drop database lesson2;
+
 drop database if exists ex1_lesson2;
 create database ex1_lesson2;
 use ex1_lesson2;
