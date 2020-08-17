@@ -1,6 +1,7 @@
-drop database if exists my_database;
-create database my_database;
-use my_database;
+drop database lesson2;
+drop database if exists ex1_lesson2;
+create database ex1_lesson2;
+use ex1_lesson2;
 
 create table customers (
     customers_number int primary key,
@@ -32,7 +33,3 @@ create table transactions (
     foreign key (accounts_number)
         references accounts (accounts_number)
 );
-
-
-
-
