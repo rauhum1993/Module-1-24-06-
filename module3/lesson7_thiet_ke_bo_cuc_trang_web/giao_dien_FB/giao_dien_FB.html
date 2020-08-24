@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive</title>
+    <style>
+        .col-1 {width: 8.33%;}
+        .col-2 {width: 16.66%;}
+        .col-3 {width: 25%;}
+        .col-4 {width: 33.33%;}
+        .col-5 {width: 41.66%;}
+        .col-6 {width: 50%;}
+        .col-7 {width: 58.33%;}
+        .col-8 {width: 66.66%;}
+        .col-9 {width: 75%;}
+        .col-10 {width: 83.33%;}
+        .col-11 {width: 91.66%;}
+        .col-12 {width: 100%;}
+
+        [class*='col-'] {
+            float: left;
+            padding: 15px;
+        }
+        body{
+            font-family: sans-serif;
+        }
+
+        input{
+            width: 200px;
+            height: 75px;
+            margin-top: 20px;
+        }
+        * {
+            box-sizing: border-box;
+        }
+
+        #header {
+            background: white;
+            height: 70px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body >
+<div class="alo">
+    <div class="row">
+        <div class="header col-12">
+            <div id="header">
+                <h1 style="color: blue">facebook</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="menu col-2">
+            <ul>
+
+            </ul>
+        </div>
+        <div class="body col-5">
+
+        </div>
+        <div class="button col-1">
+            <table>
+                <tr >
+                    <td><input placeholder="Email hoặc số điện thoại" style="height: 30px;border-radius: 7px" size="23"></td>
+                </tr>
+                <tr>
+                    <td><input placeholder="Mật khẩu" style="height: 30px;border-radius: 7px" size="23"></td>
+                </tr>
+                <tr>
+                    <td><input style="color: white;background-color: #3767ff;height: 30px;width: 187px;border: 0px;border-radius: 5px" type="submit" value="Đăng nhập"></td>
+                </tr>
+                <tr>
+                    <td><a href="https://vi-vn.facebook.com/login/identify"><label style="color: blue">Quyên tài khoản?</label></a></td>
+                </tr>
+                <tr>
+                    <td><hr></td>
+                </tr>
+                <tr>
+                    <td>
+                        <form action="https://vi-vn.facebook.com/r.php">
+                            <input onclick="window.location.href='/page2'" type="submit" value="Tạo tài khoản mới" style="color: white;background-color: #0dbe2f;border: 0px;border-radius: 5px;height: 30px">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

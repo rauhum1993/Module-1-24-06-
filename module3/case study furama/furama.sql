@@ -42,7 +42,7 @@ create table customer (
 	customer_id int primary key,
     customer_type_id int,
 	foreign key (customer_type_id) references customer_type(customer_type_id),
-	customer_name varchar (45),
+	customer_name varchar (255),
     customer_birthday date,
     customer_id_card varchar(45),
     customer_phone_number varchar(45),
@@ -105,7 +105,7 @@ create table contract_details (
     foreign key (accompanied_service_id) references accompanied_service(accompanied_service_id),
     contract_details_amount int
 );
-
+-- 1.	Thêm mới thông tin cho tất cả các bảng có trong CSDL để có thể thõa mãn các yêu cầu bên dưới.
 -- Add new location--
 insert into furama.location (locatinon_id,location_name)
 values (1, 'giám đốc') ,
@@ -202,16 +202,16 @@ values('1', 'massage', '300', '1', 'khả dụng'),
 
 -- Add new contract-- 
 insert into furama.contract(contract_id,staff_id,customer_id,service_id,contracting_date ,end_date,down_payment,total_money)
-values('1', '1', '6', '1', '2020-12-12', '2020-12-30', '1000', '10000'),
-('2', '1', '4', '1', '2020-12-12', '2020-12-30', '1000', '10000'),
-('3', '1', '3', '1', '2018-12-12', '2020-12-30', '1000', '10000'),
-('4', '6', '2', '1', '2019-12-12', '2020-12-30', '1000', '10000'),
-('5', '6', '1', '2', '2020-12-12', '2020-12-30', '1000', '10000'),
-('6', '6', '2', '2', '2020-12-12', '2020-12-30', '1000', '10000'),
-('7', '6', '1', '2', '2020-12-12', '2020-12-30', '1000', '10000'),
-('8', '1', '3', '3', '2018-12-12', '2020-12-30', '1000', '10000'),
-('9', '1', '4', '3', '2019-12-12', '2020-12-30', '1000', '10000'),
-('10', '1', '2', '3', '2020-12-12', '2020-12-30', '1000', '10000');
+values('1', '1', '6', '1', '2020-12-12', '2020-05-30', '1000', '10000'),
+('2', '1', '4', '1', '2020-03-12', '2020-12-30', '1000', '10000'),
+('3', '1', '3', '1', '2018-04-12', '2020-08-30', '1000', '10000'),
+('4', '6', '2', '1', '2019-06-12', '2020-09-30', '1000', '10000'),
+('5', '6', '1', '2', '2020-07-12', '2020-10-30', '1000', '10000'),
+('6', '6', '2', '2', '2020-11-12', '2020-11-30', '1000', '10000'),
+('7', '6', '1', '2', '2020-10-12', '2020-01-30', '1000', '10000'),
+('8', '1', '3', '3', '2018-04-12', '2020-06-30', '1000', '10000'),
+('9', '1', '4', '3', '2019-02-12', '2020-07-30', '1000', '10000'),
+('10', '1', '2', '3', '2020-01-12', '2020-08-30', '1000', '10000');
 
 -- Add new contract_details-- 
 insert into furama.contract_details(contract_details_id,contract_id,accompanied_service_id,contract_details_amount)
@@ -250,3 +250,88 @@ right join contract on customer.customer_id = contract.contract_id
 where customer.customer_id = 1
 group by customer.customer_id;
 
+-- *5.	Hiển thị IDKhachHang, HoTen, TenLoaiKhach, IDHopDong, TenDichVu,
+-- NgayLamHopDong, NgayKetThuc, TongTien (Với TongTien được tính theo công thức như sau: 
+--  ChiPhiThue + SoLuong*Gia, với SoLuong và Giá là từ bảng DichVuDiKem) cho tất cả các
+--  Khách hàng đã từng đặt phỏng. (Những Khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra).*/
+
+
+select customer.customer_id,customer.customer_name,customer_type.customer_type_name,
+	contract.contract_id,service.service_name, contract.contracting_date,contract.end_date,
+    service.rental_cost+ (accompanied_service.accompanied_service_amount * accompanied_service.price) as 'Total Money'
+from    customer
+left join customer_type
+on customer_type.customer_type_id = customer.customer_type_id
+left join contract
+on contract.customer_id = customer.customer_id
+left join service
+on service.service_id= contract.service_id
+left join contract_details
+on contract_details.contract_id = contract.contract_id
+left join accompanied_service
+on accompanied_service.accompanied_service_id = contract_details.accompanied_service_id;
+
+--  6.	Hiển thị IDDichVu, TenDichVu, DienTich, ChiPhiThue, TenLoaiDichVu của tất cả 
+-- các loại Dịch vụ chưa từng được Khách hàng thực hiện đặt từ quý 1 của năm 2019 (Quý 1 là tháng 1, 2, 3).
+
+select service.service_id, service.service_name, service.the_area, service.rental_cost,
+	service_type.service_type_name
+from service
+left join service_type
+on service_type.service_type_id = service.service_type_id
+left join contract 
+on contract.service_id = service.service_id	
+where contract.contracting_date <> ('2019/01/%' 
+									   and '2019/02/%'
+									   and '2019/03/%');
+	
+
+-- 7.	Hiển thị thông tin IDDichVu, TenDichVu, DienTich, SoNguoiToiDa, ChiPhiThue, TenLoaiDichVu 
+-- của tất cả các loại dịch vụ đã từng được Khách hàng đặt phòng trong năm 2018 nhưng chưa từng được
+--  Khách hàng đặt phòng  trong năm 2019.
+
+select service.service_id,service.service_name, service.the_area,service.people_number,service.rental_cost,service_type.service_type_name
+from service
+left join service_type
+on service_type.service_type_id= service.service_type_id
+left join contract
+on contract.service_id =service.service_id
+where ( contract.contracting_date like '2018%')
+	and contract.contracting_date not in ( 
+    select contract .contracting_date 
+    from contract
+    where contract.contracting_date like '2019%');
+    
+    
+--  8.	Hiển thị thông tin HoTenKhachHang có trong hệ thống, với yêu cầu HoThenKhachHang không trùng nhau.
+-- Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên
+--  Cách 1: 
+select customer.customer_name
+from customer;
+
+-- Cách 2: 
+
+select customer.customer_name
+from customer
+group by customer.customer_name;
+
+-- Cách 3:
+
+select customer.customer_name
+from customer
+union 
+select customer.customer_name
+from customer;
+
+
+
+-- 9.	Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2019 thì sẽ có 
+-- bao nhiêu khách hàng thực hiện đặt phòng.
+
+select  substr(contract.contracting_date,6,2) as 'tháng trong năm 2019' ,
+		count(contract.contract_id) as 'số lần đặt'
+from contract 
+where contract.contracting_date like '2019%'
+group by substr(contract.contracting_date ,6,2);
+
+ 
