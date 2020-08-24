@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive</title>
+    <style>
+        .col-1 {width: 8.33%;}
+        .col-2 {width: 16.66%;}
+        .col-3 {width: 25%;}
+        .col-4 {width: 33.33%;}
+        .col-5 {width: 41.66%;}
+        .col-6 {width: 50%;}
+        .col-7 {width: 58.33%;}
+        .col-8 {width: 66.66%;}
+        .col-9 {width: 75%;}
+        .col-10 {width: 83.33%;}
+        .col-11 {width: 91.66%;}
+        .col-12 {width: 100%;}
+        [class*='col-'] {
+            float: left;
+            padding: 15px;
+        }
+        body{
+            font-family: sans-serif;
+        }
+        .header {
+            background-color: #404040;
+        }
+        .header ul li{
+            color: white;
+            display: inline-table;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+        }
+        .header ul li a{
+            color: #b9b9b9;
+            text-decoration: none;
+            display: block;
+        }
+        .header ul li a:hover{
+            background: black;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+        .menu ul{
+            list-style-type: none;
+            color: #1350a9;
+            background-color: white;
+            display: block;
+        }
+        .body {
+            background-color: #b6dffc;
+        }
+        .button {
+            background: white;
+        }
+        .footer {
+            background: #616e82;
+            font-size: 20px;
+            color: white;
+            text-align: center;
+        }
+        input{
+            width: 200px;
+            height: 75px;
+            margin-top: 20px;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        /*<= 768px*/
+        @media only print and (max-width: 768px) {
+            [class*='col-'] {
+                width: 100%;
+            }
+        }
+        @media only print and (max-width: 768px) {
+            [class*='alo'] {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body >
+<div class="alo">
+    <div class="row">
+        <div class="header col-12">
+            <ul>
+                <li><a href="#">Logo</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Project</a></li>
+                <li><a href="#">Contract</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="menu col-2">
+            <ul>
+                <li>Link</li><br>
+                <li>Link</li><br>
+                <li>Link</li><br>
+                <li>Link</li><br>
+               
+            </ul>
+        </div>
+        <div class="body col-8">
+            <h1>Welcome</h1>
+            <p>Hình ảnh sản phẩm
+                Hoạt động của tôi trên Google
+                Google dựa vào hoạt động bạn lưu giữ để cung cấp cho bạn các dịch vụ hữu ích hơn, như giúp bạn tìm lại những nội dung bạn đã tìm kiếm, đọc và xem.
+
+                Bạn có thể xem và xóa hoạt động của mình bằng cách sử dụng các tùy chọn kiểm soát trên trang này.</p>
+            <h3>Test</h3>
+            <p>
+        </div>
+        <div class="button col-1">
+            <input type="button" value="ADS">
+            <input type="button" value="ADS">
+        </div>
+    </div>
+    <div class="row">
+        <div class="footer col-12">
+            <p>Footer Text</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
