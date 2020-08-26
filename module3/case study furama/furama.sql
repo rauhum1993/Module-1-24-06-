@@ -156,8 +156,8 @@ insert into furama.customer_type(customer_type_id,customer_type_name)
 insert into furama.customer(customer_id,customer_type_id,customer_name,customer_birthday ,
 	customer_id_card ,customer_phone_number,customer_email,customer_address) 
  values (1,1, 'Chương','1989/12/12','1862359256','0352623659','chuong3cay@xsmb.com','Quảng Trị'),
- (2,3, 'Hoàng','1993/06/12','1862359256','0352623659','hoangrapper@xsmb.com','Quảng Nam'),
- (3,1, 'Tùng','1995/12/12','1862359256','0352623659','tungvietlot@xsmb.com','Nghệ AN'),
+ (2,3, 'Hoàng','1993/06/12','1862359256','0352623659','hoangrapper@xsmb.com','Quảng Ngãi'),
+ (3,1, 'Tùng','1995/12/12','1862359256','0352623659','tungvietlot@xsmb.com','Vinh'),
  (4,3, 'Mai','1998/12/12','1862359256','0352623659','maithuy@xsmb.com','Quảng Ngãi'),
  (5,1, 'Hải','1994/12/12','1862359256','0352623659','quaytay@xsmb.com','Quảng Trị'),
  (6,2, 'Trung','1991/12/12','1862359256','0352623659','trungjava@xsmb.com','Đà Nẵng'),
@@ -334,4 +334,29 @@ from contract
 where contract.contracting_date like '2019%'
 group by substr(contract.contracting_date ,6,2);
 
- 
+
+
+-- 10.	Hiển thị thông tin tương ứng với từng Hợp đồng thì đã sử dụng bao nhiêu Dịch vụ đi kèm. Kết quả hiển
+--  thị bao gồm IDHopDong, NgayLamHopDong, NgayKetthuc, TienDatCoc, SoLuongDichVuDiKem (được tính dựa trên
+--  việc count các IDHopDongChiTiet).
+
+use furama;
+select furama.contract.contract_id,furama.contract.contracting_date,furama.contract.end_date,furama.contract.down_payment,furama.contract_details.contract_details_amount
+from furama.contract
+left join furama.contract_details on furama.contract_details.contract_id = furama.contract.contract_id;
+
+-- 11.	Hiển thị thông tin các Dịch vụ đi kèm đã được sử dụng bởi những Khách hàng có TenLoaiKhachHang là “Diamond” 
+-- và có địa chỉ là “Vinh” hoặc “Quảng Ngãi”.
+
+select furama.customer.customer_name, furama.accompanied_service.accompanied_service_id,furama.accompanied_service.accompanied_service_name,
+furama.accompanied_service.price,furama.accompanied_service.accompanied_service_amount,furama.accompanied_service.availability
+from furama.accompanied_service
+left join furama.contract_details on furama.accompanied_service.accompanied_service_id = furama.contract_details.accompanied_service_id
+	left join furama.contract on furama.contract.contract_id = furama.contract_details.contract_id
+    left join furama.customer on furama.customer.customer_id =furama.contract.customer_id
+    left join furama.customer_type on furama.customer_type.customer_type_id= furama.customer.customer_type_id
+    where furama.customer_type.customer_type_id=1 
+		and ( furama.customer.customer_address = 'Vinh'
+        or furama.customer.customer_address = 'Quảng Ngãi')
+	group by furama.customer.customer_name;		
+    
