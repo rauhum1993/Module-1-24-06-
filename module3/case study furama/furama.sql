@@ -205,12 +205,12 @@ insert into furama.contract(contract_id,staff_id,customer_id,service_id,contract
 values('1', '1', '6', '1', '2020-12-12', '2020-05-30', '1000', '10000'),
 ('2', '1', '4', '1', '2020-03-12', '2020-12-30', '1000', '10000'),
 ('3', '1', '3', '1', '2018-04-12', '2020-08-30', '1000', '10000'),
-('4', '6', '2', '1', '2019-06-12', '2020-09-30', '1000', '10000'),
-('5', '6', '1', '2', '2020-07-12', '2020-10-30', '1000', '10000'),
+('4', '6', '2', '1', '2019-12-20', '2020-09-30', '1000', '10000'),
+('5', '6', '1', '2', '2020-07-11', '2020-10-30', '1000', '10000'),
 ('6', '6', '2', '2', '2020-11-12', '2020-11-30', '1000', '10000'),
 ('7', '6', '1', '2', '2020-10-12', '2020-01-30', '1000', '10000'),
-('8', '1', '3', '3', '2018-04-12', '2020-06-30', '1000', '10000'),
-('9', '1', '4', '3', '2019-02-12', '2020-07-30', '1000', '10000'),
+('8', '1', '3', '3', '2019-11-12', '2020-06-30', '1000', '10000'),
+('9', '1', '4', '3', '2019-12-30', '2020-07-30', '1000', '10000'),
 ('10', '1', '2', '3', '2020-01-12', '2020-08-30', '1000', '10000');
 
 -- Add new contract_details-- 
@@ -360,3 +360,29 @@ left join furama.contract_details on furama.accompanied_service.accompanied_serv
         or furama.customer.customer_address = 'Quảng Ngãi')
 	group by furama.customer.customer_name;		
     
+-- 12.	Hiển thị thông tin IDHopDong, TenNhanVien, TenKhachHang, SoDienThoaiKhachHang, TenDichVu, SoLuongDichVuDikem 
+-- 			(được tính dựa trên tổng Hợp đồng chi tiết), TienDatCoc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng
+--  			cuối năm 2019 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2019.    
+
+-- select furama.contract.contract_id, furama.staff.staff_name, furama.customer.customer_name, furama.customer.customer_phone_number,
+-- furama.service.service_name, count(furama.accompanied_service.accompanied_service_id) , count(furama.accompanied_service.accompanied_service_amount)
+-- from furama.contract
+-- left join furama.staff on furama.staff.staff_id = furama.contract.staff_id
+-- 	left join furama.customer on furama.customer.customer_id = furama.contract.customer_id
+-- 	left join furama.service on furama.customer.service_id = furama.service.customer_id
+-- 	left join furama.contract_details on furama.contract_details.contract_id = furama.contract.contract_id
+--  where (( furama.contract.contracting_date >= '2019/10/01' 
+-- 	 and furama.contract.contracting_date =< '2019/12/31')
+-- 	 and (furama.contract.contracting_date not between '2019/01/01' and '2019/06/30') )
+-- group by 	furama.contract.contract_id		
+
+select furama.contract.contract_id, furama.staff.staff_name, furama.customer.customer_name, furama.customer.customer_phone_number,
+ furama.service.service_name, count(furama.contract_details.accompanied_service_id) , furama.contract.down_payment
+ from furama.contract
+left join furama.staff on  furama.staff.staff_id = furama.contract.staff_id
+	left join furama.customer on furama.customer.customer_id = furama.contract.customer_id
+	left join furama.service on furama.contract.service_id = furama.service.service_id
+	left join furama.contract_details on furama.contract_details.contract_id = furama.contract.contract_id
+where  (furama.contract.contracting_date >= '2019/10/01' and furama.contract.contracting_date <= '2019/12/31') 
+     and (furama.contract.contracting_date not between '2019/01/01' and '2019/06/30') 
+group by 	furama.contract.contract_id	
