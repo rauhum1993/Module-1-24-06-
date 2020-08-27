@@ -13,7 +13,7 @@ public class DiscountServlet extends HttpServlet {
         float listPrice = Float.parseFloat(request.getParameter("listPrice"));
         float discountPercent = Float.parseFloat(request.getParameter("discountPercent"));
 
-        float discountAmount = listPrice * discountPercent* 1/100;
+        float discountAmount = listPrice * discountPercent/100;
 
        PrintWriter writer = response.getWriter();
         writer.println("<html>");
