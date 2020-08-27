@@ -11,7 +11,7 @@
   <title>Currency Converter</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>3
+<body>
 <h2>Currency Converter</h2>
 <form action="convert" method="post">
   <label>Rate: </label><br/>

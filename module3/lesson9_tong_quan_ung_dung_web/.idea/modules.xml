@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/lesson9_tong_quan_ung_dung_web.iml" filepath="$PROJECT_DIR$/.idea/lesson9_tong_quan_ung_dung_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product_discount_calculator.iml" filepath="$PROJECT_DIR$/product_discount_calculator.iml" />
     </modules>
   </component>
 </project>
