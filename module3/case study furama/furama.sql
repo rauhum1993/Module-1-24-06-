@@ -217,14 +217,14 @@ values('1', '1', '6', '1', '2020-12-12', '2020-05-30', '1000', '10000'),
 insert into furama.contract_details(contract_details_id,contract_id,accompanied_service_id,contract_details_amount)
 values('1', '1', '1', '1'),
 ('2', '2', '2', '2'),
-('3', '3', '3', '3'),
+('3', '3', '2', '3'),
 ('4', '4', '4', '1'),
 ('5', '5', '5', '2'),
-('6', '6', '1', '3'),
+('6', '6', '2', '3'),
 ('7', '7', '2', '1'),
 ('8', '8', '3', '2'),
 ('9', '9', '4', '3'),
-('10', '10', '5', '1');
+('10', '10', '3', '1');
 
 
 -- 2. hiển thị nhân viên bắt đầu bằng H,T,K tối đa 15 ký tự
@@ -385,4 +385,64 @@ left join furama.staff on  furama.staff.staff_id = furama.contract.staff_id
 	left join furama.contract_details on furama.contract_details.contract_id = furama.contract.contract_id
 where  (furama.contract.contracting_date >= '2019/10/01' and furama.contract.contracting_date <= '2019/12/31') 
      and (furama.contract.contracting_date not between '2019/01/01' and '2019/06/30') 
-group by 	furama.contract.contract_id	
+group by 	furama.contract.contract_id	;
+
+-- 13.	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng.
+--  (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
+
+create or replace view amount_service as
+select	furama.accompanied_service.accompanied_service_id,
+		furama.accompanied_service.accompanied_service_name,
+		furama.accompanied_service.accompanied_service_amount,
+		furama.accompanied_service.price,
+		furama.accompanied_service.availability,
+		count( furama.contract_details.accompanied_service_id) as amount_contract_details
+ from furama.accompanied_service
+ left join furama.contract_details 
+	on furama.accompanied_service.accompanied_service_id=furama.contract_details.accompanied_service_id
+ left join furama.contract 
+	on furama.contract.contract_id =furama.contract_details.contract_id
+ left join furama.customer
+	on furama.contract.customer_id= furama.customer.customer_id
+ group by furama.accompanied_service.accompanied_service_name;
+ 
+ select *
+ from amount_service
+ where furama.amount_service.amount_contract_details=
+	(select max(furama.amount_service.amount_contract_details)
+    from furama.amount_service);
+    
+--  14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất.
+ -- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.   
+	
+select furama.contract.contract_id,furama.service_type.service_type_name,
+		furama.accompanied_service.accompanied_service_name,
+        count(furama.contract_details.accompanied_service_id) as amount
+from furama.contract_details
+inner join furama.contract 
+			on furama.contract.contract_id =furama.contract_details.contract_id
+inner join furama.accompanied_service
+			on furama.accompanied_service.accompanied_service_id =furama.contract_details.accompanied_service_id
+inner join furama.service
+			on furama.service.service_id = furama.contract.service_id
+inner join furama.service_type
+			on furama.service_type.service_type_id = furama.service.service_type_id
+group by furama.contract_details.accompanied_service_id
+having 	amount=1;	
+
+-- 15.	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, 
+-- SoDienThoai, DiaChi mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019.
+
+select furama.staff.staff_id,furama.staff.staff_name,
+		furama.staff_level.level_name,furama.location.location_name,
+        furama.staff.phone_number,furama.staff.staff_address
+from furama.contract
+inner join furama.staff 
+			on furama.staff.staff_id =furama.contract.staff_id
+inner join  furama.staff_level
+			on furama.staff_level.level_id= furama.staff.level_id
+inner join furama.location
+			on furama.location.locatinon_id=furama.staff.locatinon_id
+where  year(furama.contract.contracting_date) in (2018,2019)
+group by furama.staff.staff_id
+having count(furama.contract.contract_id)<4;
