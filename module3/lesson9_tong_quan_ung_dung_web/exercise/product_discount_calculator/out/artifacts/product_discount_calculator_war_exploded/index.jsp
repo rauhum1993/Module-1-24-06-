@@ -13,7 +13,7 @@
 </head>
 <body>
 <h2>Discount Calculation</h2>
-<form action="discount" method="post">
+<form action="/discount" method="post">
   <label>Product Description: </label><br/>
   <input type="text" name="productDescription" placeholder="ProductDescription" value="..."/><br/>
   <label>List Price: </label><br/>

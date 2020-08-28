@@ -156,12 +156,14 @@ insert into furama.customer_type(customer_type_id,customer_type_name)
 insert into furama.customer(customer_id,customer_type_id,customer_name,customer_birthday ,
 	customer_id_card ,customer_phone_number,customer_email,customer_address) 
  values (1,1, 'Chương','1989/12/12','1862359256','0352623659','chuong3cay@xsmb.com','Quảng Trị'),
- (2,3, 'Hoàng','1993/06/12','1862359256','0352623659','hoangrapper@xsmb.com','Quảng Ngãi'),
+ (2,2, 'Hoàng','1993/06/12','1862359256','0352623659','hoangrapper@xsmb.com','Quảng Ngãi'),
  (3,1, 'Tùng','1995/12/12','1862359256','0352623659','tungvietlot@xsmb.com','Vinh'),
  (4,3, 'Mai','1998/12/12','1862359256','0352623659','maithuy@xsmb.com','Quảng Ngãi'),
- (5,1, 'Hải','1994/12/12','1862359256','0352623659','quaytay@xsmb.com','Quảng Trị'),
+ (5,2, 'Hải','1994/12/12','1862359256','0352623659','quaytay@xsmb.com','Quảng Trị'),
  (6,2, 'Trung','1991/12/12','1862359256','0352623659','trungjava@xsmb.com','Đà Nẵng'),
- (7,4, 'Tiến','1999/12/12','1862359256','0352623659','tienbom@xsmb.com','Đà Nẵng');
+ (7,4, 'Tiến','1999/12/12','1862359256','0352623659','tienbom@xsmb.com','Đà Nẵng'),
+ (8,5, 'Tuấn','1999/12/12','1862359256','0352623659','tienbom@xsmb.com','Đà Nẵng'),
+ (79,5, 'Trung','1999/12/12','1862359256','0352623659','Hienbom@xsmb.com','Đà Nẵng');
  
 -- Add new rental_type-- 
 insert into furama.rental_type(	rental_type_id,rental_type_name ,price )
@@ -204,13 +206,13 @@ values('1', 'massage', '300', '1', 'khả dụng'),
 insert into furama.contract(contract_id,staff_id,customer_id,service_id,contracting_date ,end_date,down_payment,total_money)
 values('1', '1', '6', '1', '2020-12-12', '2020-05-30', '1000', '10000'),
 ('2', '1', '4', '1', '2020-03-12', '2020-12-30', '1000', '10000'),
-('3', '1', '3', '1', '2018-04-12', '2020-08-30', '1000', '10000'),
+('3', '1', '3', '1', '2018-04-12', '2020-08-30', '1000', '30000000'),
 ('4', '6', '2', '1', '2019-12-20', '2020-09-30', '1000', '10000'),
-('5', '6', '1', '2', '2020-07-11', '2020-10-30', '1000', '10000'),
-('6', '6', '2', '2', '2020-11-12', '2020-11-30', '1000', '10000'),
+('5', '6', '1', '2', '2020-07-11', '2020-10-30', '1000', '45000000'),
+('6', '6', '2', '2', '2020-11-12', '2020-11-30', '1000', '20000000'),
 ('7', '6', '1', '2', '2020-10-12', '2020-01-30', '1000', '10000'),
 ('8', '1', '3', '3', '2019-11-12', '2020-06-30', '1000', '10000'),
-('9', '1', '4', '3', '2019-12-30', '2020-07-30', '1000', '10000'),
+('9', '1', '4', '3', '2019-12-30', '2020-07-30', '1000', '65000000'),
 ('10', '1', '2', '3', '2020-01-12', '2020-08-30', '1000', '10000');
 
 -- Add new contract_details-- 
@@ -446,3 +448,48 @@ inner join furama.location
 where  year(furama.contract.contracting_date) in (2018,2019)
 group by furama.staff.staff_id
 having count(furama.contract.contract_id)<4;
+
+-- 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
+
+delete furama.staff
+from furama.staff
+	left join furama.contract on staff.staff_id = contract.staff_id
+where staff.staff_id not in 
+		(select contract.staff_id 
+			from contract
+			where ( year(contract.contracting_date) in (2017,2018,2019)));
+            
+
+select *
+from staff;
+
+-- 17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
+-- chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 
+-- là lớn hơn 10.000.000 VNĐ.
+
+update customer
+set customer.customer_type_id=1
+where customer.customer_id in
+(	select customer.customer_id
+	from
+			(	select customer.customer_id
+				from customer
+                inner join contract on customer.customer_id =contract.customer_id
+                where customer.customer_type_id =2 and year(contract.contracting_date) =(2019)
+                group by customer.customer_id
+                having sum(contract.total_money)>= 10000000) as temp);
+			
+-- 18.	Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng).    
+
+   delete furama.customer
+   from furama.customer
+   where customer.customer_id in 
+			( 	select customer.customer_id
+				from  ( 
+						select customer.customer_id
+                        from furama.customer
+                        inner join furama.contract on customer.customer_id = contract.customer_id
+                        where year(contract.contracting_date) < '2016' and (contract.customer_id not in 
+								(	select customer_id
+									from furama.contract
+                                    where	year(contract.contracting_date) >= '2016'))) as temp )			
