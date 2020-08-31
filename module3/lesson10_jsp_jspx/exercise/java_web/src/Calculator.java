@@ -10,7 +10,7 @@ public class Calculator {
             case '/':
                 if(secondOperand != 0)
                     return firstOperand / secondOperand;
-                else
+               else
                     throw new RuntimeException("Can't divide by zero");
             default:
                 throw new RuntimeException("Invalid operation");

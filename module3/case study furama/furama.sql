@@ -30,6 +30,7 @@ create table staff (
     staff_id_card varchar(45),
     salary double,
     phone_number varchar(45),
+    staff_email varchar (45),
     staff_address varchar(45)
 );
 
@@ -131,15 +132,15 @@ values (1, 'giám đốc') ,
   (4, ' phục vụ');
   
   -- Add new staff --  
-  insert into furama.staff(staff_id,staff_name,locatinon_id,level_id,part_id,staff_birthday,staff_id_card,salary,phone_number,staff_address)
-  values (1,'Khanh',1,1,1,'1993/11/06',187320118,50000000,'0396692526','nghệ an'),
-   (2,'Hải',2,1,1,'2000/11/06',18754260,30000000,'0236692526','hà tĩnh'),
-   (3,'Tùng',2,2,3,'1996/11/06',18754260,30000000,'0236692526','hà tĩnh'),
-   (4,'Hiên',3,4,4,'1986/06/06',18754260,30000000,'0236692526','hà tĩnh'),
-   (5,'Đạt',3,4,4,'1986/06/06',18754260,30000000,'0236692526','hà tĩnh'),
-   (6,'Hiền',3,4,4,'1986/06/06',18754260,30000000,'0236692526','hà tĩnh'),
-   (7,'Mai',3,4,4,'1986/06/06',18754260,30000000,'0236692526','hà tĩnh'),
-   (8,'Hà',3,4,4,'1986/06/06',18754260,30000000,'0236692526','hà tĩnh'),
+  insert into furama.staff(staff_id,staff_name,locatinon_id,level_id,part_id,staff_birthday,staff_id_card,salary,phone_number,staff_email,staff_address)
+  values (1,'Khanh',1,1,1,'1993/11/06',187320118,50000000,'khanh@xsmb.com','0396692526','nghệ an'),
+   (2,'Hải',2,1,1,'2000/11/06',18754260,30000000,'0236692526','hai@xsmb.com','hà tĩnh'),
+   (3,'Tùng',2,2,3,'1996/11/06',18754260,30000000,'0236692526','tungvietlot@xsmb.com','hà tĩnh'),
+   (4,'Hiên',3,4,4,'1986/06/06',18754260,30000000,'0236692526','hien@xsmb.com','hà tĩnh'),
+   (5,'Đạt',3,4,4,'1986/06/06',18754260,30000000,'0236692526','dat1994@xsmb.com','hà tĩnh'),
+   (6,'Hiền',3,4,4,'1986/06/06',18754260,30000000,'0236692526','hienxam@xsmb.com','hà tĩnh'),
+   (7,'Mai',3,4,4,'1986/06/06',18754260,30000000,'0236692526','maivanthuy@xsmb.com','hà tĩnh'),
+   (8,'Hà',3,4,4,'1986/06/06',18754260,30000000,'0236692526','ha@xsmb.com','hà tĩnh'),
    (9,'Phương Trinh',6,4,4,'1986/06/06',18754260,30000000,'0236692526','hà tĩnh'),
    (10,'Ngọc Trinh',6,4,4,'2000/11/06',18754260,30000000,'0236692526','hà tĩnh');
 
@@ -196,11 +197,11 @@ values ('1', 'mer viila', '200', '3', '5', '100000', '1', '1', 'còn phòng'),
 --  Add new accompanied_service-- 
 insert into furama.accompanied_service (accompanied_service_id,accompanied_service_name,price,
 accompanied_service_amount,availability)
-values('1', 'massage', '300', '1', 'khả dụng'),
-('2', 'karaoke ', '250', '1', 'khả dụng'),
-('3', 'đồ ăn', '100', '1', 'khả dụng'),
-('4', 'nước uống', '75', '1', 'khả dụng'),
-('5', 'xe', '500', '1', 'khả dụng');
+values('1', 'massage', '300', '11', 'khả dụng'),
+('2', 'karaoke ', '250', '6', 'khả dụng'),
+('3', 'đồ ăn', '100', '15', 'khả dụng'),
+('4', 'nước uống', '75', '5', 'khả dụng'),
+('5', 'xe', '500', '9', 'khả dụng');
 
 -- Add new contract-- 
 insert into furama.contract(contract_id,staff_id,customer_id,service_id,contracting_date ,end_date,down_payment,total_money)
@@ -492,4 +493,33 @@ where customer.customer_id in
                         where year(contract.contracting_date) < '2016' and (contract.customer_id not in 
 								(	select customer_id
 									from furama.contract
-                                    where	year(contract.contracting_date) >= '2016'))) as temp )			
+                                    where	year(contract.contracting_date) >= '2016'))) as temp )	;
+  use furama;    
+  -- 19.	Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.
+  
+  update furama.accompanied_service
+  set furama.accompanied_service.price=furama.accompanied_service.price*2
+  where furama.accompanied_service.accompanied_service_id in(	
+				select furama.accompanied_service.accompanied_service_id
+				from ( 
+						select furama.accompanied_service.accompanied_service_id
+                        from furama.accompanied_service
+                        inner join furama.contract_details on furama.accompanied_service.accompanied_service_id = furama.contract_details.accompanied_service_id
+                        inner join furama.contract on furama.contract .contract_id=furama.contract_details.contract_id
+                        where year(furama.contract.contracting_date)=(2019)
+                        group by furama.accompanied_service.accompanied_service_id
+                        having	count(furama.accompanied_service.accompanied_service_id)>10) as temp);
+select *
+from furama.accompanied_service;		
+
+-- 20.	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống,
+--  thông tin hiển thị bao gồm ID (IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, 
+-- NgaySinh, DiaChi.			
+
+select furama.staff.staff_id,furama.staff.staff_name,furama.staff.staff_email,furama.staff.staff_birthday,
+		furama.staff.staff_address
+from furama.staff
+union
+select furama.customer.customer_id,furama.customer.customer_name,furama.customer.customer_email,furama.customer.customer_birthday,
+			furama.customer.customer_address
+from furama.customer ;
