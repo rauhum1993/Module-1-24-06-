@@ -13,7 +13,7 @@
 </head>
 <body>
 <form method="post">
-    <h2>Are you sure you want to remove "${requestScope["product"].name}" it from the list ?</h2>
+    <h2>Are you sure you want to remove "${requestScope["products"].name}" it from the list ?</h2>
     <table>
         <tr>
             <th></th>
@@ -21,23 +21,23 @@
         </tr>
         <tr>
             <td>ID-Product:</td>
-            <td>${requestScope["product"].id}</td>
+            <td>${requestScope["products"].id}</td>
         </tr>
         <tr>
             <td>Name-Product:</td>
-            <td>${requestScope["product"].name}</td>
+            <td>${requestScope["products"].name}</td>
         </tr>
         <tr>
             <td>Price:</td>
-            <td>${requestScope["product"].price}</td>
+            <td>${requestScope["products"].price}</td>
         </tr>
         <tr>
             <td>Description:</td>
-            <td>${requestScope["product"].description}</td>
+            <td>${requestScope["products"].description}</td>
         </tr>
         <tr>
             <td>Producer:</td>
-            <td>${requestScope["product"].producer}</td>
+            <td>${requestScope["products"].producer}</td>
         </tr>
     </table>
     <div>
@@ -47,15 +47,4 @@
 </form>
 </body>
 </html>
-© 2020 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
+

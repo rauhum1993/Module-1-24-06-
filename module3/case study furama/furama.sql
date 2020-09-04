@@ -522,4 +522,4 @@ from furama.staff
 union
 select furama.customer.customer_id,furama.customer.customer_name,furama.customer.customer_email,furama.customer.customer_birthday,
 			furama.customer.customer_address
-from furama.customer ;
+from furama.customerusers ;
