@@ -15,11 +15,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "SudentServlet", urlPatterns = "/student")
+@WebServlet(name = "StudentServlet", urlPatterns = "/student")
 public class StudentServlet extends HttpServlet {
     private IStudentBO studentBO =new StudentBO();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String actionUser = request.getParameter("actionUser");
+        if (actionUser == null) {
+            actionUser = "";
+        }
 
+        switch (actionUser) {
+            case "create":
+                // get info student from JSP
+                // call BO -> DAO -> register student
+                this.listStudent(request, response);
+                break;
+
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

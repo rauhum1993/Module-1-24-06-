@@ -39,9 +39,9 @@
         </div>
 
         <div>
-            <input type="submit" role="button">
-            <a role="button" href="/product">Back</a>
-        </div>
+        <input type="submit" role="button">
+        <a role="button" href="/product">Back</a>
+    </div>
     </fieldset>
 </form>
 </body>

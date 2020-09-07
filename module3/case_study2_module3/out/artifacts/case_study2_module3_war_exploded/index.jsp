@@ -41,23 +41,15 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Empolyee <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Customer</a>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Customer <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Service
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Service <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contract</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Contract <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
@@ -68,7 +60,7 @@
             </nav>
         </div>
     </div>
-    <div class="row" style="border: sandybrown">
+    <div class="row" >
         <div class="col-lg-3">
 
             <h3>item one</h3>
@@ -76,7 +68,7 @@
             <h3>item three</h3>
 
         </div>
-        <div class="col-lg-8 " style="border: #b1dfbb">
+        <div class="col-lg-8 " >
             <h1>body </h1>
         </div>
     </div>
