@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <html>
 <head>
     <title>Title</title>
@@ -34,6 +35,8 @@
             <th>Phone</th>
             <th>Email</th>
             <th>Address</th>
+            <th>Action</th>
+
 
         </tr>
         <c:forEach var="customer" items="${listCustomer}">

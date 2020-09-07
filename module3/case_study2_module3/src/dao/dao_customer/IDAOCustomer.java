@@ -12,4 +12,13 @@ public interface IDAOCustomer {
 
     void insert(Customer customer) throws SQLException;
 
+    Customer findByID(int id);
+
+    void update(Customer customer);
+
+    void delete(int id);
+
+    List<Customer> searchByName(String name);
+
+
 }

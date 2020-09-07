@@ -25,4 +25,25 @@ public class BOCustomer implements IBOCustomer {
     public void insertCutomer(Customer customer) throws SQLException {
         this.idaoCustomer.insert(customer);
     }
+
+    @Override
+    public Customer findByID(int id) {
+        return idaoCustomer.findByID(id);
+
+    }
+
+    @Override
+    public void update(Customer customer) {
+        idaoCustomer.update(customer);
+    }
+
+    @Override
+    public void delete(int id) {
+        idaoCustomer.delete(id);
+    }
+
+    @Override
+    public List<Customer> searchByName(String name) {
+        return idaoCustomer.searchByName(name);
+    }
 }
