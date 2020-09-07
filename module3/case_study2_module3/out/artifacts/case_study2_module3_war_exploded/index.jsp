@@ -39,20 +39,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Empolyee <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/employee">Empolyee <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Customer <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/customer">Customer <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Service <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/service">Service <span class="sr-only">(current)</span></a>
                         </li>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Contract <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/contract">Contract <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
+                    <form class="form-inline my-2 my-lg-0 " action="/search">
                         <input class="form-control mr-sm-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>

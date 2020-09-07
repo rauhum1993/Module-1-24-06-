@@ -16,7 +16,7 @@
 <center>
     <h1>Student Management</h1>
     <h2>
-        <a href="/student?action=create">Create a student</a>
+        <a href="/student?actionUser=create">Create a student</a>
     </h2>
 </center>
 <div align="center">

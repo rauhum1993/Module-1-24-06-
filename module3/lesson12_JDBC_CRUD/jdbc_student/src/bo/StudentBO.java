@@ -14,8 +14,8 @@ public class StudentBO implements IStudentBO {
     }
 
     @Override
-    public void inserStudent( Student student) {
-
+    public void insertStudent( Student student) {
+        this.iStudentDAO.insertStudent(student);
     }
 
 }

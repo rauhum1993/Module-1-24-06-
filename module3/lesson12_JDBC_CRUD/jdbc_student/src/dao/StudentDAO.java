@@ -11,8 +11,8 @@ import java.util.List;
 
 public class StudentDAO implements IStudentDAO {
     private BaseDAO baseDAO = new BaseDAO();
-    private static final String SELECT_ALL_STUDENT = "select* from students.student";
-    private static final String CREATE_NEW_STUDENT = "INSERT INTO students.student" + "  (id, name, address) VALUES " +
+    private static final String SELECT_ALL_STUDENT = "select* from student";
+    private static final String CREATE_NEW_STUDENT = "INSERT INTO student" + "  (id,name,address) VALUES " +
             " (?, ?, ?);";
 
     @Override

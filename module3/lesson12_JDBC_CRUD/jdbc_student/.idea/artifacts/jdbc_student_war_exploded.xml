@@ -10,6 +10,7 @@
         <element id="directory" name="lib">
           <element id="file-copy" path="$PROJECT_DIR$/../../lesson11_MVC_model/exrcise/JavaWeb/jstl-1.2.jar/jstl-1.2.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/../../tai_lieu_module3/mysql-connector-java-8.0.11/mysql-connector-java-8.0.11.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../tai_lieu_module3/demo/mysql-connector-java-8.0.11/mysql-connector-java-8.0.11.jar" />
         </element>
       </element>
     </root>

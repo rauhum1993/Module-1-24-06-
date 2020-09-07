@@ -10,6 +10,8 @@
 <html>
 <head>
     <title>Create-New-Employee</title>
+    <script src="bootstrap-4.5.2-dist/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="bootstrap-4.5.2-dist/css/bootstrap.min.css">
 </head>
 <body>
 <%@ include file="../common/header.jsp"%>
@@ -31,12 +33,13 @@
         </div>
         <div>
             <input type="submit" role="button">
-            <a role="button" href="/student">Back</a>
+            <a role="button" href="/employee">Back</a>
         </div>
 
 
     </fieldset>
 </form>
+<script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 <%@include file="../common/footer.jsp"%>
 </body>
 </html>

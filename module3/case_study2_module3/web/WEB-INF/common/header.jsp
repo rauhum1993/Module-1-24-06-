@@ -1,8 +1,11 @@
 <div class="header">
-    <h1>Header Furama</h1>
-    <a href="/" style="float:left; width: 10%"><h2>Logo</h2></a>
-    <a href="/employeeServlet" style="float:left; width: 30%"><h2>Employee</h2></a>
-    <a href="/customerServlet" style="float:left; width: 30%"><h2>Customer</h2></a>
-    <a href="#" style="float:left; width: 30%"><h2>Service</h2></a>
-    <hr>
+    <div class="row ">
+        <div class="col-lg-8">
+            <img src="logo_furama/furuma.png" class="img-fluid"/>
+        </div>
+        <div class="col-lg-4">
+            <h1>Phan Quốc Khánh</h1>
+            <h2>Lớp C0520G1</h2>
+        </div>
+    </div>
 </div>
