@@ -11,26 +11,19 @@
 <html>
 <head>
     <title>$Title$</title>
-    <script src="bootstrap-4.5.2-dist/jquery-3.5.1.min.js"></script>
+    <script src="jquery/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="bootstrap-4.5.2-dist/css/bootstrap.min.css">
 </head>
 
 <body>
+<form action="/index">
 <div class="container-fluid">
-    <div class="row ">
-        <div class="col-lg-8">
-            <img src="logo_furama/furuma.png" class="img-fluid"/>
-        </div>
-        <div class="col-lg-4">
-            <h1>Phan Quốc Khánh</h1>
-            <h2>Lớp C0520G1</h2>
-        </div>
-    </div>
+    <%@include file="/common/header.jsp"%>
 
     <div class="row ">
         <div class="col-lg-12 ">
             <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-                <a class="navbar-brand" href="#">Home</a>
+                <a class="navbar-brand" href="/index">Home</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,10 +46,7 @@
                             <a class="nav-link" href="/contract">Contract <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0 " action="/customer?action=search">
-                        <input class="form-control mr-sm-2 rounded-pill" type="search" name="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search By Name</button>
-                    </form>
+
                 </div>
             </nav>
         </div>
@@ -77,6 +67,7 @@
 
     </div>
 </div>
+</form>
 </body>
 <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 </html>

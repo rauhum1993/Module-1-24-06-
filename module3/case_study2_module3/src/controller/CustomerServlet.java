@@ -95,7 +95,7 @@ public class CustomerServlet extends HttpServlet {
 
             Customer book = new Customer(id, typeID, name, birthday, gender, idCard, phone, email, address);
             boCustomer.update(book);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("customer/customer-edit.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/customer");
             dispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
@@ -117,6 +117,7 @@ public class CustomerServlet extends HttpServlet {
         String address = request.getParameter("customer_address");
         Customer customer = new Customer(id, typeID, name, birthday, gender, idCard, phone, email, address);
         boCustomer.insertCutomer(customer);
+
         response.sendRedirect("/customer");
 
     }
@@ -127,11 +128,10 @@ public class CustomerServlet extends HttpServlet {
         if (extingCustomer == null) {
             request.setAttribute("message", "Not Found");
         } else {
-            request.setAttribute("customer", extingCustomer);
+            request.setAttribute("editCustomer", extingCustomer);
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("customer/customer-edit.jsp");
-        request.setAttribute("editCustomer", extingCustomer);
-        dispatcher.forward(request  , response);
+        dispatcher.forward(request , response);
     }
 
     private void showCreateCustomer(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

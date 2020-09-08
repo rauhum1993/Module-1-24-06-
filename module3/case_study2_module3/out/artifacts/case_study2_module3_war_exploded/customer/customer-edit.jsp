@@ -13,8 +13,8 @@
 <html>
 <head>
     <title>Customer Management Application</title>
-    <script src="bootstrap-4.5.2-dist/jquery-3.5.1.min.js"></script>
-    <link rel="stylesheet" href="bootstrap-4.5.2-dist/css/bootstrap.min.css">
+    <script src="../jquery/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="../bootstrap-4.5.2-dist/css/bootstrap.min.css">
 </head>
 <body>
 <%@include file="../common/header.jsp"%>
@@ -93,7 +93,7 @@
                 <th>Customer Email:</th>
                 <td>
                     <input type="text" name="email" size="45"
-                           value="<c:out value='${editCustomer.customerEmail}' ></c:out>"
+                           value="${editCustomer.customerEmail}"
                     />
                 </td>
             </tr>
@@ -102,7 +102,7 @@
                 <th>Customer Address:</th>
                 <td>
                     <input type="text" name="address" size="45"
-                           value="<c:out value='${editCustomer.customerAddress}' ></c:out>"
+                           value="${ediCustomer.customerAddress}"
                     />
                 </td>
             </tr>
@@ -116,5 +116,5 @@
 </div>
 <%@include file="../common/footer.jsp"%>
 </body>
-<script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+<script src="../bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
 </html>

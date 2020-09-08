@@ -37,7 +37,7 @@ public class DAOCustomer implements IDAOCustomer {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                int id = rs.getInt("Customer_id");
+                int id = rs.getInt("customer_id");
                 int typeId = rs.getInt("customer_type_id");
                 String name = rs.getString("customer_name");
                 String birthday = rs.getString("customer_birthday");

@@ -9,7 +9,7 @@ public interface IBOCustomer {
 
     List<Customer> showListCustomer();
 
-    void createCustomer(Customer customer);
+
 
     void insertCutomer(Customer customer) throws SQLException;
 

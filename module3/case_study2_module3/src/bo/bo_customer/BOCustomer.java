@@ -16,14 +16,11 @@ public class BOCustomer implements IBOCustomer {
         return idaoCustomer.showListCustomer();
     }
 
-    @Override
-    public void createCustomer(Customer customer) {
 
-    }
 
     @Override
     public void insertCutomer(Customer customer) throws SQLException {
-        this.idaoCustomer.insert(customer);
+        this.idaoCustomer.create(customer);
     }
 
     @Override
