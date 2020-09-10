@@ -28,35 +28,36 @@ public class DAOEmployee implements IDAOEmployee {
     private static String UPDATE_EMPLOYEE = "update employee set employee_name = ?,employee_birthday = ?, " +
             "employee_id_card = ?, employee_salary = ?, employee_phone = ?, employee_email = ?, employee_address = ? ," +
             "position_id = ?, division_id = ?, education_degree_id = ?, username = ? where employee_id=?;";
+
     @Override
     public List<Employee> showListEmployee() {
-       List<Employee> employeeList =new ArrayList<>();
+        List<Employee> employeeList = new ArrayList<>();
 
         try {
             PreparedStatement preparedStatement = this.baseDAO.getConnection().prepareStatement(SELECT_ALL_EMPLOYEE);
             ResultSet rs = preparedStatement.executeQuery();
-                while (rs.next()){
-                    String id = rs.getString("employee_id");
-                    String employeeName = rs.getString("employee_name");
-                    String employeeBirthday = rs.getString("employee_birthday");
-                    String employeeSalary = rs.getString("employee_salary");
-                    String employeeIdCard = rs.getString("employee_id_card");
-                    String employeePhone = rs.getString("employee_phone");
-                    String employeeEmail = rs.getString("employee_email");
-                    String employeeAddress = rs.getString("employee_address");
-                    String positionId = rs.getString("position_id");
-                    String educationDegreeId = rs.getString("education_degree_id");
-                    String divisionId = rs.getString("division_id");
-                    String username = rs.getString("username");
-                employeeList.add(new Employee(id,employeeName,employeeBirthday,employeeSalary,employeeIdCard,
-               employeePhone,employeeEmail,employeeAddress,positionId,educationDegreeId,divisionId,username ));
+            while (rs.next()) {
+                String id = rs.getString("employee_id");
+                String employeeName = rs.getString("employee_name");
+                String employeeBirthday = rs.getString("employee_birthday");
+                String employeeSalary = rs.getString("employee_salary");
+                String employeeIdCard = rs.getString("employee_id_card");
+                String employeePhone = rs.getString("employee_phone");
+                String employeeEmail = rs.getString("employee_email");
+                String employeeAddress = rs.getString("employee_address");
+                String positionId = rs.getString("position_id");
+                String educationDegreeId = rs.getString("education_degree_id");
+                String divisionId = rs.getString("division_id");
+                String username = rs.getString("username");
+                employeeList.add(new Employee(id, employeeName, employeeBirthday, employeeSalary, employeeIdCard,
+                        employeePhone, employeeEmail, employeeAddress, positionId, educationDegreeId, divisionId, username));
 
-                }
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    return  employeeList;
+        return employeeList;
     }
 
     @Override
@@ -64,18 +65,18 @@ public class DAOEmployee implements IDAOEmployee {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = this.baseDAO.getConnection().prepareStatement(CREATE_NEW_EMPLOYEE);
-            preparedStatement.setString(1,employee.getEmployeeId());
-            preparedStatement.setString(2,employee.getEmployeeName());
-           preparedStatement.setString(3,employee.getEmployeeBirthday());
-            preparedStatement.setString(4,employee.getEmployeeSalary());
-            preparedStatement.setString(5,employee.getEmployeeIdCard());
-            preparedStatement.setString(6,employee.getEmployeePhone());
-            preparedStatement.setString(7,employee.getEmployeeEmail());
-            preparedStatement.setString(8,employee.getEmployeeAddress() );
-            preparedStatement.setString(9,employee.getPositionID());
-            preparedStatement.setString(10,employee.getEducationDegreeID());
-            preparedStatement.setString(11,employee.getDivisionID());
-            preparedStatement.setString(12,employee.getUsername());
+            preparedStatement.setString(1, employee.getEmployeeId());
+            preparedStatement.setString(2, employee.getEmployeeName());
+            preparedStatement.setString(3, employee.getEmployeeBirthday());
+            preparedStatement.setString(4, employee.getEmployeeSalary());
+            preparedStatement.setString(5, employee.getEmployeeIdCard());
+            preparedStatement.setString(6, employee.getEmployeePhone());
+            preparedStatement.setString(7, employee.getEmployeeEmail());
+            preparedStatement.setString(8, employee.getEmployeeAddress());
+            preparedStatement.setString(9, employee.getPositionID());
+            preparedStatement.setString(10, employee.getEducationDegreeID());
+            preparedStatement.setString(11, employee.getDivisionID());
+            preparedStatement.setString(12, employee.getUsername());
 
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
@@ -89,22 +90,22 @@ public class DAOEmployee implements IDAOEmployee {
         Employee employee = null;
         try {
             PreparedStatement preparedStatement = this.baseDAO.getConnection().prepareStatement(SELECT_EMPLOYEE_BY_ID);
-            preparedStatement.setString(1,id);
+            preparedStatement.setString(1, id);
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
 
-                String name =rs.getString("employee_name");
-                String birthday =rs.getString("employee_birthday");
-                String salary =rs.getString("employee_salary");
-                String idCard =rs.getString("employee_id_card");
-                String phone =rs.getString("employee_phone");
-                String email =rs.getString("employee_email");
-                String address =rs.getString("employee_address");
-                String positionID =rs.getString("position_id");
-                String degreeID =rs.getString("education_degree_id");
-                String divisionID =rs.getString("division_id");
-                String username =rs.getString("username");
-            employee=new Employee(id,name,birthday,salary,idCard,phone,email,address,positionID,degreeID,divisionID,username);
+                String name = rs.getString("employee_name");
+                String birthday = rs.getString("employee_birthday");
+                String salary = rs.getString("employee_salary");
+                String idCard = rs.getString("employee_id_card");
+                String phone = rs.getString("employee_phone");
+                String email = rs.getString("employee_email");
+                String address = rs.getString("employee_address");
+                String positionID = rs.getString("position_id");
+                String degreeID = rs.getString("education_degree_id");
+                String divisionID = rs.getString("division_id");
+                String username = rs.getString("username");
+                employee = new Employee(id, name, birthday, salary, idCard, phone, email, address, positionID, degreeID, divisionID, username);
 
             }
         } catch (SQLException e) {
@@ -119,18 +120,20 @@ public class DAOEmployee implements IDAOEmployee {
             PreparedStatement preparedStatement = this.baseDAO.getConnection().prepareStatement(UPDATE_EMPLOYEE);
 
 
-            preparedStatement.setString(1,employee.getUsername());
-            preparedStatement.setString(2,employee.getEmployeeBirthday());
-            preparedStatement.setString(3,employee.getEmployeeIdCard());
-            preparedStatement.setString(4,employee.getEmployeeSalary());
-            preparedStatement.setString(5,employee.getEmployeePhone());
-            preparedStatement.setString(6,employee.getEmployeeEmail());
-            preparedStatement.setString(7,employee.getEmployeeAddress());
-            preparedStatement.setString(8,employee.getPositionID());
-            preparedStatement.setString(9,employee.getDivisionID());
-                preparedStatement.setString(10,employee.getEducationDegreeID());
-            preparedStatement.setString(11,employee.getUsername());
-            preparedStatement.setString(12,employee.getEmployeeId());
+            preparedStatement.setString(1, employee.getEmployeeName());
+            preparedStatement.setString(2, employee.getEmployeeBirthday());
+            preparedStatement.setString(3, employee.getEmployeeSalary());
+            preparedStatement.setString(4, employee.getEmployeeIdCard());
+            preparedStatement.setString(5, employee.getEmployeePhone());
+            preparedStatement.setString(6, employee.getEmployeeEmail());
+            preparedStatement.setString(7, employee.getEmployeeAddress());
+            preparedStatement.setString(8, employee.getPositionID());
+            preparedStatement.setString(9, employee.getEducationDegreeID());
+            preparedStatement.setString(10, employee.getDivisionID());
+            preparedStatement.setString(11, employee.getUsername());
+            preparedStatement.setString(12, employee.getEmployeeId());
+
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -141,7 +144,7 @@ public class DAOEmployee implements IDAOEmployee {
 
         try {
             PreparedStatement preparedStatement = this.baseDAO.getConnection().prepareStatement(DELETE_EMPLOYEE_BY_ID);
-            preparedStatement.setString(1,id);
+            preparedStatement.setString(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -156,27 +159,27 @@ public class DAOEmployee implements IDAOEmployee {
             preparedStatement = this.baseDAO.getConnection().prepareStatement(SEARCH_NAME_EMPLOYEE);
             preparedStatement.setString(1, "%" + name + "%");
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()){
-                String id =rs.getString("employee_id");
-                String employeeName =rs.getString("employee_name");
-                String employeeBirthday =rs.getString("employee_birthday");
-                String employeeSalary =rs.getString("employee_salary");
-                String employeeIdCard =rs.getString("employee_id_card");
-                String employeePhone =rs.getString("employee_phone");
-                String employeeEmail =rs.getString("employee_email");
-                String employeeAddress =rs.getString("employee_address");
-                String positionId =rs.getString("position_id");
-                String educationDegreeId =rs.getString("education_degree_id");
-                String divisionId =rs.getString("division_id");
-                String username =rs.getString("username");
+            while (rs.next()) {
+                String id = rs.getString("employee_id");
+                String employeeName = rs.getString("employee_name");
+                String employeeBirthday = rs.getString("employee_birthday");
+                String employeeSalary = rs.getString("employee_salary");
+                String employeeIdCard = rs.getString("employee_id_card");
+                String employeePhone = rs.getString("employee_phone");
+                String employeeEmail = rs.getString("employee_email");
+                String employeeAddress = rs.getString("employee_address");
+                String positionId = rs.getString("position_id");
+                String educationDegreeId = rs.getString("education_degree_id");
+                String divisionId = rs.getString("division_id");
+                String username = rs.getString("username");
 
-                employeeList.add(new Employee(id,employeeName,employeeBirthday,employeeSalary,employeeIdCard,employeePhone,
-                        employeeEmail,employeeAddress,positionId,educationDegreeId,divisionId,username));
+                employeeList.add(new Employee(id, employeeName, employeeBirthday, employeeSalary, employeeIdCard, employeePhone,
+                        employeeEmail, employeeAddress, positionId, educationDegreeId, divisionId, username));
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return  employeeList;
+        return employeeList;
     }
 }

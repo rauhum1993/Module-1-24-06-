@@ -49,15 +49,16 @@ public class EmployeeServlet extends HttpServlet {
         String idCard = request.getParameter("id_card");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
+        String employeeAddress = request.getParameter("employeeAddress");
         String positionID = request.getParameter("positionID");
         String educationDegreeID = request.getParameter("educationDegreeID");
         String divisionID = request.getParameter("divisionID");
         String username = request.getParameter("username");
 
-        Employee employee = new Employee(id,name,birthday,salary,idCard,phone,email,
-                positionID,phone,educationDegreeID,divisionID,username);
+        Employee employee = new Employee(id,name,birthday,salary,idCard,phone,email,employeeAddress,
+                positionID,educationDegreeID,divisionID,username);
          boEmployee.insertEmployee(employee);
-        request.setAttribute("notification","successfully added 1 customer");
+        request.setAttribute("notification","successfully added 1 employee");
         List<Employee> employeeList = boEmployee.showListEmployee();
 
         request.setAttribute("listEmployee", employeeList);
@@ -82,7 +83,9 @@ public class EmployeeServlet extends HttpServlet {
 
         Employee employee= new Employee(id,name,birthday,salary,idCard,phone,email,address,positionID,educationDegreeID,divisionID,username);
         boEmployee.update(employee);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/employee");
+        List<Employee> employeeList = boEmployee.showListEmployee();
+        request.setAttribute("listEmployee", employeeList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("employee/employee-list.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -141,7 +144,7 @@ public class EmployeeServlet extends HttpServlet {
         List<Employee> employeeList;
         String value = request.getParameter("search");
         employeeList = boEmployee.searchByName(value);
-        request.setAttribute("listCustomer", employeeList);
+        request.setAttribute("listEmployee", employeeList);
         try {
             request.getRequestDispatcher("employee/employee-list.jsp").forward(request, response);
         } catch (ServletException e) {

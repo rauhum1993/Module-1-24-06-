@@ -95,7 +95,9 @@ public class CustomerServlet extends HttpServlet {
 
             Customer book = new Customer(id, typeID, name, birthday, gender, idCard, phone, email, address);
             boCustomer.update(book);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/customer");
+            List<Customer> customerList = boCustomer.showListCustomer();
+            request.setAttribute("listCustomer", customerList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("customer/customer-list.jsp");
             dispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();

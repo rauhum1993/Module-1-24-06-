@@ -26,17 +26,17 @@ create table education_degree(
     education_degree_name varchar(45)
 );    
 create table division(
-	division_id int,
+	division_id int primary key,
     division_name varchar(45)
 );    
 
 create table employee(
-	employee_id int primary key auto_increment,
-	employee_name varchar(45),
-    employee_birthday date,
-    employee_salary double,
-    employee_id_card varchar(45),
-	employee_phone varchar(45),
+	employee_id int primary key ,
+	employee_name varchar(45) not null,
+    employee_birthday date not null,
+    employee_salary double not null,
+    employee_id_card varchar(45) not null,
+	employee_phone varchar(45) not null,
     employee_email varchar(45),
     employee_address varchar(45),
     position_id int,
@@ -50,19 +50,19 @@ create table employee(
 );    
 
 create table customer_type (
-		customer_type_id int primary key,
+		customer_type_id int primary key ,
         customer_type_name varchar(45)
     );
     
 create table customer (
-		customer_id int primary key,
+		customer_id int primary key ,
         customer_type_id int,
 		foreign key (customer_type_id) references furama_wbe.customer_type(customer_type_id),
-        customer_name varchar(45),
-        customer_birthday date,
-        customer_gender bit(1),
-        customer_id_card varchar(45),
-        customer_phone varchar(45),
+        customer_name varchar(45) not null,
+        customer_birthday date not null,
+        customer_gender bit(1) not null,
+        customer_id_card varchar(45) not null,
+        customer_phone varchar(45) not null,
         customer_email varchar(45),
         customer_address varchar(45)
 
@@ -79,9 +79,9 @@ create table customer (
     );
     create table service (
 		service_id int primary key,
-        service_name varchar(45),
+        service_name varchar(45) not null,
         service_area int,
-        service_cost double,
+        service_cost double not null,
         service_max_people int,
         rent_type_id int,
         foreign key (rent_type_id) references furama_wbe.rent_type(rent_type_id),
@@ -92,11 +92,35 @@ create table customer (
         pool_area double,
         number_of_floors int
     );
+    
+       create table contract (
+		contract_id int primary key,
+        contract_start_date datetime not null,
+        contract_end_date datetime not null,
+        contract_deposit double not null,
+        contract_total_money double not null,
+        employee_id int,
+        foreign key (employee_id) references furama_wbe.employee(employee_id),
+        customer_id int,
+		foreign key (customer_id) references furama_wbe.customer(customer_id),
+        service_id int,
+		foreign key (service_id) references furama_wbe.service(service_id)
+    );
+    
 
  create table attach_service (
 		attach_service_id int primary key,
         attach_service_name varchar(45),
         attach_service_cost double,
         attach_service_unit int,
-        attach_service_status va
+        attach_service_status varchar(45)
+    );
+    
+	create table contract_detail (
+		contract_detail_id int primary key,
+        contract_id int,
+        foreign key (contract_id) references furama_wbe.contract(contract_id),
+		attach_service_id int,
+        foreign key (attach_service_id) references furama_wbe.attach_service(attach_service_id),
+        quantity int
     );

@@ -76,6 +76,13 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>Employee Address:</th>
+                    <td>
+                        <input type="text" id="employeeAddress" name="employeeAddress">
+                    </td>
+                </tr>
+
+                <tr>
                     <th>Employee Position ID:</th>
                     <td>
                         <input type="text" id="positionID" name="positionID">

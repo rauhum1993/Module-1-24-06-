@@ -23,16 +23,14 @@
     <h2>
         <a href="customer?action=customer">List All Customer</a>
     </h2>
+    <h2 style="color: #6f42c1;background: #b1dfbb">
+        Edit Customer
+    </h2>
 </center>
 
 <div align="center">
     <form method="post">
         <table border="1" cellpadding="5">
-            <caption>
-                <h2>
-                    Edit Customer
-                </h2>
-            </caption>
             <c:if test="${editCustomer != null}">
                 <input type="hidden" name="id" value="${editCustomer.customerId}"/>
             </c:if>
@@ -109,6 +107,7 @@
             <tr>
                 <td colspan="2" align="center">
                     <input type="submit" value="Save"/>
+                    <a role="button" href="/customer">Back</a>
                 </td>
             </tr>
         </table>

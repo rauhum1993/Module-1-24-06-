@@ -64,8 +64,8 @@
                     <td><c:out value="${employee.customerAddress}"/></td>
 
                     <td>
-                        <a href="<c:url value="/customer?action=edit&id=${employee.customerId}"/>">Edit</a>
-                        <a href="<c:url value="/customer?action=delete&id=${employee.customerId}"/>">Delete</a>
+                        <a href="<c:url value="/customer?action=edit&id=${employee.customerId}"/>" role="button" class="btn btn-outline-info my-2 my-sm-0" style="border: 1px solid ;border-radius: 5px">Edit</a>
+                        <a href="<c:url value="/customer?action=delete&id=${employee.customerId}"/>"  role="button"class="btn btn-outline-danger my-2 my-sm-0" style="border: 1px solid ;border-radius: 5px">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

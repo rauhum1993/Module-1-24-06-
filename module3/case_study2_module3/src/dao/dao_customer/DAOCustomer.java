@@ -107,15 +107,16 @@ public class DAOCustomer implements IDAOCustomer {
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int typeID = rs.getInt("customerTypeId");
-                String name = rs.getString("customerName");
-                String birthday = rs.getString("customerBirthday");
-                int gender = rs.getInt("customerGender");
-                String idCard = rs.getString("customerIdCard");
-                String phone = rs.getString("customerPhone");
-                String email = rs.getString("customerEmail");
-                String address = rs.getString("customerAddress");
-                customer = new Customer(id, typeID, name, birthday, gender, idCard, phone, email, address);
+                int typeId = rs.getInt("customer_type_id");
+                String name = rs.getString("customer_name");
+                String birthday = rs.getString("customer_birthday");
+                int gender = rs.getInt("customer_gender");
+                String idCard = rs.getString("customer_id_card");
+                String phone = rs.getString("customer_phone");
+                String email = rs.getString("customer_email");
+                String address = rs.getString("customer_address");
+
+                customer = new Customer(id, typeId, name, birthday, gender, idCard, phone, email, address);
             }
         } catch (SQLException e) {
             e.printStackTrace();

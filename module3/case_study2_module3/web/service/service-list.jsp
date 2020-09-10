@@ -44,23 +44,23 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="service" items="${listService}">
+        <c:forEach var="contractDetail" items="${listService}">
             <tr>
-                <td><c:out value="${service.serviceId}"/></td>
-                <td><c:out value="${service.serviceName}"/></td>
-                <td><c:out value="${service.serviceArea}"/></td>
-                <td><c:out value="${service.serviceCost}"/></td>
-                <td><c:out value="${service.serviceMaxPeople}"/></td>
-                <td><c:out value="${service.rentTypeId}"/></td>
-                <td><c:out value="${service.serviceTypeId}"/></td>
-                <td><c:out value="${service.standardRoom}"/></td>
-                <td><c:out value="${service.descriptionOrtherConvenienve}"/></td>
-                <td><c:out value="${service.poolArea}"/></td>
-                <td><c:out value="${service.numberOfFloors}"/></td>
+                <td><c:out value="${contractDetail.serviceId}"/></td>
+                <td><c:out value="${contractDetail.serviceName}"/></td>
+                <td><c:out value="${contractDetail.serviceArea}"/></td>
+                <td><c:out value="${contractDetail.serviceCost}"/></td>
+                <td><c:out value="${contractDetail.serviceMaxPeople}"/></td>
+                <td><c:out value="${contractDetail.rentTypeId}"/></td>
+                <td><c:out value="${contractDetail.serviceTypeId}"/></td>
+                <td><c:out value="${contractDetail.standardRoom}"/></td>
+                <td><c:out value="${contractDetail.descriptionOrtherConvenienve}"/></td>
+                <td><c:out value="${contractDetail.poolArea}"/></td>
+                <td><c:out value="${contractDetail.numberOfFloors}"/></td>
 
                 <td>
-                    <a href="/service?actionUser=edit&id=${service.serviceId}">Edit</a>
-                    <a href="/service?actionUser=delete&id=${service.serviceId}">Delete</a>
+                    <a href="/service?actionUser=edit&id=${contractDetail.serviceId}">Edit</a>
+                    <a href="/service?actionUser=delete&id=${contractDetail.serviceId}">Delete</a>
                 </td>
             </tr>
         </c:forEach>
