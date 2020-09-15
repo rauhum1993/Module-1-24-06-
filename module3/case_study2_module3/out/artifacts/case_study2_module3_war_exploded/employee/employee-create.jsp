@@ -35,18 +35,25 @@
                     <th>Employee ID:</th>
                     <td>
                         <input type="text" id="id" name="id">
+                        <span class="msg-invalid" style="color: red">&nbsp;(*)</span><br>
+                        <span class="msg-invalid" style="color: #b1dfbb">&nbsp;format KH-XXXX (X is number 0-9) </span><br>
+                        <span class="msg-invalid" style="color: red">${messageID}</span>
                     </td>
                 </tr>
                 <tr>
                     <th>Employee Name:</th>
                     <td>
                         <input type="text" id="name" name="name">
+                        <span class="msg-invalid" style="color: red" >&nbsp;(*)</span><br>
+                        <span class="msg-invalid" style="color: red">${messageName}</span>
                     </td>
                 </tr>
                 <tr>
                     <th>Employee Birthday:</th>
                     <td>
-                        <input type="text" id="birthday" name="birthday">
+                        <input type="date" id="birthday" name="birthday">
+                        <span class="msg-invalid" style="color: red" >&nbsp;(*)</span><br>
+                        <span class="msg-invalid" style="color: red">${messageBirthday}</span>
                     </td>
                 </tr>
 
@@ -54,12 +61,16 @@
                     <th>Employee salary:</th>
                     <td>
                         <input type="text" id="salary" name="salary">
+                        <span class="msg-invalid" style="color: red" >&nbsp;(*)</span><br>
+                        <span class="msg-invalid" style="color: red">${messageSalary}</span>
                     </td>
                 </tr>
                 <tr>
                     <th>Employee ID Card:</th>
                     <td>
                         <input type="text" id="id_card" name="id_card">
+                        <span class="msg-invalid" style="color: red">&nbsp;(*)</span><br>
+                        <span class="msg-invalid" style="color: red">${messageIDCard}</span>
                     </td>
                 </tr>
 
@@ -67,12 +78,16 @@
                     <th>Customer Phone:</th>
                     <td>
                         <input type="text" id="phone" name="phone">
+                        <span class="msg-invalid" style="color: red">&nbsp;(*)</span><br>
+                        <span class="msg-invalid" style="color: red">${messagePhone}</span>
                     </td>
                 </tr>
                 <tr>
                     <th>Employee Email:</th>
                     <td>
                         <input type="text" id="email" name="email">
+                        <span class="msg-invalid" style="color: red">&nbsp;(*)</span><br>
+                        <span class="msg-invalid" style="color: red">${messageEmail}</span>
                     </td>
                 </tr>
                 <tr>

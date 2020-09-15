@@ -12,9 +12,9 @@ create table user (
     );
 create table user_role (
 		role_id int ,
-        foreign key (role_id) references furama_wbe.role(role_id),
+        foreign key (role_id) references furama_wbe.role(role_id) on delete cascade,
         username varchar(255),
-		foreign key (username) references furama_wbe.user(username)
+		foreign key (username) references furama_wbe.user(username) on delete cascade
     );    
     
 create table position (
@@ -40,13 +40,13 @@ create table employee(
     employee_email varchar(45),
     employee_address varchar(45),
     position_id int,
-	foreign key (position_id) references furama_wbe.position(position_id),
+	foreign key (position_id) references furama_wbe.position(position_id) on delete cascade,
 	education_degree_id int,
-    foreign key (education_degree_id) references furama_wbe.education_degree(education_degree_id),
+    foreign key (education_degree_id) references furama_wbe.education_degree(education_degree_id) on delete cascade,
     division_id int,
-    foreign key (division_id) references furama_wbe.division(division_id),
+    foreign key (division_id) references furama_wbe.division(division_id) on delete cascade,
 	username varchar(255),
-	foreign key (username) references furama_wbe.user(username)
+	foreign key (username) references furama_wbe.user(username) on delete cascade
 );    
 
 create table customer_type (
@@ -57,7 +57,7 @@ create table customer_type (
 create table customer (
 		customer_id int primary key ,
         customer_type_id int,
-		foreign key (customer_type_id) references furama_wbe.customer_type(customer_type_id),
+		foreign key (customer_type_id) references furama_wbe.customer_type(customer_type_id) on delete cascade,
         customer_name varchar(45) not null,
         customer_birthday date not null,
         customer_gender bit(1) not null,
@@ -84,9 +84,9 @@ create table customer (
         service_cost double not null,
         service_max_people int,
         rent_type_id int,
-        foreign key (rent_type_id) references furama_wbe.rent_type(rent_type_id),
+        foreign key (rent_type_id) references furama_wbe.rent_type(rent_type_id) on delete cascade,
         service_type_id int,
-		foreign key (service_type_id) references furama_wbe.service_type(service_type_id),
+		foreign key (service_type_id) references furama_wbe.service_type(service_type_id) on delete cascade,
         standard_room varchar(45),
         description_orther_convenienve varchar(45),
         pool_area double,
@@ -100,11 +100,11 @@ create table customer (
         contract_deposit double not null,
         contract_total_money double not null,
         employee_id int,
-        foreign key (employee_id) references furama_wbe.employee(employee_id),
+        foreign key (employee_id) references furama_wbe.employee(employee_id) on delete cascade,
         customer_id int,
-		foreign key (customer_id) references furama_wbe.customer(customer_id),
+		foreign key (customer_id) references furama_wbe.customer(customer_id) on delete cascade,
         service_id int,
-		foreign key (service_id) references furama_wbe.service(service_id)
+		foreign key (service_id) references furama_wbe.service(service_id) on delete cascade
     );
     
 
@@ -119,8 +119,8 @@ create table customer (
 	create table contract_detail (
 		contract_detail_id int primary key,
         contract_id int,
-        foreign key (contract_id) references furama_wbe.contract(contract_id),
+        foreign key (contract_id) references furama_wbe.contract(contract_id) on delete cascade,
 		attach_service_id int,
-        foreign key (attach_service_id) references furama_wbe.attach_service(attach_service_id),
+        foreign key (attach_service_id) references furama_wbe.attach_service(attach_service_id) on delete cascade,
         quantity int
     );

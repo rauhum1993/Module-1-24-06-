@@ -26,6 +26,7 @@
     <h2>
         <a href="<c:url value="/customer?action=create"/>">Add New Customr</a>
     </h2>
+    <p><c:out value="${notification}"/></p>
     <form class="form-inline my-2 my-lg-0 " action="/customer" >
         <input class="form-control mr-sm-2 rounded-pill" type="search" name="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search By Name</button>
@@ -65,7 +66,7 @@
 
                     <td>
                         <a href="<c:url value="/customer?action=edit&id=${employee.customerId}"/>" role="button" class="btn btn-outline-info my-2 my-sm-0" style="border: 1px solid ;border-radius: 5px">Edit</a>
-                        <a href="<c:url value="/customer?action=delete&id=${employee.customerId}"/>"  role="button"class="btn btn-outline-danger my-2 my-sm-0" style="border: 1px solid ;border-radius: 5px">Delete</a>
+                        <a href="<c:url value="/customer?action=delete&id=${employee.customerId}"/>" role="button" class="btn btn-outline-danger my-2 my-sm-0" style="border: 1px solid ;border-radius: 5px">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

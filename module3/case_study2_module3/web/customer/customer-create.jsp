@@ -32,59 +32,80 @@
         <table border="1" cellpadding="5">
            <h2>Create new customer</h2>
             <tr>
+                <span class="msg-invalid" style="color: red">&nbsp;(*)&nbsp;Must fill in the correct format </span><br>
+            </tr>
+            <tr>
                 <th>Customer ID:</th>
                 <td>
-                    <input type="text" id="id" name="id">
+                    <input type="text" id="id" name="id" size="50">
+<%--                    <span class="msg-invalid" style="color: red">&nbsp;(*)</span><br>--%>
+<%--                    <span class="msg-invalid" style="color: #b1dfbb">&nbsp;format KH-XXXX .X is number </span><br>--%>
+<%--                    <span class="msg-invalid" style="color: red">${messageID}</span>--%>
                 </td>
             </tr>
             <tr>
                 <th>Customer Type ID:</th>
                 <td>
-                    <input type="text" id="type_id" name="type_id">
+                    <input type="text" id="type_id" name="type_id" size="50">
+                    <span class="msg-invalid" style="color: red" >&nbsp;(*)</span><br>
+                    <span class="msg-invalid" style="color: red">${messageTypeID}</span>
                 </td>
             </tr>
             <tr>
                 <th>Customer Name:</th>
                 <td>
-                    <input type="text" id="name" name="name">
+                    <input type="text" id="name" name="name" size="50">
                 </td>
             </tr>
             <tr>
                 <th>Customer Birthday:</th>
                 <td>
-                    <input type="text" id="customer_birthday" name="customer_birthday">
+                    <input type="date" id="customer_birthday" name="customer_birthday" size="50">
+                    <span class="msg-invalid" style="color: red" >&nbsp;(*)</span><br>
+                    <span class="msg-invalid" style="color: red">${messageBirthday}</span>
                 </td>
             </tr>
 
             <tr>
                 <th>Customer Gender:</th>
                 <td>
-                    <input type="text" id="customer_gender" name="customer_gender">
+
+                   <select name="customer_gender" id="customer_gender" >
+                       <option value="0">Male</option>
+                       <option value="1">FeMale</option>
+
+                   </select>
                 </td>
             </tr>
             <tr>
                 <th>Customer ID Card:</th>
                 <td>
-                    <input type="text" id="customer_id_card" name="customer_id_card">
+                    <input type="text" id="customer_id_card" name="customer_id_card" size="50">
+                    <span class="msg-invalid" style="color: red">&nbsp;(*)</span><br>
+                    <span class="msg-invalid" style="color: red">${messageIDCard}</span>
                 </td>
             </tr>
 
             <tr>
                 <th>Customer Phone:</th>
                 <td>
-                    <input type="text" id="customer_phone" name="customer_phone">
+                    <input type="text" id="customer_phone" name="customer_phone" size="50">
+                    <span class="msg-invalid" style="color: red">&nbsp;(*)</span><br>
+                    <span class="msg-invalid" style="color: red">${messagePhone}</span>
                 </td>
             </tr>
             <tr>
                 <th>Customer Email:</th>
                 <td>
-                    <input type="text" id="customer_email" name="customer_email">
+                    <input type="text" id="customer_email" name="customer_email" size="50">
+                    <span class="msg-invalid" style="color: red">&nbsp;(*)</span><br>
+                    <span class="msg-invalid" style="color: red">${messageEmail}</span>
                 </td>
             </tr>
             <tr>
                 <th>Customer Address:</th>
                 <td>
-                    <input type="text" id="customer_address" name="customer_address">
+                    <input type="text" id="customer_address" name="customer_address" size="50">
                 </td>
             </tr>
 

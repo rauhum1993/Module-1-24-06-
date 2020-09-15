@@ -1,6 +1,7 @@
 package controller;
 
 import bo.bo_customer.BOCustomer;
+import commom.Validate;
 import model.Customer;
 
 import javax.servlet.RequestDispatcher;
@@ -16,6 +17,18 @@ import java.util.List;
 @WebServlet(name = "CustomerServlet", urlPatterns = {"/customer"})
 public class CustomerServlet extends HttpServlet {
     private BOCustomer boCustomer = new BOCustomer();
+
+
+    // Set invalid message
+    private static final String ID_INVALID = "The ID must be as format 'KH-XXXX'";
+    private static final String NAME_INVALID = "The name not valid";
+    private static final String BIRTHDAY_INVALID = "The birthday must made the age not less than 18";
+    private static final String CARD_ID_INVALID = "The ID card number is not valid";
+    private static final String EMAIL_INVALID = "The email is not valid";
+    private static final String PHONE_INVALID = "The phone number must have 10 or 11 digits";
+    private static final String INTEGER_INVALID = "The number is not valid";
+    private static final String DOUBLE_INVALID = "The number is not valid";
+    private static final String NOTIFICATION = "More success";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -118,9 +131,49 @@ public class CustomerServlet extends HttpServlet {
         String email = request.getParameter("customer_email");
         String address = request.getParameter("customer_address");
         Customer customer = new Customer(id, typeID, name, birthday, gender, idCard, phone, email, address);
-        boCustomer.insertCutomer(customer);
 
-        response.sendRedirect("/customer");
+        boolean check = true;
+        if (!Validate.checkCode(String.valueOf(id))){
+            request.setAttribute("messageID",ID_INVALID);
+            check=false;
+        }
+        if (!Validate.checkInteger(String.valueOf(typeID))){
+            request.setAttribute("messageTypeID",INTEGER_INVALID);
+            check=false;
+        }
+        if (!Validate.checkPhoneNumber(phone)){
+            request.setAttribute("messagePhone",PHONE_INVALID);
+            check=false;
+        }
+        if (!Validate.checkBirthday(birthday)){
+            request.setAttribute("messageBirthday",BIRTHDAY_INVALID);
+            check=false;
+        }
+        if (!Validate.checkEmail(email)){
+            request.setAttribute("messageEmail",EMAIL_INVALID);
+            check=false;
+        }
+        if (!Validate.checkIdCard(idCard)){
+            request.setAttribute("messageIDCard",CARD_ID_INVALID);
+            check=false;
+        }
+        if(check){
+            boCustomer.insertCutomer(customer);
+
+            request.setAttribute("notification",NOTIFICATION);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("customer/customer-list.jsp");
+            dispatcher.forward(request, response);
+        } else {
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("customer/customer-create.jsp");
+            dispatcher.forward(request, response);
+        }
+
+
+
+
+
+
 
     }
 

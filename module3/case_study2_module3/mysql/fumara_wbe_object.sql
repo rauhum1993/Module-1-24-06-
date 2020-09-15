@@ -9,6 +9,9 @@ insert into furama_wbe.customer_type (customer_type_id,customer_type_name )
 insert into furama_wbe.customer (customer_id,customer_type_id,customer_name,customer_birthday,
 customer_gender,customer_id_card,customer_phone,customer_email,customer_address)
 	values 	(4,1,'Hải','1968-12-20',b'1',18730113,039336258,'haiquacustomer_addressytay@gmail.com','Hà Tĩnh' ),
+			(1,2,'Tùng','1995-11-16',b'0',18452213,069876258,'asda@gmail.com','Quảng Truong' ),
+			(2,2,'Tùng','1995-11-16',b'0',18452213,069876258,'asda@gmail.com','Quảng Truong' ),
+			(3,2,'Tùng','1995-11-16',b'0',18452213,069876258,'asda@gmail.com','Quảng Truong' ),
 			(5,2,'Tùng','1995-11-16',b'0',18452213,069876258,'asda@gmail.com','Quảng Truong' ),
 			(6,3,'khanh','1995-11-16',b'0',18452213,231321,'asdsa@gmail.com','Quảng Ninh' ),
 			(7,4,'Linh','1995-11-16',b'0',18452213,2313,'sadas@gmail.com','Vinh' ),
@@ -73,7 +76,10 @@ insert into furama_wbe.division (division_id,division_name)
 		employee_email,employee_address,position_id,education_degree_id,division_id,username) 
         values 	('12','bao','1993-05-06','30000000','18242131','0311531452','hai@gmail.com','Vinh','2','1','4','YeuBangConTim'),
 				('13','tu Sky','1999-10-20','50000000','13215465','0313564647','tung@gmail.com','Ha Noi','3','2','1','KhongCanDep'),
+				('1','Hai Do','1998-12-25','50000000','13156465','03625236215','dat@gmail.com','Ca Mau','1','4','2','FanArsenal'),
+				('2','Hai Do','1998-12-25','50000000','13156465','03625236215','dat@gmail.com','Ca Mau','1','4','2','FanArsenal'),
 				('3','Hai Do','1998-12-25','50000000','13156465','03625236215','dat@gmail.com','Ca Mau','1','4','2','FanArsenal'),
+				('14','Hai Do','1998-12-25','50000000','13156465','03625236215','dat@gmail.com','Ca Mau','1','4','2','FanArsenal'),
 				('4','Tung son','1996-06-17','25000000','11346546','0931215615','thai@gmail.com','Vung Tau','4','3','3','ThanhTroll'),
 				('5','Dat 09','1995-01-30','15000000','1231354165','0965431215','tung@gmail.com','Tran Huy Hung','6','2','2','YeuMauTim'),
 				('7','Hoang','1995-06-30','15000000','123221331','0965431215','tra@gmail.com','Tran Huy Hung','6','2','2','YeuMauTim'),
@@ -88,6 +94,20 @@ insert into furama_wbe.division (division_id,division_name)
 					('3','Drinks','50000','10','activity'),
 					('4','Karaoke','500000','4','activity'),
 					('5','Car Move','200000','5','inactive');
+    insert into   furama_wbe.contract(contract_id,contract_start_date,contract_end_date,contract_deposit,
+          contract_total_money,employee_id,customer_id,service_id)
+				values 	('1','2018-12-24','2020-12-12','70000000','200000000','2','1','1'),
+						('2','2016-07-26','2018-10-25','69000000','180000000','3','4','2'),
+						('3','2019-04-20','2020-03-30','40000000','360000000','4','3','3'),
+						('4','2017-03-24','2019-03-11','96000000','20000000','5','5','5'),
+						('5','2018-12-14','2019-11-12','36000000','190000000','1','6','1'),
+						('6','2019-04-04','2020-02-01','400000000','200000000','2','7','3'),
+						('7','2018-08-06','2022-08-15','400000000','200000000','5','8','4'),
+						('8','2018-11-05','2021-01-26','400000000','200000000','1','9','2'),
+						('9','2018-10-03','2020-11-08','55000000','200000000','6','10','5'),
+						('10','2018-08-15','2020-06-09','400000000','250000000','3','2','5'),
+						('11','2019-09-26','2023-05-26','600000000','240000000','7','11','1'),
+						('12','2018-03-12','2020-03-22','400000000','360000000','4','13','3');                
         insert into   furama_wbe.contract_detail (contract_detail_id,contract_id,attach_service_id,quantity)             
                 values 	('1','1','1','200000000'),    
 						('2','2','5','60000000'),    
@@ -102,19 +122,13 @@ insert into furama_wbe.division (division_id,division_name)
 						('12','12','5','2000000'),    
 						('9','9','2','60000000');  
                         
-          insert into   furama_wbe.contract(contract_id,contract_start_date,contract_end_date,contract_deposit,
-          contract_total_money,employee_id,customer_id,service_id)
-				values 	('1','2018-12-24','2020-12-12','70000000','200000000','2','1','1'),
-						('2','2016-07-26','2018-10-25','69000000','180000000','3','4','2'),
-						('3','2019-04-20','2020-03-30','40000000','360000000','4','3','3'),
-						('4','2017-03-24','2019-03-11','96000000','20000000','5','5','5'),
-						('5','2018-12-14','2019-11-12','36000000','190000000','1','6','1'),
-						('6','2019-04-04','2020-02-01','400000000','200000000','2','7','3'),
-						('7','2018-08-06','2022-08-15','400000000','200000000','5','8','4'),
-						('8','2018-11-05','2021-01-26','400000000','200000000','1','9','2'),
-						('9','2018-10-03','2020-11-08','55000000','200000000','6','10','5'),
-						('10','2018-08-15','2020-06-09','400000000','250000000','3','2','5'),
-						('11','2019-09-26','2023-05-26','600000000','240000000','7','11','1'),
-						('12','2018-03-12','2020-03-22','400000000','360000000','4','13','3');
-        select * 
-        from contract ;
+          
+        select  customer.customer_id,customer.customer_type_id, customer.customer_name,customer_birthday,
+        attach_service.attach_service_name
+        from customer
+        inner join contract on furama_wbe.customer.customer_id= furama_wbe.contract.customer_id
+		inner join furama_wbe.contract_detail on contract_detail.contract_id=contract.contract_id
+        inner join furama_wbe.attach_service on contract_detail.attach_service_id= attach_service.attach_service_id;
+        
+        select *
+        from contract_detail;

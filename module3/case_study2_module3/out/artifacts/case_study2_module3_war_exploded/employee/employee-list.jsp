@@ -49,7 +49,8 @@
             <th>Education Degree ID</th>
             <th>Division ID</th>
             <th>User Name</th>
-            <th>Action</th>
+            <th>Edit</th>
+            <th>Delete</th>
 
 
         </tr>
@@ -72,13 +73,42 @@
 
                 <td>
                     <a href="<c:url value="/employee?actionUser=edit&id=${employee.employeeId}"/>">Edit</a>
-                    <a href="<c:url value="/employee?actionUser=delete&id=${employee.employeeId}"/>">Delete</a>
+                </td>
+                <td>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" onclick="callModal1(this.id)" id="${employee.employeeId}" data-target="#staticBackdrop">
+                        Delete
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-backdrop="static"  data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Do you want to delete?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                        Close
+                                    </button>
+                                        <a role="button"  href="#" id="modalDelete" class="btn btn-primary">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-</div>
+</div>                                                                                                                           employee/employee-list.jsp:111
 <%@include file="../common/footer.jsp" %>
 </body>
 <script src="../jquery/jquery-3.5.1.min.js"></script>
@@ -93,5 +123,10 @@
             "pageLength": 5
         });
     });
+</script>
+<script>
+    function callModal1(id) {
+        document.getElementById("modalDelete").href="/employee?actionUser=delete&id="+id;
+    }
 </script>
 </html>

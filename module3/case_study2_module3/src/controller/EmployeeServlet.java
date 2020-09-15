@@ -2,6 +2,7 @@ package controller;
 
 import bo.bo_customer.BOCustomer;
 import bo.bo_employee.BOEmployee;
+import commom.Validate;
 import model.Customer;
 import model.Employee;
 
@@ -18,6 +19,25 @@ import java.util.List;
 @WebServlet(name = "EmployeeServlet",urlPatterns = "/employee")
 public class EmployeeServlet extends HttpServlet {
     private BOEmployee boEmployee = new BOEmployee();
+//    public static String REGEX_ID_KH="^KH-\\d{4}$";
+//    public static String REGEX_ID_DV="^DV-\\d{4}$";
+//    public static final String REGEX_PHONE_NUMBER = "^(090|091|\\(84\\)\\+90|\\(84\\)\\+91)\\d{7}$";
+//    public static final String REGEX_EMAIL= "^(\\w{3,}@\\w+\\.\\w+)$";
+//    public static final String REGEX_ID_CARD = "^\\d{9}$";
+//    public static final String REGEX_INTEGER= "^[-]*\\d+$";
+//    public static final String REGEX_DOUBLE= "^[-]*\\d+([.]\\d+)?$";
+//    public static final String REGEX_20= "^[2-9]\\d(\\.?(\\d*))|([1-9][0-9]\\d+(\\.?(\\d*)))$";
+//    public static final String REGEX_ID= "^(\\d{3}-\\d{2}-\\d{2})|([A-Z]{3}-[A-Z]{2}-[A-Z]{2})$";
+
+    private static final String ID_INVALID = "The ID must be as format 'KH-XXXX'";
+    private static final String NAME_INVALID = "The name not valid";
+    private static final String BIRTHDAY_INVALID = "The birthday must made the age not less than 18";
+    private static final String CARD_ID_INVALID = "The ID card number is not valid";
+    private static final String EMAIL_INVALID = "The email is not valid";
+    private static final String PHONE_INVALID = "The phone number must have 10 or 11 digits";
+    private static final String INTEGER_INVALID = "The number is not valid";
+    private static final String DOUBLE_INVALID = "The number is not valid";
+    private static final String NOTIFICATION = "More success";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String actionUser = request.getParameter("actionUser");
@@ -57,13 +77,47 @@ public class EmployeeServlet extends HttpServlet {
 
         Employee employee = new Employee(id,name,birthday,salary,idCard,phone,email,employeeAddress,
                 positionID,educationDegreeID,divisionID,username);
-         boEmployee.insertEmployee(employee);
-        request.setAttribute("notification","successfully added 1 employee");
-        List<Employee> employeeList = boEmployee.showListEmployee();
+        boolean check = true;
+//        if (!Validate.checkCode(id)){
+//            request.setAttribute("messageID",ID_INVALID);
+//            check=false;
+//        }
+        if (!Validate.checkName(name)){
+            request.setAttribute("messageName",NAME_INVALID);
+            check=false;
+        }
+        if (!Validate.checkInteger(salary)){
+            request.setAttribute("messageID",INTEGER_INVALID);
+            check=false;
+        }
 
-        request.setAttribute("listEmployee", employeeList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("employee/employee-list.jsp");
-        dispatcher.forward(request, response);
+        if (!Validate.checkPhoneNumber(phone)){
+            request.setAttribute("messagePhone",PHONE_INVALID);
+            check=false;
+        }
+        if (!Validate.checkBirthday(birthday)){
+            request.setAttribute("messageBirthday",BIRTHDAY_INVALID);
+            check=false;
+        }
+        if (!Validate.checkEmail(email)){
+            request.setAttribute("messageEmail",EMAIL_INVALID);
+            check=false;
+        }
+        if (!Validate.checkIdCard(idCard)){
+            request.setAttribute("messageIDCard",CARD_ID_INVALID);
+            check=false;
+        }
+        if (check) {
+            boEmployee.insertEmployee(employee);
+            request.setAttribute("notification", "successfully added 1 employee");
+            List<Employee> employeeList = boEmployee.showListEmployee();
+            request.setAttribute("listEmployee", employeeList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("employee/employee-list.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("employee/employee-create.jsp");
+            dispatcher.forward(request, response);
+        }
 
     }
 
