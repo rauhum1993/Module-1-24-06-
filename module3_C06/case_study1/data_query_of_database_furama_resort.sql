@@ -44,8 +44,20 @@ order by  number_of_reservations;
  		left join contract_details on contract_details.contract_id = contract.contract_id
  		left join accompanied_service 
  			on accompanied_service.accompanied_service_id = contract_details.accompanied_service_id
-		
+      group by customer_name
         ;
         
+-- 6.	Hiển thị IDDichVu, TenDichVu, DienTich, ChiPhiThue, TenLoaiDichVu của tất cả các loại Dịch vụ
+--    chưa từng được Khách hàng thực hiện đặt từ quý 1 của năm 2019 (Quý 1 là tháng 1, 2, 3).
+        
+        select service.service_id,service_name,the_area,rental_costs,type_service.type_service_name
+        from service
+			inner join contract on contract.service_id =service.service_id
+            inner join type_service on type_service.type_service_id= service.type_service_id
+		where  contract.contracting_date not between '2019-01-01' and '2019-03-31';
+         
+           
+	
+          
 
 	
