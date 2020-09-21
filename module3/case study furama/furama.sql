@@ -296,9 +296,9 @@ where contract.contracting_date <> ('2019/01/%'
 select service.service_id,service.service_name, service.the_area,service.people_number,service.rental_cost,service_type.service_type_name
 from service
 left join service_type
-on service_type.service_type_id= service.service_type_id
+	on service_type.service_type_id= service.service_type_id
 left join contract
-on contract.service_id =service.service_id
+	on contract.service_id =service.service_id
 where ( contract.contracting_date like '2018%')
 	and contract.contracting_date not in ( 
     select contract .contracting_date 
@@ -309,7 +309,7 @@ where ( contract.contracting_date like '2018%')
 --  8.	Hiển thị thông tin HoTenKhachHang có trong hệ thống, với yêu cầu HoThenKhachHang không trùng nhau.
 -- Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên
 --  Cách 1: 
-select customer.customer_name
+select distinct customer.customer_name
 from customer;
 
 -- Cách 2: 
