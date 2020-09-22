@@ -167,7 +167,7 @@ group by accompanied_service.accompanied_service_name;
     from amount_service);
     
 --  14.	Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất.
- -- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.   
+-- Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.   
 select accompanied_service.accompanied_service_id,accompanied_service_name,
 		accompanied_service.price,accompanied_service.numbers,accompanied_service.availability,
         count( contract_details.accompanied_service_id) as amount_contract_details
@@ -177,3 +177,49 @@ from accompanied_service
 		left join customer on customer.customer_id = contract.customer_id
 group by accompanied_service.accompanied_service_name        
 having amount_contract_details='1';
+-- 15.	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, 
+-- SoDienThoai, DiaChi mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019.
+
+select furama.staff.staff_id,furama.staff.staff_name,
+		furama.staff_level.level_name,furama.location.location_name,
+        furama.staff.phone_number,furama.staff.staff_address
+from furama.contract
+inner join furama.staff 
+			on furama.staff.staff_id =furama.contract.staff_id
+inner join  furama.staff_level
+			on furama.staff_level.level_id= furama.staff.level_id
+inner join furama.location
+			on furama.location.locatinon_id=furama.staff.locatinon_id
+where  year(furama.contract.contracting_date) in (2018,2019)
+group by furama.staff.staff_id
+having count(furama.contract.contract_id)<4;
+
+-- 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
+
+delete furama.staff
+from furama.staff
+	left join furama.contract on staff.staff_id = contract.staff_id
+where staff.staff_id not in 
+		(select contract.staff_id 
+			from contract
+			where ( year(contract.contracting_date) in (2017,2018,2019)));
+            
+
+select *
+from staff;
+
+-- 17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
+-- chỉ cập nhật những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 
+-- là lớn hơn 10.000.000 VNĐ.
+
+update customer
+set customer.customer_type_id=1
+where customer.customer_id in
+(	select customer.customer_id
+	from
+			(	select customer.customer_id
+				from customer
+                inner join contract on customer.customer_id =contract.customer_id
+                where customer.customer_type_id =2 and year(contract.contracting_date) =(2019)
+                group by customer.customer_id
+                having sum(contract.total_money)>= 10000000) as temp);
