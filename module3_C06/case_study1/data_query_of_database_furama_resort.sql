@@ -180,25 +180,25 @@ having amount_contract_details='1';
 -- 15.	Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan, 
 -- SoDienThoai, DiaChi mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019.
 
-select furama.staff.staff_id,furama.staff.staff_name,
-		furama.staff_level.level_name,furama.location.location_name,
-        furama.staff.phone_number,furama.staff.staff_address
-from furama.contract
-inner join furama.staff 
-			on furama.staff.staff_id =furama.contract.staff_id
-inner join  furama.staff_level
-			on furama.staff_level.level_id= furama.staff.level_id
-inner join furama.location
-			on furama.location.locatinon_id=furama.staff.locatinon_id
-where  year(furama.contract.contracting_date) in (2018,2019)
-group by furama.staff.staff_id
-having count(furama.contract.contract_id)<4;
+select staff.staff_id,staff.staff_name,
+		staff_level.level_name,role.role_name,
+        staff.phone_number,staff.staff_address
+from contract
+inner join staff 
+			on staff.staff_id =contract.staff_id
+inner join  staff_level
+			on furama.staff_level.level_id= staff.level_id
+inner join role
+			on role.role_id=furama.staff.role_id
+where  year(contract.contracting_date) in (2018,2019)
+group by staff.staff_id
+having count(contract.contract_id)<4;
 
 -- 16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.
 
-delete furama.staff
-from furama.staff
-	left join furama.contract on staff.staff_id = contract.staff_id
+delete staff
+from staff
+	left join contract on staff.staff_id = contract.staff_id
 where staff.staff_id not in 
 		(select contract.staff_id 
 			from contract
@@ -223,3 +223,47 @@ where customer.customer_id in
                 where customer.customer_type_id =2 and year(contract.contracting_date) =(2019)
                 group by customer.customer_id
                 having sum(contract.total_money)>= 10000000) as temp);
+                
+-- 18.	Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràngbuộc giữa các bảng).    
+
+   delete customer
+   from customer
+   where customer.customer_id in 
+			( 	select customer.customer_id
+				from  ( 
+						select customer.customer_id
+                        from customer
+                        inner join contract on customer.customer_id = contract.customer_id
+                        where year(contract.contracting_date) < '2016' and (contract.customer_id not in 
+								(	select customer_id
+									from contract
+                                    where	year(contract.contracting_date) >= '2016'))) as temp )	;
+ 
+  -- 19.	Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.
+  
+  update accompanied_service
+  set accompanied_service.price=accompanied_service.price*2
+  where accompanied_service.accompanied_service_id  in (	
+				select accompanied_service.accompanied_service_id
+				from ( 
+						select accompanied_service.accompanied_service_id
+                        from accompanied_service
+                        inner join contract_details on accompanied_service.accompanied_service_id = contract_details.accompanied_service_id
+                        inner join contract oncontract .contract_id=contract_details.contract_id
+                        where year(contract.contracting_date)=(2019)
+                        group by accompanied_service.accompanied_service_id
+                        having	count(accompanied_service.accompanied_service_id)>10) as temp);
+select *
+from accompanied_service;		
+
+-- 20.	Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống,
+--  thông tin hiển thị bao gồm ID (IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, 
+-- NgaySinh, DiaChi.			
+
+select staff.staff_id,staff.staff_name,staff.staff_email,staff.staff_birthday,
+		staff.staff_address
+from staff
+union
+select customer.customer_id,customer.customer_name,customer.customer_email,customer.customer_birthday,
+			customer.customer_address
+from customerusers ;                
