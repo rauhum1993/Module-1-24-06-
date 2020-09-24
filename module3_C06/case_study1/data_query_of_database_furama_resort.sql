@@ -241,15 +241,15 @@ where customer.customer_id in
  
   -- 19.	Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.
   
-  update accompanied_service
+update accompanied_service
   set accompanied_service.price=accompanied_service.price*2
-  where accompanied_service.accompanied_service_id  in (	
+  where accompanied_service.accompanied_service_id in(	
 				select accompanied_service.accompanied_service_id
 				from ( 
 						select accompanied_service.accompanied_service_id
                         from accompanied_service
                         inner join contract_details on accompanied_service.accompanied_service_id = contract_details.accompanied_service_id
-                        inner join contract oncontract .contract_id=contract_details.contract_id
+                        inner join contract on contract .contract_id=contract_details.contract_id
                         where year(contract.contracting_date)=(2019)
                         group by accompanied_service.accompanied_service_id
                         having	count(accompanied_service.accompanied_service_id)>10) as temp);

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Layout</title>
+    <style>
+        body {
+            width: 100%;
+        }
+
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+
+        h3, h5, p {
+            font-weight: bold;
+        }
+
+        .a:hover {
+            border: white;
+        }
+
+        .caption {
+            text-align: center;
+            color: black;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <br>
+    <h3>Responsive Image Gallery</h3>
+    <br>
+    <h5>Resize the browser window to see the effect.</h5>
+    <div class="row ">
+
+
+        <div class="col-lg-3 img-thumbnail img-fluid a">
+            <a href="htps://demo.codegym.vn/web/15/gallery/img_fjords.jpg">
+                <img src="../anh/anh1.jpg" style="width: 100%"/>
+                <div class="caption ">
+                    <p>Add a description of the image here</p>
+                </div>
+            </a>
+        </div>
+
+
+        <div class="col-lg-3 img-thumbnail img-fluid a">
+            <a href="htps://demo.codegym.vn/web/15/gallery/img_fjords.jpg">
+                <img src="../anh/anh2.jpg" style="width: 100%"/>
+                <div class="caption">
+                    <p>Add a description of the image here</p>
+                </div>
+            </a>
+
+        </div>
+
+
+        <div class="col-lg-3 img-thumbnail img-fluid a">
+            <a href="htps://demo.codegym.vn/web/15/gallery/img_fjords.jpg">
+                <img src="../anh/anh3.jpg" style="width: 100%"/>
+                <div class="caption">
+                    <p>Add a description of the image here</p>
+                </div>
+            </a>
+
+        </div>
+
+
+        <div class="col-lg-3 img-thumbnail img-fluid a">
+            <a href="htps://demo.codegym.vn/web/15/gallery/img_fjords.jpg">
+                <img src="../anh/anh4.jpg" style="width: 100%"/>
+                <div class="caption">
+                    <p>Add a description of the image here</p>
+                </div>
+            </a>
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row " style="margin-left: 10px ">
+        <p>
+            This example use media queries to re-arrange the images on different screen sizes: for screens larger than
+            700px wide, it will show four images side by side, for screens smaller than 700px, it will show two images
+            side by side. For screens smaller than 500px, the images will stack vertically (100%).
+        </p>
+
+    </div>
+</div>
+</body>
+</html>
