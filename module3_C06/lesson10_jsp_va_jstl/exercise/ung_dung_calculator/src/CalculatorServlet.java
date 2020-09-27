@@ -17,12 +17,13 @@ public class CalculatorServlet extends HttpServlet {
         float second =0;
         String option =null;
         float result =0;
-        PrintWriter writer =response.getWriter();
+        String error = null;
+//        PrintWriter writer =response.getWriter();
         try{
         first = Float.parseFloat(request.getParameter("first"));
          second = Float.parseFloat(request.getParameter("second"));
          option= request.getParameter("option");
-        result = 0;
+
 
        if (option.equals("addition")){
            result= first+second;
@@ -37,25 +38,39 @@ public class CalculatorServlet extends HttpServlet {
                if (option.equals("division")) {
                    result = first / second;
                }
-           } catch (ArithmeticException aExp){
-            writer.println("<html>");
-            writer.println("<h1 style=\"color: red\">error divided by 0</h1>");
-            writer.println("<html>");
+
+
            } catch (Exception e) {
-            writer.println("<html>");
-            writer.println("<h1 style=\"color: red\" >Enter the wrong format</h1>");
-            writer.println("<html>");
+
+         error=  "Enter the wrong format";
+
            }
+        if(second!=0){
+            request.setAttribute("first",first);
+            request.setAttribute("second",second);
+            request.setAttribute("result",result);
+
+            request.setAttribute("option",option);
+            error = "no errors";
+            request.setAttribute("error",error);
+        } else {
+            error = "error divided by 0";
+            request.setAttribute("first",first);
+            request.setAttribute("second",second);
+            request.setAttribute("option",option);
+            request.setAttribute("error",error);
+        }
 
 
+            request.getRequestDispatcher("/result.jsp").forward(request,response);
 
 
-        writer.println("<html>");
-        writer.println("<h1>First operand: " + first+ "</h1>");
-        writer.println("<h1>Second operand:" + second+ "</h1>");
-        writer.println("<h1>Calculator: " + option+ "</h1>");
-        writer.println("<h1>Result: " + result + "</h1>");
-        writer.println("</html>");
+//        writer.println("<html>");
+//        writer.println("<h1>First operand: " + first+ "</h1>");
+//        writer.println("<h1>Second operand:" + second+ "</h1>");
+//        writer.println("<h1>Calculator: " + option+ "</h1>");
+//        writer.println("<h1>Result: " + result + "</h1>");
+//        writer.println("</html>");
 
 
     }
