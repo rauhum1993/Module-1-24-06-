@@ -25,7 +25,7 @@
 <div>
     <form action="/servlet" >
         <input type="search" name="search" placeholder="search by name product" >
-        <input type="submit" value="search" name="actionUser">
+        <input type="submit" value="Search" name="actionUser">
     </form>
 
 </div>
