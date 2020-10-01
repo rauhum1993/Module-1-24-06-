@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="goi_my_sql_stored_procedures_tu_jdbc:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/goi_my_sql_stored_procedures_tu_jdbc_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="goi_my_sql_stored_procedures_tu_jdbc/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="goi_my_sql_stored_procedures_tu_jdbc" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="jstl-1.2" />
+          <element id="library" level="project" name="mysql-connector-java-8.0.21" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

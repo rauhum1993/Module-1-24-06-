@@ -24,7 +24,10 @@ public class UserDAO implements IUserDAO {
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String QUERY_GET_USER_BY_ID= "{CALL get_user_by_id(?)}";
     private static final String QUERY_INSERT_USER= "{CALL insert_user(?,?,?)}";
+    private static final String QUERY_LIST_USER= "{CALL list_user()}";
     private static final String QUERY_UPDATE_USER= "{CALL update_user(?,?,?,?)}";
+
+    private static final String QUERY_DELETE_USER= "{CALL delete_user(?)}";
     protected Connection getConnection() {
         Connection connection = null;
         try {
@@ -63,7 +66,7 @@ public class UserDAO implements IUserDAO {
     @Override
     public void insertUser(User user) {
         try {
-            PreparedStatement preparedStatement = this.baseDAO.getConnection().prepareStatement(INSERT_USERS_SQL);
+            PreparedStatement preparedStatement = this.baseDAO.getConnection().prepareStatement(QUERY_UPDATE_USER);
             preparedStatement.setString(1, user.getId());
             preparedStatement.setString(2, user.getName());
             preparedStatement.setString(3, user.getEmail());
@@ -100,7 +103,7 @@ public class UserDAO implements IUserDAO {
     public List<User> selectAllUsers() {
         List<User> userList = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = this.baseDAO.getConnection().prepareStatement(SELECT_ALL_USERS);
+            PreparedStatement preparedStatement = this.baseDAO.getConnection().prepareStatement(QUERY_LIST_USER);
             ResultSet resultSet = preparedStatement.executeQuery();
             User user;
             while (resultSet.next()) {
@@ -123,7 +126,7 @@ public class UserDAO implements IUserDAO {
     public boolean deleteUser(String id) {
         boolean rowDeleted = false;
         try {
-            PreparedStatement preparedStatement = this.baseDAO.getConnection().prepareStatement(DELETE_USERS_SQL);
+            PreparedStatement preparedStatement = this.baseDAO.getConnection().prepareStatement(QUERY_DELETE_USER);
             preparedStatement.setString(1, id);
             rowDeleted = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -136,13 +139,13 @@ public class UserDAO implements IUserDAO {
     public boolean updateUser(User user) {
         boolean rowUpdated = false;
         try {
-            PreparedStatement preparedStatement = this.baseDAO.getConnection().prepareStatement(QUERY_UPDATE_USER);
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setString(3, user.getCountry());
-            preparedStatement.setString(4, user.getId());
+            CallableStatement callableStatement = this.baseDAO.getConnection().prepareCall(QUERY_UPDATE_USER);
+            callableStatement.setString(1, user.getName());
+            callableStatement.setString(2, user.getEmail());
+            callableStatement.setString(3, user.getCountry());
+            callableStatement.setString(4, user.getId());
 
-            rowUpdated = preparedStatement.executeUpdate() > 0;
+            rowUpdated = callableStatement.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -475,10 +478,6 @@ public class UserDAO implements IUserDAO {
 
 
             psUpdate.setBigDecimal(2, new BigDecimal(999.99));
-
-
-
-            //psUpdate.setBigDecimal(1, new BigDecimal(999.99));
 
             psUpdate.setString(2, "Quynh");
 

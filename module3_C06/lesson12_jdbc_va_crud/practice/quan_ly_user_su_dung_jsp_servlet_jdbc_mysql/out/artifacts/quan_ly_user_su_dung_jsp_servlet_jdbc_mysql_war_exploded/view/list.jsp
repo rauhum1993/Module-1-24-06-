@@ -11,6 +11,15 @@
     <h2>
         <a href="/servlet?action=create">Add New User</a>
     </h2>
+    <h2>
+        <a href="/servlet?action=permision">Transaction User</a>
+    </h2>
+    <h2>
+        <a href="/servlet?action=test-without-tran">Thực thi SQL không sử dụng Transaction</a>
+    </h2>
+    <h2>
+        <a href="/servlet?action=test-use-tran">Thực thi SQL  sử dụng Transaction</a>
+    </h2>
     <h2 style="font-size: 1cm;color: red">
         ${message}
     </h2>
